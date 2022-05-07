@@ -4,7 +4,7 @@ var router = require(‘express’).Router();
 
 
 
-//router.get(‘/products/:product_id/’, controller.products.getProductData);
+router.get(‘/products/:product_id/’, controller.products.getProductData);
 
 /* Connect controller methods to their corresponding routes
  * Example:
