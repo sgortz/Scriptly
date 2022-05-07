@@ -1,0 +1,35 @@
+.file-uploader-page {
+  background-color: #DBE5E7;
+}
+
+.aqua-card {
+  background-color: #8FBEC5;
+  padding: 28px;
+}
+
+.uploader-modal,
+.results-area {
+  background-color: white;
+  margin: 21px;
+  max-width: 700px;
+  padding: 32px;
+}
+
+.file-uploader {
+  background-color: #E4EFF0;
+  padding: 22px 200px;
+  max-width: 30px;
+}
+
+.submit-speech, .word-analyzed {
+  background-color: #66BDD0;
+}
+
+.submit-speech {
+  border: none;
+  padding: 20px 25px;
+}
+
+.word-analyzed {
+  color:white
+}
