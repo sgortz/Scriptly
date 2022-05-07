@@ -1,12 +1,14 @@
+/* eslint-disable no-undef */
+var router = require('express').Router();
+var controller = require('./controllers');
 
-var controller = require(‘./controllers’);
-var router = require(‘express’).Router();
+
+router.get('/user/:userId', controller.getUserData);
+router.get('/speeches/:userId', controller.getSpeeches);
+router.get('/speeches/:userId/analyzed', controller.getAnalyzedSpeeches);
+router.post('/speeches/:userId', controller.postSpeech);
+router.post('/video/:userId', controller.postVideo);
 
 
 
-//router.get(‘/products/:product_id/’, controller.products.getProductData);
-
-/* Connect controller methods to their corresponding routes
- * Example:
- * router.get('(endpoint starting with /)', name-of-function); */
-
+module.exports = router;
