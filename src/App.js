@@ -2,7 +2,8 @@
 import React from "react";
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { signInWithGoogle } from './Firebase';
+import { signInWithGoogle } from './auth/Firebase';
+
 
 class App extends React.Component {
   render() {
@@ -12,6 +13,7 @@ class App extends React.Component {
         <h1>
           Hello {name}
         </h1>
+
         <button type="button" className="btn btn-primary" onClick={signInWithGoogle}>
           This is a bootstrap button
         </button>
