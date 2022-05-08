@@ -7,11 +7,15 @@ const SpeechView = () => {
 
   return (
     <div>
-      Speech
+
       <div>
         {Speech.Speech.map((value, index) => {
           return (
-            <div key={index}>{value}</div>
+            <div style={{display: 'flex'}}>
+              <span style={{border: '3px solid black', width: '40vw'}}>Last Edit</span>
+              <span style={{border: '3px solid black', width: '40vw'}}>Title</span>
+              <span key={index} style={{border: '3px solid black'}}>{value}</span>
+            </div>
           )
         })}
       </div>
