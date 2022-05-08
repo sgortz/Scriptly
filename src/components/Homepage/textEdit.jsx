@@ -14,7 +14,7 @@ const TextEdit = () => {
     console.log(editedValue)
 
   return (
-    <div style={{height: '100vw', width: '100vw', backgroundColor: 'gray'}}>
+    <div style={{height: '100vw', width: '100vw', verticalAligh: 'top', backgroundColor: 'gray'}}>
       <input
         type='textarea'
         name='textBox'
