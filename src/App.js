@@ -13,7 +13,8 @@ class App extends React.Component {
         <h1>
           Hello {name}
         </h1>
-        <FileUploaderModal />
+        <button onClick={()=> setShow(true)}>Show Modal </button>
+        <FileUploaderModal onClose={()=> setShow(false)}/>
         {/* <button type="button" className="btn btn-primary" onClick={signInWithGoogle}>
           This is a bootstrap button
         </button> */}
