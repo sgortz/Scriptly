@@ -1,35 +1,34 @@
-
+const controller = require ('../database/controllers/scriptly.js')
 
 // eslint-disable-next-line no-undef
 module.exports = {
-  testFunction: (req, res) => {
-    res.send(200)
+  addUserFunction: (req, res) => {
+    controller.addUser(req.body)
+    .then(data => {
+      res.send(data)
+    })
+    .catch(err => console.log(err))
   },
-  getUserData: (req, res) => {
+  findOneSpeechFunction: (req, res) => {
+    controller.findOneSpeech(req.params)
+    .then(data => res.send(data))
+    .catch(err => res.send(err))
+  },
+  updateOneFunction: (req, res) => {
+    controller.updateOne(req.params, req.body)
+    .then(data => {
+      console.log('updateOneFunction ', data)
+      res.send(data)
+    })
+    .catch(err => console.log(err))
+  },
+  getUserDataFunction: (req, res) => {
     console.log('getUserData', req.params)
-    res.send(200)
+    const params = req.params
+    //console.log('email', email)
+    controller.getUserInfo(params)
+    .then(data => res.send(data))
+    .catch(err => res.send(err))
   },
-  getSpeeches: (req, res) => {
-    //array of speeches... either grab the first speech if not defined
-    // or grab the speech at index value of request
-    console.log('getSpeeches', req.params)
-    res.send(req.params)
-  },
-  getAnalyzedSpeeches: (req, res) => {
-    console.log('getAnalyzedSpeeches', req.params)
-    res.send(req.params)
-  },
-  postSpeech: (req, res) => {
-    //insert a new speech into database if speech ID doesn't exist, if ID found
-    // unshift() speech into array of user speeches.
-    console.log('postSpeech', req.body)
-    res.send(req.body)
-  },
-  postVideo: (req, res) => {
-    //look up user and add vidoe URL to database
-    //Front End will also post to Firebase storage?
-    console.log('postSpeech', req.body)
-    res.send(req.body)
-  }
 
 }

@@ -1,79 +1,72 @@
-const { User_Info } = require('../models/scriptly')
+const User = require('../models/scriptly')
 
-//CRUD
-//Create
-//Read
-//Update
-//Delete
-
-let getUserInfo = (params) => {
-  const { email, firstName, lastName } = params
-  return User_Info.findOneAndUpdate({email: email}, {firstName: firstName, lastName: lastName, email: email } , {upsert: true})
-
-  //return User_Info.find({email: email})
-
-}
-
-// console.log(User_Info)
-// getUserInfo({email: "jm@gmail.com"})
-
-
-
-
-
-
-
-
-
-
-
-
-// let readAll = () => {
-//   return Mvp.find({})
-// }
-
-// let topScores = () => {
-//   console.log('topScores')
-//   return Mvp.find({}).sort({score: -1 }).limit(5)
-// }
-
-// let add = (params) => {
-//   console.log('add to Database:')
-//   const { firstName, lastName, password, email } = params
-
-//   const mvp = new Mvp({firstName: firstName, lastName: lastName, password: password, email: email, score: 1})
-//   return mvp.save(mvp)
-// };
-
-// let update = (params) => {
-//   console.log('[Controllers/mvp.js] update params', params)
-//   const { _id : id } = params
-//   return Mvp.findByIdAndUpdate(id, params, {new: true})
-// }
-
-// let deleteOne = (params) => {
-//   console.log('[Controllers/mvp.js] delete params', params)
-//   const { _id: id } = params
-//   return Mvp.findByIdAndDelete(id)
-// }
-
-// let readOneWord = () => {
-//   console.log('[Controllers/mvp.js] readOneWord]')
-//    return Word.aggregate([{$sample: {size:1}}])
-// }
-
-// let doesUserExist = (params) => {
-//   console.log(params)
-//   const { firstName, lastName, password } = params;
-//   return Mvp.findOne({firstName: firstName, lastName:lastName,password:password})
-// }
-
-// let updateScore = (id, params) => {
-//   console.log('id: ', id, "params: ", params)
-//   return Mvp.findByIdAndUpdate(id, {score : params.score}, {new: true})
-// }
 
 
 module.exports = {
-  getUserInfo
-}
+  getUserInfo: (params) => {
+    const { email } = params
+    return User.find({email: email})
+
+  },
+  findOneSpeech: (params) => {
+    const id = params.id;
+    return User.find({'speeches._id': id})
+
+
+  },
+  updateOne: (params, body) => {
+    // get analysis for storage here
+    // positive, negative, trust, anger, joy
+    const id = params.id;
+    const { speech, email, name } = body;
+    console.log("speech ", speech, "email ", email, "name ", name)
+    return User.findByIdAndUpdate(
+      id,
+      {
+        name: name,
+        email: email,
+
+        $push: {
+          speeches: {
+            $each: [
+              {
+                id: 1,
+                body: speech,
+                analysis: {
+                  positive: 1,
+                  negative: 2,
+                  trust: 3,
+                  anger: 4,
+                  joy: 5,
+                },
+              },
+            ],
+            $position: 0,
+          },
+        },
+      },
+      { upsert: true, new: true }
+    );
+  },
+  addUser: (params) => {
+    const { name, email } = params;
+    return User.find({})
+    .sort({ id: -1 })
+    .then((data) => {
+        let currentID = 1;
+        if (data[0]) {
+          currentID = data[0].id + 1;
+        }
+        return currentID
+      })
+      .then((currentID) => {
+        const embed = new User({
+          id: currentID,
+          name: name,
+          email: email,
+        });
+        return embed.save();
+      })
+      .catch((err) => console.log(err));
+  },
+};
