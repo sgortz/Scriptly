@@ -25,7 +25,6 @@ module.exports = {
   getUserDataFunction: (req, res) => {
     console.log('getUserData', req.params)
     const params = req.params
-    //console.log('email', email)
     controller.getUserInfo(params)
     .then(data => res.send(data))
     .catch(err => res.send(err))
