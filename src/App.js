@@ -10,7 +10,10 @@ class App extends React.Component {
     const { name } = this.props;
     return (
       <>
-        <h1>
+      <div>
+        <Homepage/>
+      </div>
+        {/* <h1>
           Hello {name}
         </h1>
 
@@ -19,7 +22,7 @@ class App extends React.Component {
         </button>
         <h2>{localStorage.getItem("name")}</h2>
         <h3>{localStorage.getItem("email")}</h3>
-        <h3>{localStorage.getItem("photoURL")}</h3>
+        <h3>{localStorage.getItem("photoURL")}</h3> */}
       </>
     );
   }

@@ -7,18 +7,16 @@ const TextEdit = () => {
   const [currentValue, setCurrent] = useRecoilState(currentSpeechText);
   const [editedValue, setEdited] = useRecoilState(editedSpeechText);
 
-  const editListener = (e) => {
-    console.log(event)
+  const editListener = (event) => {
+    setEdited(event.target.value)
   }
-
-    console.log(editedValue)
 
   return (
     <div style={{height: '100vw', width: '100vw', verticalAligh: 'top', backgroundColor: 'gray'}}>
       <input
         type='textarea'
-        name='textBox'
-        onChange={editListener(event)}
+        value={currentValue}
+        onChange={() => {editListener(event)}}
         style={{
           height: '50vw',
           width: '50vw'

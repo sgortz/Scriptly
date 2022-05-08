@@ -40,13 +40,37 @@ const Homepage = () => {
       </h1>
       <button onClick={() => {upload()}}>Upload</button>
       <button onClick={() => {submission()}}>Submit</button>
-      <button onClick={() => {setPage('text')}}>Test</button>
-      <ul className="nav nav-tabs">
-        <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="#">Speeches</a>
+
+      <ul class="nav nav-tabs mb-3" id="myTab0" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link active"
+            id="home-tab0"
+            data-mdb-toggle="tab"
+            data-mdb-target="#home0"
+            type="button"
+            role="tab"
+            aria-controls="home"
+            aria-selected="true"
+            onClick={() => {setPage('speech')}}
+          >
+          Speeches
+          </button>
         </li>
-        <li className="nav-item">
-          <a className="nav-link" href="#">Text Editor</a>
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link"
+            id="profile-tab0"
+            data-mdb-toggle="tab"
+            data-mdb-target="#profile0"
+            type="button"
+            role="tab"
+            aria-controls="profile"
+            aria-selected="false"
+            onClick={() => {setPage('text')}}
+          >
+            Text Editor
+          </button>
         </li>
       </ul>
       <div style={{height: '50vw', width: '50vw', border: '3px solid black'}}>
