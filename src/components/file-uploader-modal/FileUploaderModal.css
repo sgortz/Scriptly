@@ -8,30 +8,52 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+.file-uploader-modal.file-uploader-modal-show {
+  opacity: 1;
+  pointer-events: visible;
+}
+
+.file-uploader-modal.file-uploader-modal-show .file-uploader-modal-content {
+  transform: translateY(0);
 }
 
 .file-uploader-back-button {
-  padding: 10px;
+  font-size: 30px;
+  padding: 0;
 }
 
 .file-uploader-modal-content {
   background-color: #8FBEC5;
   padding: 28px;
-  width: 500px;
+  width: 800px;
+  transform: translateY(-200px);
+  transition: all 0.3s ease-in-out;
 }
 
-.uploader-modal,
+.file-uploader-area {
+  padding-bottom: 62px;
+}
+
+
+.file-uploader-area,
 .results-area {
   background-color: white;
-  /* margin: 21px;
-  max-width: 700px;
-  padding: 32px; */
+  margin: 42px 34px 31px;
+  padding: 45px;
 }
 
 .file-uploader {
   background-color: #E4EFF0;
-  /* padding: 22px 200px;
-  max-width: 30px; */
+  border: 3px dashed rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin-bottom: 10px;
+  padding: 46px;
+  text-align: center;
 }
 
 .submit-speech-button,
@@ -41,7 +63,9 @@
 
 .submit-speech-button {
   border: none;
-  padding: 20px 25px;
+  padding: 8px 25px;
+  float: right;
+  clear: right;
 }
 
 .word-analyzed {
