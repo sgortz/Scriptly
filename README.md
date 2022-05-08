@@ -10,29 +10,16 @@ First install dependencies:
 npm install
 ```
 
-To create a production build:
+To Run react development enviornment and server:
 
-```sh
-npm run build-prod
-```
+# npm run dev:react
+# npm run server
 
-To create a development build:
+Install MongoDB Atlas username/password variables in .env file
 
-```sh
-npm run build-dev
-```
+PASSWORD =
+USERNAME =
 
-## Running
-
-Open the file `dist/index.html` in your browser
-
-## Testing
-
-To run unit tests:
-
-```sh
-npm test
-```
 
 ## Credits
 
