@@ -1,30 +1,28 @@
-import React, {useState, useEffect, useRef} from 'react';
-import ReactDOM from 'react-dom';
-import {Editor, EditorState} from 'draft-js';
+import React from 'react';
+import {currentSpeechText, editedSpeechText} from '../../atoms.jsx';
+import {useRecoilState} from 'recoil';
 
 const TextEdit = () => {
 
-  const [editorState, setEditorState] = useState(
-    EditorState.createEmpty()
-  );
+  const [currentValue, setCurrent] = useRecoilState(currentSpeechText);
+  const [editedValue, setEdited] = useRecoilState(editedSpeechText);
 
-  const editor = useRef(null);
-
-  const focusEditor = () => {
-    editor.current.focus();
+  const editListener = (e) => {
+    console.log(event)
   }
 
-  useEffect(() => {
-    focusEditor()
-  }, []);
+    console.log(editedValue)
 
   return (
-    <div onClick={focusEditor} style={{height: '100vw', width: '100vw', backgroundColor: 'gray'}}>
-    <Editor
-        ref={editor}
-        editorState={editorState}
-        onChange={editorState => setEditorState(editorState)}
-      />
+    <div style={{height: '100vw', width: '100vw', backgroundColor: 'gray'}}>
+      <input
+        type='textarea'
+        name='textBox'
+        onChange={editListener(event)}
+        style={{
+          height: '50vw',
+          width: '50vw'
+        }}/>
     </div>
   )
 }
