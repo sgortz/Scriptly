@@ -17,6 +17,7 @@ const Homepage = () => {
 
   const logout = () => {
     console.log('this should be replaced or linked to firebase logout?')
+
   }
 
   const avatar = () => {
@@ -28,7 +29,7 @@ const Homepage = () => {
     <div>
       <h1>
         Scriptly Placeholder
-        <button onClick={logout()}>Logout</button>
+        <button onClick={()=>logout()}>Logout</button>
         <div style={{
           position: 'absolute',
           borderRadius: '50px',
