@@ -27,8 +27,17 @@
   padding: 0;
 }
 
+.file-uploader-back-button:hover {
+  cursor: pointer;
+}
+
+.file-uploader:hover {
+  cursor: pointer;
+}
+
 .file-uploader-modal-content {
   background-color: #8FBEC5;
+  border-radius: 36px;
   padding: 28px;
   width: 800px;
   transform: translateY(-200px);

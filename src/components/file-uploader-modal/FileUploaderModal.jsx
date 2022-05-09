@@ -8,14 +8,26 @@ function FileUploaderModal(props) {
   const [fileName, setFileName] = useState('');
   const [files, setFiles] = useState([]);
 
-  const onDrop = acceptedFiles => {
-    // Do something with the files
-  }
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
+  const { getRootProps, getInputProps, acceptedFiles, isDragActive } = useDropzone({
+    // accept: {
+    //   'text/*': [],
+    //   'video/*': []
+    // },
+    onDrop:(acceptedFiles) => {
+      setFiles(acceptedFiles);
+    }
+  })
+  
+  const acceptedFileItems = acceptedFiles.map(file => (
+    <li key={file.path}>
+      {file.path} - {file.size} bytes
+    </li>
+  ));
 
   const uploadFile = (e) => {
     e.preventDefault();
     // axios.get('/endpoint', {data})
+    alert('thank you for submitting')
   }
 
   return (
@@ -30,12 +42,13 @@ function FileUploaderModal(props) {
             <input {...getInputProps()} />
             {
               isDragActive ?
-                <p className="file-uploader">Drop the files here ...</p> :
-                <p className="file-uploader">Drag and drop some files here</p>
+                <p className="file-uploader">Drop the files here</p> :
+                <p className="file-uploader">Drag and drop here or click to add some files </p>
             }
             <p>{fileName}</p>
-            <button className="submit-speech-button" onClick={uploadFile}>Submit</button>
           </div>
+            <button className="submit-speech-button" onClick={uploadFile}>Submit</button>
+          <ul>{acceptedFileItems}</ul>
         </div>
         <div className="results-area">
           <span className="word-analyzed">WORD</span>
@@ -46,5 +59,3 @@ function FileUploaderModal(props) {
 }
 
 export default FileUploaderModal;
-        // <div className="uploader-modal">
-        // </div>
