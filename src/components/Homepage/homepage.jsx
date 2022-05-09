@@ -42,10 +42,10 @@ const Homepage = () => {
       <button onClick={() => {upload()}}>Upload</button>
       <button onClick={() => {submission()}}>Submit</button>
 
-      <ul class="nav nav-tabs mb-3" id="myTab0" role="tablist">
-        <li class="nav-item" role="presentation">
+      <ul className="nav nav-tabs mb-3" id="myTab0" role="tablist">
+        <li className="nav-item" role="presentation">
           <button
-            class="nav-link active"
+            className="nav-link active"
             id="home-tab0"
             data-mdb-toggle="tab"
             data-mdb-target="#home0"
@@ -58,9 +58,9 @@ const Homepage = () => {
           Speeches
           </button>
         </li>
-        <li class="nav-item" role="presentation">
+        <li className="nav-item" role="presentation">
           <button
-            class="nav-link"
+            className="nav-link"
             id="profile-tab0"
             data-mdb-toggle="tab"
             data-mdb-target="#profile0"
