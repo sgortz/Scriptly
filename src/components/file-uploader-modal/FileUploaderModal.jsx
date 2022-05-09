@@ -29,7 +29,7 @@ function FileUploaderModal(props) {
 
   const uploadFile = (e) => {
     e.preventDefault();
-    // axios.get('/endpoint', {data})
+    // axios.get('/speech', {data})
     alert('thank you for submitting')
   }
 
@@ -53,9 +53,9 @@ function FileUploaderModal(props) {
             <button className="submit-speech-button" onClick={uploadFile}>Submit</button>
           <ul>{acceptedFileItems}</ul>
         </div>
-        <div className="results-area">
+        {/* <div className="results-area">
           <span className="word-analyzed">WORD</span>
-        </div>
+        </div> */}
       </div>
     </div>
   )
