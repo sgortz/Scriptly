@@ -1,4 +1,30 @@
-h1 {
-  color: white;
-  background-color: black;
+.header {
+  font-size: 200px;
+  text-align: center;
+}
+
+/*Landing*/
+.headerText {
+  margin-left: 150px;
+  margin-right: 100px;
+  padding-bottom: 100px;
+background-color: #E4EFF0;
+}
+
+.headerTextLarger {
+  text-align: right;
+  font-size: xx-large;
+  padding-right: 250px;
+  top: 50%;
+}
+
+.headerTextSmall {
+  text-align: right;
+  font-size: medium;
+  padding-right: 190px;
+}
+
+.landingButton {
+margin-left: 60%;
+background-color: #66BDD0;
 }
