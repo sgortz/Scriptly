@@ -20,11 +20,6 @@ export const resultModal = atom({
   default: false,
 })
 
-export const uploadModal = atom({
-  key: 'uploadModal',
-  default: false,
-}
-)
 export const loginStatus = atom({
   key: 'login',
   default: false,

@@ -1,25 +1,26 @@
 import React, {useState, useEffect} from 'react';
 import ConditionalWindow from './conditionalWindow.jsx';
 import {useRecoilState} from 'recoil';
-import {pageView, uploadModal, resultModal} from '../../atoms.jsx';
+import {pageView, resultModal} from '../../atoms.jsx';
 import Results from '../../results/Results.jsx'
 import axios from 'axios';
+
 const Homepage = () => {
 
-  useEffect
+  // useEffect
 
   const [pageValue, setPage] = useRecoilState(pageView);
   const [showModal, setShowModal] = useState(false);
   const [showResultModal, setResultModal] = useRecoilState(resultModal);
-  const [showUploadModal, setUploadModal] = useRecoilState(uploadModal);
 
   const submission = () => {
+    console.log(showResultModal)
     setResultModal(true);
   }
 
-  const grabSpeeches = () => {
+  // const grabSpeeches = () => {
 
-  }
+  // }
 
   const upload = () => {
     setUploadModal(true);
@@ -27,7 +28,6 @@ const Homepage = () => {
 
   const logout = () => {
     console.log('this should be replaced or linked to firebase logout?')
-
   }
 
   const avatar = () => {
@@ -39,7 +39,7 @@ const Homepage = () => {
     <div>
       <h1>
         Scriptly Placeholder
-        <button onClick={()=>logout()}>Logout</button>
+        <button onClick={logout()}>Logout</button>
         <div style={{
           position: 'absolute',
           borderRadius: '50px',

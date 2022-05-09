@@ -12,7 +12,8 @@ export default function Results() {
   const [showResultModal, setResultModal] = useRecoilState(resultModal);
 
   const displayModal = () => {
-    setShowModal(true);
+    console.log(showResultModal)
+    setResultModal(true);
   }
 
   const hideModal = () => {

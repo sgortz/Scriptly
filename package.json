@@ -37,12 +37,8 @@
     "react-dropzone": "^14.2.1",
     "react-icons": "^4.3.1",
     "react-router": "^6.3.0",
-<<<<<<< HEAD
-    "recoil": "^0.7.3-alpha.1"
-=======
     "recoil": "^0.7.3-alpha.1",
     "styled-components": "^5.3.5"
->>>>>>> main
   },
   "devDependencies": {
     "@babel/core": "^7.17.10",
