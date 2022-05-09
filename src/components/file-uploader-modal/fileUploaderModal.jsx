@@ -34,7 +34,7 @@ function FileUploaderModal(props) {
   }
 
   return (
-    <div style={{display: }} className={`file-uploader-modal ${props.show ? 'file-uploader-modal-show' : ''}`} onClick={props.onClose}>
+    <div className={`file-uploader-modal ${props.show ? 'file-uploader-modal-show' : ''}`} onClick={props.onClose}>
       <div className="file-uploader-modal-content" onClick={e => e.stopPropagation()}>
 
         <div className="file-uploader-back-button">
