@@ -44,9 +44,9 @@ export const signInWithEmail = () => {
 
 }
 
-export const createAccount = async (email, password) => {
+export const createAccount = (email, password) => {
   try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const userCredential = createUserWithEmailAndPassword(auth, email, password);
     console.log(userCredential.user);
   } catch(error) {
     consolel.log(error)
