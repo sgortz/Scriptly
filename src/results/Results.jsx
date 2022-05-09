@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
 import Result1 from './Result1.jsx';
 import Result3 from './Result3.jsx';
+import {useRecoilState} from 'recoil';
+import {resultModal} from '../atoms.jsx';
 import { Modal } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Results() {
   const [resultPage, setResultPage] = useState(1);
   const [showModal, setShowModal] = useState(false);
+  const [showResultModal, setResultModal] = useRecoilState(resultModal);
 
   const displayModal = () => {
     setShowModal(true);
   }
 
   const hideModal = () => {
-    setShowModal(false);
+    setResultModal(false);
   }
 
   const changeResultPage = (direction) => {
@@ -21,10 +24,7 @@ export default function Results() {
   }
 
   return(<>
-    <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={displayModal}>
-      Launch demo modal
-    </button>
-    <Modal show={showModal} size="lg" onHide={hideModal}>
+    <Modal show={showResultModal} size="lg" onHide={hideModal}>
       <Modal.Header>Emotional analysis</Modal.Header>
       <Modal.Body>
         {

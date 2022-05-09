@@ -1,18 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ConditionalWindow from './conditionalWindow.jsx';
 import {useRecoilState} from 'recoil';
-import {pageView} from '../../atoms.jsx';
-
+import {pageView, uploadModal, resultModal} from '../../atoms.jsx';
+import Results from '../../results/Results.jsx'
 const Homepage = () => {
 
   const [pageValue, setPage] = useRecoilState(pageView);
+  const [showModal, setShowModal] = useState(false);
+  const [showResultModal, setResultModal] = useRecoilState(resultModal);
+  const [showUploadModal, setUploadModal] = useRecoilState(uploadModal);
 
   const submission = () => {
-    console.log('this should submit current text for analysis')
+    setResultModal(true);
   }
 
   const upload = () => {
-    console.log('this should navigate to modal/page for upload')
+    setUploadModal(true);
   }
 
   const logout = () => {
@@ -26,6 +29,7 @@ const Homepage = () => {
 
   return (
     <div>
+      <Results/>
       <h1>
         Scriptly Placeholder
         <button onClick={logout()}>Logout</button>

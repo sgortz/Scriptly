@@ -14,3 +14,13 @@ export const editedSpeechText = atom({
   key: 'editedSpeechText',
   default: '',
 })
+
+export const resultModal = atom({
+  key: 'resultModal',
+  default: false,
+})
+
+export const uploadModal = atom({
+  key: 'uploadModal',
+  default: false,
+})
