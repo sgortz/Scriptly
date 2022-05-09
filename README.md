@@ -17,9 +17,10 @@ To Run react development enviornment and server:
 
 Install MongoDB Atlas username/password variables in .env file
 
+```sh
 PASSWORD =
 USERNAME =
-
+```
 
 ## Credits
 
