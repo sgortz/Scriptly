@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { signInWithGoogle } from './auth/Firebase';
-import Header from './components/Header.jsx'
-import Landing from './components/Landing/Landing.jsx'
+import Header from './components/Header.jsx';
+import Landing from './components/Landing/Landing.jsx';
+import Homepage from './components/Homepage/homepage.jsx';
 import FileUploaderModal from "./components/file-uploader-modal/FileUploaderModal.jsx";
 
 function App() {
@@ -12,13 +13,26 @@ function App() {
   const currentPage = page === 'landing' ? <Landing /> : page === 'signin' ? <Signin /> : <Homepage />
 
   return (
-    <div className="app-container">
-      <Header />
-      {currentPage}
-      {/* The code below is to be added to Homepage, instead of App.js */}
-      <button onClick={() => setShow(true)}>show modal</button>
-      <FileUploaderModal onClose={()=> setShow(false)} show={show}/>
-    </div>
+    <>
+      <div className="app-container">
+        <Header />
+        {currentPage}
+        <Homepage />
+        {/* The code below is to be added to Homepage, instead of App.js */}
+        <button onClick={() => setShow(true)}>show modal</button>
+        <FileUploaderModal onClose={() => setShow(false)} show={show} />
+        {/* <h1>
+          Hello {name}
+        </h1>
+
+        <button type="button" className="btn btn-primary" onClick={signInWithGoogle}>
+          This is a bootstrap button
+        </button>
+        <h2>{localStorage.getItem("name")}</h2>
+        <h3>{localStorage.getItem("email")}</h3>
+        <h3>{localStorage.getItem("photoURL")}</h3> */}
+      </div>
+    </>
   );
 }
 
