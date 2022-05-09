@@ -81,11 +81,7 @@ const Homepage = () => {
   )
 };
 
-<<<<<<< HEAD
 export default Homepage;
 
 
 
-=======
-export default Homepage;
->>>>>>> main
