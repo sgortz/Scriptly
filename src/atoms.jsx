@@ -14,3 +14,8 @@ export const editedSpeechText = atom({
   key: 'editedSpeechText',
   default: '',
 })
+
+export const loginStatus = atom({
+  key: 'login',
+  default: false
+})
