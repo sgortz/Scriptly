@@ -13,8 +13,10 @@ const config = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[contenthash].js',
+    sourceMapFilename: "[name].[contenthash].js.map",
     clean: true
   },
+  devtool: "source-map",
   module: {
     rules: [
       {
