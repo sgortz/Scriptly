@@ -26,11 +26,12 @@ export const signInWithGoogle = () => {
   signInWithPopup(auth, provider)
   .then(result => {
     const {displayName, email, photoURL} = result.user
-    console.log("can you rad me", displayName, email, photoURL)
-    console.log(result)
+    //console.log("can you rad me", displayName, email, photoURL)
+    //console.log(result)
+    //console.log(auth.currentUser)
     localStorage.setItem('name', displayName)
     localStorage.setItem('email', email)
-    localStorage.setItem('photoURL', photoURL)
+    //localStorage.setItem('photoURL', photoURL)
   })
   .catch(err => console.log('signInWithGoogle err: ', err))
 }
@@ -39,7 +40,11 @@ export const signInWithEmail = () => {
 
 }
 
-export const createAccount = () => {
-
-
+export const createAccount = async (email, password) => {
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    console.log(userCredential.user);
+  } catch(error) {
+    consolel.log(error)
+  }
 }
