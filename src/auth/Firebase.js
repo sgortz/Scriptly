@@ -1,6 +1,9 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import {
+  getAuth, GoogleAuthProvider,
+  signInWithPopup, createUserWithEmailAndPassword } from "firebase/auth";
+
 import { getStorage } from "firebase/storage";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -27,11 +30,25 @@ export const signInWithGoogle = () => {
   signInWithPopup(auth, provider)
   .then(result => {
     const {displayName, email, photoURL} = result.user
-    console.log("can you rad me", displayName, email, photoURL)
-    console.log(result)
+    //console.log("can you rad me", displayName, email, photoURL)
+    //console.log(result)
+    //console.log(auth.currentUser)
     localStorage.setItem('name', displayName)
     localStorage.setItem('email', email)
-    localStorage.setItem('photoURL', photoURL)
+    //localStorage.setItem('photoURL', photoURL)
   })
   .catch(err => console.log('signInWithGoogle err: ', err))
+}
+
+export const signInWithEmail = () => {
+
+}
+
+export const createAccount = (email, password) => {
+  try {
+    const userCredential = createUserWithEmailAndPassword(auth, email, password);
+    console.log(userCredential.user);
+  } catch(error) {
+    consolel.log(error)
+  }
 }
