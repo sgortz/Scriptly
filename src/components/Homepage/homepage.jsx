@@ -21,11 +21,11 @@ const Homepage = () => {
   // }
 
   const logout = () => {
-  //   console.log('this should be replaced or linked to firebase logout?')
+    console.log('this should be replaced or linked to firebase logout?')
   }
 
   const avatar = () => {
-  //   console.log('this should go to some sort of profile page?  Firebase?')
+    console.log('this should go to some sort of profile page?  Firebase?')
   }
 
   return (
@@ -44,7 +44,7 @@ const Homepage = () => {
         }} onClick={avatar()}>AV</div>
       </h1>
       <button onClick={() => { setShowUploader(true) }}>Upload</button>
-      <FileUploaderModal onClose={() => setShowUploader(false)} show={showUploader} />
+      <FileUploaderModal onClose={e => setShowUploader(false)} show={showUploader} />
 
       <button onClick={() => { setShowResults(true) }}>Submit</button>
       <Results show={showResults}  onClose={e => setShowResults(false)}/>
@@ -82,7 +82,7 @@ const Homepage = () => {
         </li>
       </ul>
       <div style={{ height: '50vw', width: '50vw', border: '3px solid black' }}>
-        {/* <ConditionalWindow /> */}
+        <ConditionalWindow />
       </div>
 
     </div>
