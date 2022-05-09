@@ -17,6 +17,10 @@
   padding-top: 3rem;
 }
 
+.biggest-card {
+  height: 400px;
+}
+
 .emotion-icon {
   font-size: 4.5rem;
 }

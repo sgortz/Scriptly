@@ -52,7 +52,7 @@ export default function Result2({changePage, emotionResults}) {
               </div>
             </Col>
             <Col sm={3}>
-              <div className="result2-card">
+              <div className="result2-card biggest-card">
                 {allEmojis[emotionResults[0]]}
                 <h3>{emotionResults[0]}</h3>
               </div>
