@@ -7,12 +7,12 @@ module.exports = {
   },
   getUserInfo: (params) => {
     const { email } = params
-    return User.find({email: email})
+    return User.find({ email: email })
 
   },
   findOneSpeech: (params) => {
     const id = params.id;
-    return Speech.find({_id: id})
+    return Speech.find({ _id: id })
   },
   findUserSpeeches: (params) => {
     return Speech.find(params)
@@ -24,6 +24,7 @@ module.exports = {
       name,
       email,
       title,
+      comments: [],
       speeches: [{
         title: title,
         body: body,
@@ -76,11 +77,33 @@ module.exports = {
       { upsert: true, new: true }
     );
   },
+  addCommentToSpeech: (params, inputs) => {
+    const {reviewerName, commentBody} = inputs;
+    const { id } = params;
+    return Speech.findByIdAndUpdate(
+      id,
+      {
+        $push: {
+          comments: {
+            $each: [
+              {
+                reviewerName,
+                commentBody,
+                commentDate: new Date(),
+              },
+            ],
+            $position: 0,
+          },
+        },
+      },
+      { upsert: true, new: true }
+    )
+  },
   addUser: (inputs) => {
     const { name, email, url } = inputs;
     return User.find({})
-    .sort({ id: -1 })
-    .then((data) => {
+      .sort({ id: -1 })
+      .then((data) => {
         let currentID = 1;
         if (data[0]) {
           currentID = data[0].id + 1;
@@ -99,7 +122,7 @@ module.exports = {
       .catch((err) => console.log(err));
   },
   searchSpeechTitle: (inputs) => {
-    const {search} = inputs;
+    const { search } = inputs;
     return Speech.find({})
       .then((data) => { // [speech1, speech2.....]
         let result = data.filter((speech) => {
@@ -115,7 +138,20 @@ module.exports = {
     // })
   },
   searchBodyTitle: (inputs) => {
-    //Speech.find({})
-    //.then(data => )
+    const { search } = inputs;
+    return Speech.find({})
+      .then(data => {
+        //console.log('inputs', inputs)
+        let resultWeWant = []       // [speech1, speech5, seppech 10, soeech...]. for each  push to the newarr []
+        let result = data.map(obj => {
+          let temp = obj.speeches.filter(body => body.body.toLowerCase().includes(search.toLowerCase()));
+          //temp = [s1, s5], temp2 = [s7, s10]
+          temp.forEach((speech) => {
+            resultWeWant.push(speech); // [ s1, s5, s7, s10]
+          })
+        })
+        return resultWeWant;
+      })
+      .catch(err => console.log(err))
   }
 };
