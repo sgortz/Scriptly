@@ -2,7 +2,10 @@ import React from 'react';
 import ConditionalWindow from './conditionalWindow.jsx';
 import {useRecoilState} from 'recoil';
 import {pageView} from '../../atoms.jsx';
+<<<<<<< HEAD
 import Header from '../header.jsx';
+=======
+>>>>>>> main
 
 const Homepage = () => {
 
@@ -28,7 +31,7 @@ const Homepage = () => {
   return (
     <div>
       <h1>
-        Scriptly Header Placeholder
+        Scriptly Placeholder
         <button onClick={logout()}>Logout</button>
         <div style={{
           position: 'absolute',

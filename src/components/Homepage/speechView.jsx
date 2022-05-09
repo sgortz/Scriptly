@@ -21,8 +21,8 @@ const SpeechView = () => {
         {Speech.Speech.map((value, index) => {
           return (
             <div style={{display: 'flex'}}>
-              <span style={{border: '3px solid black', width: '10vw'}}>Last Edit</span>
-              <span style={{border: '3px solid black', width: '10vw'}}>Title</span>
+              <span style={{border: '3px solid black', width: '40vw'}}>Last Edit</span>
+              <span style={{border: '3px solid black', width: '40vw'}}>Title</span>
               <span key={index} style={{border: '3px solid black'}}>{value}</span>
               <button onClick={() => {
                 handleEdit(index)
