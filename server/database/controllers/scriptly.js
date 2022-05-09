@@ -19,14 +19,18 @@ module.exports = {
 
   },
   addSpeech: (inputs) => {
-    const { name, email, body, url, positive, negative, trust, anger, joy } = inputs;
+    const { name, email, body, url, title, totalCount, positive, negative, trust, anger, joy } = inputs;
     const newSpeech = new Speech({
       name,
       email,
+      title,
       speeches: [{
+        title: title,
         body: body,
         url: url,
+        date: new Date(),
         analysis: {
+          totalCount,
           positive,
           negative,
           trust,
@@ -42,20 +46,21 @@ module.exports = {
     // positive, negative, trust, anger, joy
     console.log('params', params, 'inputs', inputs)
     const id = params.id;
-    const { body, email, name, url, positive, negative, trust, anger, joy } = inputs;
+    const { title, body, url, totalCount, positive, negative, trust, anger, joy } = inputs;
     return Speech.findByIdAndUpdate(
       id,
       {
-        name,
-        email,
-
+        title: title,
         $push: {
           speeches: {
             $each: [
               {
+                title: title,
                 body: body,
                 url: url,
+                date: new Date(),
                 analysis: {
+                  totalCount,
                   positive,
                   negative,
                   trust,
@@ -93,5 +98,24 @@ module.exports = {
       })
       .catch((err) => console.log(err));
   },
-
+  searchSpeechTitle: (inputs) => {
+    const {search} = inputs;
+    return Speech.find({})
+      .then((data) => { // [speech1, speech2.....]
+        let result = data.filter((speech) => {
+          return speech.title.toLowerCase().includes(search.toLowerCase())// true or false
+        }) // [speech2, speech5 ...]
+        return result; // res.send(result);
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    //   speeches.filter((speech) => { // [speech1, speech2]
+    //   speech.title.toLowerCase().include(title.toLowerCase())
+    // })
+  },
+  searchBodyTitle: (inputs) => {
+    //Speech.find({})
+    //.then(data => )
+  }
 };
