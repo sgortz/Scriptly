@@ -28,7 +28,7 @@ const SignUp = () => {
 
 export default SignUp;
 
-const SignUpContainer = styled.div`
+const SignUpContainer = styled.dialog`
   display: flex;
   flex-direction: column;
   width: 300px;

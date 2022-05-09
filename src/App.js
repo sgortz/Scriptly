@@ -9,14 +9,13 @@ import SignUp from './components/SignUp'
 function App () {
   const [page, setPage] = useState('landing')
   const [login, setLogin] = useState(false)
-
+  console.log(login)
   const currentPage = page === 'landing' ? <Landing /> : page === 'signin' ? <Signin /> : <Homepage />
     return (
       <div className="app-container">
       <Header />
       <a onClick={() => setLogin(true)}>Log-in</a>
-      <SignUp/>
-      {login && (<dialog><SignUp /></dialog>)}
+      {login && (<SignUp />)}
       {currentPage}
       </div>
     );
