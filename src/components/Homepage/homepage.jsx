@@ -1,29 +1,37 @@
 import React, {useState, useEffect} from 'react';
 import ConditionalWindow from './conditionalWindow.jsx';
 import {useRecoilState} from 'recoil';
-import {pageView, resultModal} from '../../atoms.jsx';
-import Results from '../../results/Results.jsx'
+import {pageView, resultModal, uploadModal, allSpeeches} from '../../atoms.jsx';
 import axios from 'axios';
 
 const Homepage = () => {
 
-  // useEffect
+  useEffect(() => {
+    getSpeeches();
+    console.log(speechValue)
+    }, []);
 
   const [pageValue, setPage] = useRecoilState(pageView);
   const [showModal, setShowModal] = useState(false);
+  const [speechValue, setSpeechValue] = useRecoilState(allSpeeches);
   const [showResultModal, setResultModal] = useRecoilState(resultModal);
+
+  const [showUploadModal, setUploadModal] = useRecoilState(uploadModal);
+
+  const email = 'hello@gmail.com'
+  const getSpeeches = () => {
+    axios.get(`/history/${email}`)
+    .then((response) => {
+      setSpeechValue(response.data);
+    })
+    .catch((error) => {
+      console.log('error')
+    })
+  }
 
   const submission = () => {
     console.log(showResultModal)
-    setResultModal(true);
-  }
-
-  // const grabSpeeches = () => {
-
-  // }
-
-  const upload = () => {
-    setUploadModal(true);
+    setResultModal(true)
   }
 
   const logout = () => {
@@ -49,8 +57,12 @@ const Homepage = () => {
           top: '0%',
           right: '0%'}} onClick={avatar()}>AV</div>
       </h1>
-      <button onClick={() => {upload()}}>Upload</button>
-      <button onClick={() => {submission()}}>Submit</button>
+      <button onClick={() => {
+          upload()
+        }}>Upload</button>
+      <button onClick={() => {
+          submission()
+        }}>Submit</button>
 
       <ul class="nav nav-tabs mb-3" id="myTab0" role="tablist">
         <li class="nav-item" role="presentation">

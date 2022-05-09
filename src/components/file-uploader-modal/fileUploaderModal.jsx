@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useDropzone } from 'react-dropzone'
 import { BiLeftArrowAlt } from 'react-icons/bi'
 import './FileUploaderModal.css';
+import {useRecoilState} from 'recoil';
+import {uploadModal} from '../../atoms.jsx';
 
 function FileUploaderModal(props) {
   const [fileName, setFileName] = useState('');
@@ -31,7 +33,7 @@ function FileUploaderModal(props) {
   }
 
   return (
-    <div className={`file-uploader-modal ${props.show ? 'file-uploader-modal-show' : ''}`} onClick={props.onClose}>
+    <div style={{display: }} className={`file-uploader-modal ${props.show ? 'file-uploader-modal-show' : ''}`} onClick={props.onClose}>
       <div className="file-uploader-modal-content" onClick={e => e.stopPropagation()}>
 
         <div className="file-uploader-back-button">

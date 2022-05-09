@@ -5,6 +5,11 @@ export const pageView = atom({
   default: 'speech'
 })
 
+export const allSpeeches = atom({
+  key: 'allSpeeches',
+  default: [],
+})
+
 export const currentSpeechText = atom({
   key: 'currentSpeechText',
   default: ''
@@ -20,7 +25,12 @@ export const resultModal = atom({
   default: false,
 })
 
+export const uploadModal = atom({
+  key: 'resultModal',
+  default: 'none',
+})
+
 export const loginStatus = atom({
   key: 'login',
-  default: false,
+  default: 'none',
 })

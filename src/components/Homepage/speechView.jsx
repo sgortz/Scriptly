@@ -1,5 +1,5 @@
 import React from 'react';
-import {currentSpeechText, pageView} from '../../atoms.jsx';
+import {currentSpeechText, pageView, allSpeeches} from '../../atoms.jsx';
 import {useRecoilState} from 'recoil';
 
 
@@ -9,6 +9,8 @@ const SpeechView = () => {
 
   const [currentValue, setCurrent] = useRecoilState(currentSpeechText);
   const [pageValue, setPage] = useRecoilState(pageView);
+  const [speechValue, setSpeechValue] = useRecoilState(allSpeeches);
+
 
   const handleEdit = (index) => {
     setCurrent(Speech.Speech[index])
@@ -22,12 +24,13 @@ const SpeechView = () => {
   return (
     <div>
       <div>
-        {Speech.Speech.map((value, index) => {
+        {speechValue.map((value, index) => {
+          console.log(value)
           return (
             <div style={{display: 'flex'}} onClick={displayHistory}>
-              <span style={{border: '3px solid black', width: '40vw'}}>Last Edit</span>
-              <span style={{border: '3px solid black', width: '40vw'}}>Title</span>
-              <span key={index} style={{border: '3px solid black'}}>{value}</span>
+              <span style={{border: '3px solid black', width: '40vw'}}>{value.speeches[0].date}</span>
+              <span style={{border: '3px solid black', width: '40vw'}}>{value.title}</span>
+              <span key={index} style={{border: '3px solid black'}}>{value.speeches[0].body}</span>
               <button onClick={() => {
                 handleEdit(index)
               }}>Edit</button>

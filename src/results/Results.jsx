@@ -8,13 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Results() {
   const [resultPage, setResultPage] = useState(1);
-  const [showModal, setShowModal] = useState(false);
   const [showResultModal, setResultModal] = useRecoilState(resultModal);
-
-  const displayModal = () => {
-    console.log(showResultModal)
-    setResultModal(true);
-  }
 
   const hideModal = () => {
     setResultModal(false);
@@ -24,7 +18,8 @@ export default function Results() {
     setResultPage(resultPage + direction);
   }
 
-  return(<>
+  return(
+
     <Modal show={showResultModal} size="lg" onHide={hideModal}>
       <Modal.Header>Emotional analysis</Modal.Header>
       <Modal.Body>
@@ -40,6 +35,6 @@ export default function Results() {
         <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={() => changeResultPage(1)}>Next</button>
       </Modal.Footer>
     </Modal>
-    </>
   )
 }
+

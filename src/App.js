@@ -26,12 +26,7 @@ function App() {
         {login && <SignIn/>}
         {currentPage}
         <Homepage />
-        {/* The code below is to be added to Homepage, instead of App.js */}
-        <button onClick={() => setShow(true)}>show modal</button>
-        <FileUploaderModal onClose={() => setShow(false)} show={show} />
-        {/* <h1>
-          Hello {name}
-        </h1>
+
 
         <button type="button" className="btn btn-primary" onClick={signInWithGoogle}>
           This is a bootstrap button
