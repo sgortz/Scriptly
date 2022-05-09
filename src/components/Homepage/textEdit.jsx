@@ -12,7 +12,7 @@ const TextEdit = () => {
   }
 
   return (
-    <div style={{height: '100vw', width: '100vw', verticalAligh: 'top', backgroundColor: 'gray'}}>
+    <div style={{height: '50vw', width: '50vw', verticalAligh: 'top', backgroundColor: 'gray'}}>
       <input
         type='textarea'
         value={currentValue}

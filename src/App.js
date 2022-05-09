@@ -13,8 +13,8 @@ function App () {
     return (
       <>
       <div className="app-container">
-        <Header />
-        {currentPage}
+        {/* <Header />
+        {currentPage} */}
         <Homepage/>
         {/* <h1>
           Hello {name}
