@@ -34,7 +34,6 @@ module.exports = {
     controller.addSpeech(req.body)
     .then(data => res.send(data))
     .catch(err => res.send(err))
-
   },
   updateOneSpeechFunction: (req, res) => {
     controller.updateOneSpeech(req.params, req.body)
@@ -43,5 +42,23 @@ module.exports = {
       res.send(data)
     })
     .catch(err => console.log(err))
+  },
+  searchSpeechTitleFunction: (req, res) => {
+    controller.searchSpeechTitle(req.params)
+    .then(data => res.send(data))
+    .catch(err => {
+      console.log(err);
+    })
+  },
+  searchBodyTitleFunction: (req, res) => {
+    controller.searchBodyTitle(req.params)
+    .then(data => res.send(data))
+    .catch(err => console.log(err))
+  },
+  addCommentToSpeechFunction: (req, res) => {
+    controller.addCommentToSpeech(req.params, req.body)
+    .then(data => res.send(data))
+    .catch(err => console.log(err))
   }
+
 }

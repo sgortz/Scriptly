@@ -44,5 +44,12 @@ module.exports = {
     })
     .catch(err => console.log(err))
   },
+  searchSpeechTitleFunction: (req, res) => {
+    controller.searchSpeechTitle(req.params)
+    .then(data => res.send(data))
+    .catch(err => {
+      console.log(err);
+    })
+  }
 
 }
