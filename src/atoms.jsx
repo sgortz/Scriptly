@@ -19,3 +19,11 @@ export const loginStatus = atom({
   key: 'login',
   default: false
 })
+export const showLoginModal = atom({
+  key: 'loginModal',
+  default: false
+})
+export const loginText = atom({
+  key: 'text',
+  default: 'log-in'
+})
