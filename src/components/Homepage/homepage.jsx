@@ -14,9 +14,7 @@ const Homepage = () => {
   const [pageValue, setPage] = useRecoilState(pageView);
   const [showModal, setShowModal] = useState(false);
   const [speechValue, setSpeechValue] = useRecoilState(allSpeeches);
-  const [showResultModal, setResultModal] = useRecoilState(resultModal);
 
-  const [showUploadModal, setUploadModal] = useRecoilState(uploadModal);
 
   const email = 'hello@gmail.com'
   const getSpeeches = () => {

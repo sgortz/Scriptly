@@ -12,6 +12,7 @@ const SpeechView = () => {
   const [speechValue, setSpeechValue] = useRecoilState(allSpeeches);
 
 
+
   const handleEdit = (index) => {
     setCurrent(Speech.Speech[index])
     setPage('text')
