@@ -1,8 +1,10 @@
-const User = require('../models/scriptly')
-
-
+const { User, Speech } = require('../models/scriptly')
 
 module.exports = {
+  getAllUsers: (page = 0, count = 5) => {
+    console.log('page', page, 'count', count)
+    return User.find({}).skip(page).limit(count)
+  },
   getUserInfo: (params) => {
     const { email } = params
     return User.find({email: email})
@@ -10,34 +12,56 @@ module.exports = {
   },
   findOneSpeech: (params) => {
     const id = params.id;
-    return User.find({'speeches._id': id})
-
+    return Speech.find({_id: id})
+  },
+  findUserSpeeches: (params) => {
+    return Speech.find(params)
 
   },
-  updateOne: (params, body) => {
+  addSpeech: (inputs) => {
+    const { name, email, body, url, positive, negative, trust, anger, joy } = inputs;
+    const newSpeech = new Speech({
+      name,
+      email,
+      speeches: [{
+        body: body,
+        url: url,
+        analysis: {
+          positive,
+          negative,
+          trust,
+          anger,
+          joy,
+        }
+      }]
+    })
+    return newSpeech.save()
+  },
+  updateOneSpeech: (params, inputs) => {
     // get analysis for storage here
     // positive, negative, trust, anger, joy
+    console.log('params', params, 'inputs', inputs)
     const id = params.id;
-    const { speech, email, name } = body;
+    const { body, email, name, url, positive, negative, trust, anger, joy } = inputs;
 
-    return User.findByIdAndUpdate(
+    return Speech.findByIdAndUpdate(
       id,
       {
-        name: name,
-        email: email,
+        name,
+        email,
 
         $push: {
           speeches: {
             $each: [
               {
-                id: 1,
-                body: speech,
+                body: body,
+                url: url,
                 analysis: {
-                  positive: 1,
-                  negative: 2,
-                  trust: 3,
-                  anger: 4,
-                  joy: 5,
+                  positive,
+                  negative,
+                  trust,
+                  anger,
+                  joy,
                 },
               },
             ],
@@ -48,8 +72,8 @@ module.exports = {
       { upsert: true, new: true }
     );
   },
-  addUser: (params) => {
-    const { name, email } = params;
+  addUser: (inputs) => {
+    const { name, email, url } = inputs;
     return User.find({})
     .sort({ id: -1 })
     .then((data) => {
@@ -64,6 +88,7 @@ module.exports = {
           id: currentID,
           name: name,
           email: email,
+          url: url,
         });
         return embed.save();
       })
