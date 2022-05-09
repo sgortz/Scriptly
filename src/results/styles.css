@@ -1,0 +1,20 @@
+.results-footer {
+  background-color: #8FBEC5;
+  color: #fff;
+}
+
+/* .results-btn {
+  background-color: #fff;
+  border: none;
+  color: #66BDD0;
+} */
+
+.result2-card {
+  background-color: #8FBEC5;
+  height: 500px;
+  width: 100%;
+}
+
+.emotion-icon {
+  font-size: 4.5rem;
+}
