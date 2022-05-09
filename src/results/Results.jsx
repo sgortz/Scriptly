@@ -16,11 +16,9 @@ export default function Results(props) {
     setResultPage(resultPage + direction);
   }
 
-
   return(
     <div>
-      <Modal show={props.show} size="lg" onClick={e => e.stopPropagation()} onHide={props.onClose} >
-      <Modal size="xl" show={showModal} onHide={hideModal} centered className="results-modal">
+      <Modal show={props.show} size="xl" onClick={e => e.stopPropagation()} onHide={props.onClose} centered className="results-modal">
         {
           resultPage === 1 ?
           <Result1
@@ -39,6 +37,5 @@ export default function Results(props) {
         }
       </Modal>
     </div>
-
   )
 }
