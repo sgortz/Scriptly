@@ -2,10 +2,6 @@ import React from 'react';
 import ConditionalWindow from './conditionalWindow.jsx';
 import {useRecoilState} from 'recoil';
 import {pageView} from '../../atoms.jsx';
-<<<<<<< HEAD
-import Header from '../header.jsx';
-=======
->>>>>>> main
 
 const Homepage = () => {
 
