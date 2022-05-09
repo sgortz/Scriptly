@@ -6,16 +6,23 @@ const speechesSchema = mongoose.Schema({
   id: Number,
   name: String,
   email: String,
+  title: String,
   body: String,
   url: String,
+  date: String,
+  reviewerName : String,
+  commentBody : String,
+  commentDate: String,
   analysis: {
+    totalCount: Number,
     positive: Number,
     negative: Number,
     trust: Number,
     anger: Number,
     joy: Number,
   },
-  speeches: []
+  speeches: [],
+  comments: []
 },{
   timestamps: true,
 })

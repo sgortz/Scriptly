@@ -7,26 +7,31 @@ module.exports = {
   },
   getUserInfo: (params) => {
     const { email } = params
-    return User.find({email: email})
+    return User.find({ email: email })
 
   },
   findOneSpeech: (params) => {
     const id = params.id;
-    return Speech.find({_id: id})
+    return Speech.find({ _id: id })
   },
   findUserSpeeches: (params) => {
     return Speech.find(params)
 
   },
   addSpeech: (inputs) => {
-    const { name, email, body, url, positive, negative, trust, anger, joy } = inputs;
+    const { name, email, body, url, title, totalCount, positive, negative, trust, anger, joy } = inputs;
     const newSpeech = new Speech({
       name,
       email,
+      title,
+      comments: [],
       speeches: [{
+        title: title,
         body: body,
         url: url,
+        date: new Date(),
         analysis: {
+          totalCount,
           positive,
           negative,
           trust,
@@ -42,20 +47,21 @@ module.exports = {
     // positive, negative, trust, anger, joy
     console.log('params', params, 'inputs', inputs)
     const id = params.id;
-    const { body, email, name, url, positive, negative, trust, anger, joy } = inputs;
+    const { title, body, url, totalCount, positive, negative, trust, anger, joy } = inputs;
     return Speech.findByIdAndUpdate(
       id,
       {
-        name,
-        email,
-
+        title: title,
         $push: {
           speeches: {
             $each: [
               {
+                title: title,
                 body: body,
                 url: url,
+                date: new Date(),
                 analysis: {
+                  totalCount,
                   positive,
                   negative,
                   trust,
@@ -71,11 +77,33 @@ module.exports = {
       { upsert: true, new: true }
     );
   },
+  addCommentToSpeech: (params, inputs) => {
+    const {reviewerName, commentBody} = inputs;
+    const { id } = params;
+    return Speech.findByIdAndUpdate(
+      id,
+      {
+        $push: {
+          comments: {
+            $each: [
+              {
+                reviewerName,
+                commentBody,
+                commentDate: new Date(),
+              },
+            ],
+            $position: 0,
+          },
+        },
+      },
+      { upsert: true, new: true }
+    )
+  },
   addUser: (inputs) => {
     const { name, email, url } = inputs;
     return User.find({})
-    .sort({ id: -1 })
-    .then((data) => {
+      .sort({ id: -1 })
+      .then((data) => {
         let currentID = 1;
         if (data[0]) {
           currentID = data[0].id + 1;
@@ -93,5 +121,37 @@ module.exports = {
       })
       .catch((err) => console.log(err));
   },
-
+  searchSpeechTitle: (inputs) => {
+    const { search } = inputs;
+    return Speech.find({})
+      .then((data) => { // [speech1, speech2.....]
+        let result = data.filter((speech) => {
+          return speech.title.toLowerCase().includes(search.toLowerCase())// true or false
+        }) // [speech2, speech5 ...]
+        return result; // res.send(result);
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    //   speeches.filter((speech) => { // [speech1, speech2]
+    //   speech.title.toLowerCase().include(title.toLowerCase())
+    // })
+  },
+  searchBodyTitle: (inputs) => {
+    const { search } = inputs;
+    return Speech.find({})
+      .then(data => {
+        //console.log('inputs', inputs)
+        let resultWeWant = []       // [speech1, speech5, seppech 10, soeech...]. for each  push to the newarr []
+        let result = data.map(obj => {
+          let temp = obj.speeches.filter(body => body.body.toLowerCase().includes(search.toLowerCase()));
+          //temp = [s1, s5], temp2 = [s7, s10]
+          temp.forEach((speech) => {
+            resultWeWant.push(speech); // [ s1, s5, s7, s10]
+          })
+        })
+        return resultWeWant;
+      })
+      .catch(err => console.log(err))
+  }
 };
