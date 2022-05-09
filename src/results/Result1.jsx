@@ -57,16 +57,8 @@ export default function Result1({wordsCount, emotionCount, changePage}) {
       </Container>
     </Modal.Body>
     <Modal.Footer className="results-footer">
-      <Container>
-        <Row>
-          <Col sm={10}>
-            <p>{`Out of the ${wordsCount} words of your speech, ${emotionCount} are highly correlated to an emotion`}</p>
-          </Col>
-          <Col>
-            <button type="button" className="btn btn-primary results-btn" data-toggle="modal" data-target="#exampleModal" onClick={() => changePage(1)}>Next</button>
-          </Col>
-        </Row>
-      </Container>
+      <p>{`Out of the ${wordsCount} words of your speech, ${emotionCount} are highly correlated to an emotion`}</p>
+      <button type="button" className="btn btn-primary results-btn" data-toggle="modal" data-target="#exampleModal" onClick={() => changePage(1)}>Next</button>
     </Modal.Footer>
   </>
   )

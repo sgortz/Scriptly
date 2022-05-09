@@ -84,7 +84,7 @@ export default function Result4({changePage}) {
         </Row>
       </Container>
     </Modal.Body>
-    <Modal.Footer>
+    <Modal.Footer className="results-footer">
       <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={() => changePage(-1)}>Previous</button>
       <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Submit</button>
     </Modal.Footer>
