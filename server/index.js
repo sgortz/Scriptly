@@ -1,9 +1,11 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 const router = require('./routes')
 const express = require('express')
 require('dotenv').config()
 const path = require('path')
 const morgan = require("morgan")
+const db = require('./database').connnection
 
 const app=express();
 
