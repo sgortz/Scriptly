@@ -1,26 +1,27 @@
 import React, {useState, useEffect} from 'react';
 import ConditionalWindow from './conditionalWindow.jsx';
 import {useRecoilState} from 'recoil';
-import {pageView, resultModal, uploadModal, allSpeeches} from '../../atoms.jsx';
+import {pageView, resultModal, uploadModal, allSpeeches, editedSpeechText} from '../../atoms.jsx';
 import axios from 'axios';
 
 const Homepage = () => {
 
   useEffect(() => {
     getSpeeches();
-    console.log(speechValue)
     }, []);
 
   const [pageValue, setPage] = useRecoilState(pageView);
   const [showModal, setShowModal] = useState(false);
   const [speechValue, setSpeechValue] = useRecoilState(allSpeeches);
+  const [editedValue, setEdited] = useRecoilState(editedSpeechText);
 
 
   const email = 'hello@gmail.com'
+
   const getSpeeches = () => {
     axios.get(`/history/${email}`)
     .then((response) => {
-      setSpeechValue(response.data);
+      console.log('this is a post success')
     })
     .catch((error) => {
       console.log('error')
@@ -32,28 +33,23 @@ const Homepage = () => {
     setResultModal(true)
   }
 
-  const logout = () => {
-    console.log('this should be replaced or linked to firebase logout?')
+  const testingSubmission = () => {
+    axios.post('/speech', {body: {editedValue}, name: 'Jonathan Will Atwood Sr.', email: 'hello@gmail.com'})
+    .then((response) => {
+      console.log('this is a post success')
+    })
+    .catch((error) => {
+      console.log(error, 'this is a post error')
+    })
   }
 
-  const avatar = () => {
-    console.log('this should go to some sort of profile page?  Firebase?')
-  }
 
 
   return (
     <div>
       <h1>
         Scriptly Placeholder
-        <button onClick={logout()}>Logout</button>
-        <div style={{
-          position: 'absolute',
-          borderRadius: '50px',
-          height: '50px',
-          width: '50px',
-          backgroundColor: 'red',
-          top: '0%',
-          right: '0%'}} onClick={avatar()}>AV</div>
+
       </h1>
       <button onClick={() => {
           upload()
@@ -97,7 +93,9 @@ const Homepage = () => {
       <div style={{height: '50vw', width: '50vw', border: '3px solid black'}}>
         <ConditionalWindow/>
       </div>
-
+      <button onClick={() => {
+          testingSubmission()
+        }}>Post</button>
     </div>
   )
 };

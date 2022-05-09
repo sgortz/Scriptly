@@ -10,8 +10,6 @@ const MyEditor = () => {
   const [currentValue, setCurrent] = useRecoilState(currentSpeechText);
   const [editedValue, setEdited] = useRecoilState(editedSpeechText);
 
-
-
   const initialValue = [
     {
       type: 'paragraph',
@@ -21,8 +19,11 @@ const MyEditor = () => {
 
 
   return (
-    <Slate editor={editor} value={initialValue}>
-      <Editable />
+    <Slate editor={editor} value={initialValue} onChange={(value) => {
+      setEdited(value[0].children[0].text)
+      console.log(editedValue, 'edited value')
+    }}>
+      <Editable/>
     </Slate>
   )
 }
