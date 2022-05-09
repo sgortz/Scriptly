@@ -7,29 +7,19 @@ import { Modal } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 
-export default function Results() {
+export default function Results(props) {
   const [resultPage, setResultPage] = useState(1);
-  const [showModal, setShowModal] = useState(false);
   const [wordsCount, setWordsCount] = useState(0);
   const [emotionCount, setEmotionCount] = useState(0);
-
-  const displayModal = () => {
-    setShowModal(true);
-  }
-
-  const hideModal = () => {
-    setShowModal(false);
-  }
 
   const changeResultPage = (direction) => {
     setResultPage(resultPage + direction);
   }
 
+
   return(
-    <>
-      <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={displayModal}>
-        Launch demo modal
-      </button>
+    <div>
+      <Modal show={props.show} size="lg" onClick={e => e.stopPropagation()} onHide={props.onClose} >
       <Modal size="xl" show={showModal} onHide={hideModal} centered className="results-modal">
         {
           resultPage === 1 ?
@@ -48,6 +38,7 @@ export default function Results() {
           : <Result4 changePage={changeResultPage}/>
         }
       </Modal>
-    </>
+    </div>
+
   )
 }
