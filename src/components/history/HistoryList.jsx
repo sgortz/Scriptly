@@ -26,18 +26,15 @@ function HistoryList(props) {
   };
   return (
     <div className="flex-down-container history-list-container">
-      {/* <h4 >Speech History</h4> */}
-      {/* <div className="d-flex w-100 justify-content-between"> */}
-        <h5 className="mb-1">{`Speech:  ${title}`}</h5>
-          <small>{name}</small>
-        <div className="doughnut-medium ">
-          <DoughnutChart
-            analysis={speech[0].analysis}
-            labelsOn={true}
-          />
-        </div>
-          <hr />
-      {/* </div> */}
+      <h5 className="mb-1">{`Speech:  ${title}`}</h5>
+      <small>{name}</small>
+      <div className="doughnut-medium ">
+        <DoughnutChart
+          analysis={speech[0].analysis}
+          labelsOn={true}
+        />
+      </div>
+      <hr />
       <div className="speech-version-scroll-list">
         {speech ? renderList(speech) : null}
       </div>

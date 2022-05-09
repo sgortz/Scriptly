@@ -6,6 +6,7 @@ import './FileUploaderModal.css';
 
 function FileUploaderModal(props) {
   const [fileName, setFileName] = useState('');
+<<<<<<< HEAD
   const [files, setFiles] = useState([]);
 
   const { getRootProps, getInputProps, acceptedFiles, isDragActive } = useDropzone({
@@ -19,6 +20,23 @@ function FileUploaderModal(props) {
     }
   })
   
+=======
+  const [files, setFiles] = useState(null);
+
+  const onDrop = useCallback(acceptedFiles => {
+    acceptedFiles.map(file => {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        setFiles([e.target.result]);
+      };
+      reader.readAsText(file);
+      return file;
+    });
+  }, []);
+
+   const { getRootProps, getInputProps, acceptedFiles, isDragActive } = useDropzone({onDrop});
+
+>>>>>>> main
   const acceptedFileItems = acceptedFiles.map(file => (
     <li key={file.path}>
       {file.path} - {file.size} bytes

@@ -44,10 +44,10 @@ const Homepage = () => {
         }} onClick={avatar()}>AV</div>
       </h1>
       <button onClick={() => { setShowUploader(true) }}>Upload</button>
-      <FileUploaderModal onClose={() => setShowUploader(false)} show={showUploader} />
+      <FileUploaderModal onClose={e => setShowUploader(false)} show={showUploader} />
 
       <button onClick={() => { setShowResults(true) }}>Submit</button>
-      <Results show={showResults}  onClose={() => setShowResults(false)}/>
+      <Results show={showResults}  onClose={e => setShowResults(false)}/>
       
       <ul className="nav nav-tabs mb-3" id="myTab0" role="tablist">
         <li className="nav-item" role="presentation">
