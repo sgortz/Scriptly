@@ -1,9 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import ConditionalWindow from './conditionalWindow.jsx';
 import {useRecoilState} from 'recoil';
 import {pageView, uploadModal, resultModal} from '../../atoms.jsx';
 import Results from '../../results/Results.jsx'
+import axios from 'axios';
 const Homepage = () => {
+
+  useEffect
 
   const [pageValue, setPage] = useRecoilState(pageView);
   const [showModal, setShowModal] = useState(false);
@@ -12,6 +15,10 @@ const Homepage = () => {
 
   const submission = () => {
     setResultModal(true);
+  }
+
+  const grabSpeeches = () => {
+
   }
 
   const upload = () => {
@@ -29,7 +36,6 @@ const Homepage = () => {
 
   return (
     <div>
-      <Results/>
       <h1>
         Scriptly Placeholder
         <button onClick={logout()}>Logout</button>

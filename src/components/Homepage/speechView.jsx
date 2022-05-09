@@ -15,12 +15,16 @@ const SpeechView = () => {
     setPage('text')
   }
 
+  const displayHistory = () => {
+    console.log('go to history modal')
+  }
+
   return (
     <div>
       <div>
         {Speech.Speech.map((value, index) => {
           return (
-            <div style={{display: 'flex'}}>
+            <div style={{display: 'flex'}} onClick={displayHistory}>
               <span style={{border: '3px solid black', width: '40vw'}}>Last Edit</span>
               <span style={{border: '3px solid black', width: '40vw'}}>Title</span>
               <span key={index} style={{border: '3px solid black'}}>{value}</span>
