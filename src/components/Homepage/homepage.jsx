@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ConditionalWindow from './conditionalWindow.jsx';
-import {useRecoilState} from 'recoil';
-import {pageView} from '../../atoms.jsx';
+import { useRecoilState } from 'recoil';
+import { pageView } from '../../atoms.jsx';
 
 const Homepage = () => {
 
   const [pageValue, setPage] = useRecoilState(pageView);
+  const [activeTab, setActiveTab] = useState(1);
 
   const submission = () => {
     console.log('this should submit current text for analysis')
@@ -29,7 +30,7 @@ const Homepage = () => {
     <div>
       <h1>
         Scriptly Placeholder
-        <button onClick={()=>logout()}>Logout</button>
+        <button onClick={() => logout()}>Logout</button>
         <div style={{
           position: 'absolute',
           borderRadius: '50px',
@@ -37,15 +38,16 @@ const Homepage = () => {
           width: '50px',
           backgroundColor: 'red',
           top: '0%',
-          right: '0%'}} onClick={avatar()}>AV</div>
+          right: '0%'
+        }} onClick={avatar()}>AV</div>
       </h1>
-      <button onClick={() => {upload()}}>Upload</button>
-      <button onClick={() => {submission()}}>Submit</button>
+      <button onClick={() => { upload() }}>Upload</button>
+      <button onClick={() => { submission() }}>Submit</button>
 
       <ul className="nav nav-tabs mb-3" id="myTab0" role="tablist">
         <li className="nav-item" role="presentation">
           <button
-            className="nav-link active"
+            className={activeTab === 1 ? "nav-link active" : "nav-link"}
             id="home-tab0"
             data-mdb-toggle="tab"
             data-mdb-target="#home0"
@@ -53,14 +55,14 @@ const Homepage = () => {
             role="tab"
             aria-controls="home"
             aria-selected="true"
-            onClick={() => {setPage('speech')}}
+            onClick={() => { setPage('speech'); setActiveTab(1); }}
           >
-          Speeches
+            Speeches
           </button>
         </li>
         <li className="nav-item" role="presentation">
           <button
-            className="nav-link"
+            className={activeTab === 2 ? "nav-link active" : "nav-link"}
             id="profile-tab0"
             data-mdb-toggle="tab"
             data-mdb-target="#profile0"
@@ -68,14 +70,14 @@ const Homepage = () => {
             role="tab"
             aria-controls="profile"
             aria-selected="false"
-            onClick={() => {setPage('text')}}
+            onClick={() => { setPage('text'); setActiveTab(2); }}
           >
             Text Editor
           </button>
         </li>
       </ul>
-      <div style={{height: '50vw', width: '50vw', border: '3px solid black'}}>
-        <ConditionalWindow/>
+      <div style={{ height: '50vw', width: '50vw', border: '3px solid black' }}>
+        <ConditionalWindow />
       </div>
 
     </div>
