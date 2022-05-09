@@ -28,3 +28,53 @@ background-color: #E4EFF0;
 margin-left: 60%;
 background-color: #66BDD0;
 }
+
+/* History List */
+.history-container {
+  background: white;
+  padding: 50px 40px;
+  width: 900px;
+  height: 500px;
+  border-radius: 3px;
+}
+
+.flex-down-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.history-list-container {
+  background: white;
+  padding: 50px 40px;
+  box-shadow: 6px 6px 6px rgb(0 0 0 / 10%);
+  border-radius: 3px;
+}
+
+.scroll-list {
+  overflow: auto;
+  float: left;
+  height: 500px;
+  position: relative
+}
+
+.list-item {
+  border-bottom: 1px solid #888
+}
+
+.speech-summary {
+  padding: 10px 0 4px 0;
+  font-size: 20px;
+}
+
+.doughnut-small {
+  box-sizing: border-box;
+  height: 80px;
+  width: 80px;
+}
+
+.doughnut-medium {
+  box-sizing: border-box;
+  height: 100px;
+  width: 500px;
+}
