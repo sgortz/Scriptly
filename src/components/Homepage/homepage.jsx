@@ -2,29 +2,31 @@ import React, { useState } from 'react';
 import ConditionalWindow from './conditionalWindow.jsx';
 import { useRecoilState } from 'recoil';
 import { pageView } from '../../atoms.jsx';
+import FileUploaderModal from "../file-uploader-modal/FileUploaderModal.jsx";
+import Results from '../../results/Results.jsx';
 
 const Homepage = () => {
 
   const [pageValue, setPage] = useRecoilState(pageView);
   const [activeTab, setActiveTab] = useState(1);
+  const [showUploader, setShowUploader] = useState(false);
+  const [showResults, setShowResults] = useState(false);
 
-  const submission = () => {
-    console.log('this should submit current text for analysis')
-  }
+  // const submission = () => {
+  //   console.log('this should submit current text for analysis')
+  // }
 
-  const upload = () => {
-    console.log('this should navigate to modal/page for upload')
-  }
+  // const upload = () => {
+  //   console.log('this should navigate to modal/page for upload')
+  // }
 
   const logout = () => {
-    console.log('this should be replaced or linked to firebase logout?')
-
+  //   console.log('this should be replaced or linked to firebase logout?')
   }
 
   const avatar = () => {
-    console.log('this should go to some sort of profile page?  Firebase?')
+  //   console.log('this should go to some sort of profile page?  Firebase?')
   }
-
 
   return (
     <div>
@@ -41,9 +43,12 @@ const Homepage = () => {
           right: '0%'
         }} onClick={avatar()}>AV</div>
       </h1>
-      <button onClick={() => { upload() }}>Upload</button>
-      <button onClick={() => { submission() }}>Submit</button>
+      <button onClick={() => { setShowUploader(true) }}>Upload</button>
+      <FileUploaderModal onClose={() => setShowUploader(false)} show={showUploader} />
 
+      <button onClick={() => { setShowResults(true) }}>Submit</button>
+      <Results show={showResults}  onClose={e => setShowResults(false)}/>
+      
       <ul className="nav nav-tabs mb-3" id="myTab0" role="tablist">
         <li className="nav-item" role="presentation">
           <button
@@ -77,7 +82,7 @@ const Homepage = () => {
         </li>
       </ul>
       <div style={{ height: '50vw', width: '50vw', border: '3px solid black' }}>
-        <ConditionalWindow />
+        {/* <ConditionalWindow /> */}
       </div>
 
     </div>
