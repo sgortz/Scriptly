@@ -4,18 +4,26 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { signInWithGoogle } from './auth/Firebase';
 import Header from './components/Header.jsx';
 import Landing from './components/Landing/Landing.jsx';
-import Homepage from './components/Homepage/homepage.jsx';
 import FileUploaderModal from "./components/file-uploader-modal/FileUploaderModal.jsx";
+import Homepage from './components/Homepage/homepage.jsx';
+import SignIn from './components/SignIn';
+
+
 
 function App() {
   const [page, setPage] = useState('landing')
   const [show, setShow] = useState(false)
+  const [login, setLogin] = useState(false)
+
   const currentPage = page === 'landing' ? <Landing /> : page === 'signin' ? <Signin /> : <Homepage />
 
-  return (
-    <>
+    return (
+      <>
       <div className="app-container">
-        <Header />
+      <Header />
+      <a onClick={() => setLogin(!login)}>Log-in</a>
+
+        {login && <SignIn/>}
         {currentPage}
         <Homepage />
         {/* The code below is to be added to Homepage, instead of App.js */}
