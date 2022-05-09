@@ -14,6 +14,7 @@ function FileUploaderModal(props) {
     //   'video/*': []
     // },
     onDrop:(acceptedFiles) => {
+      console.log('acceptedFiles', acceptedFiles)
       setFiles(acceptedFiles);
     }
   })
@@ -26,7 +27,7 @@ function FileUploaderModal(props) {
 
   const uploadFile = (e) => {
     e.preventDefault();
-    // axios.get('/endpoint', {data})
+    // axios.get('/speech', {data})
     alert('thank you for submitting')
   }
 
