@@ -15,19 +15,19 @@ function App() {
 
   return (
     <div className="app-container">
-      <Header />
-      <a onClick={() => setLogin(!login)}>Log-in</a>
+      {/* <Header /> */}
+      {/* <a onClick={() => setLogin(!login)}>Log-in</a>
 
         {login && <SignIn/>}
-        {currentPage}
+        {currentPage} */}
         <Homepage />
 
-        <button type="button" className="btn btn-primary" onClick={signInWithGoogle}>
+        {/* <button type="button" className="btn btn-primary" onClick={signInWithGoogle}>
           This is a bootstrap button
         </button>
         <h2>{localStorage.getItem("name")}</h2>
         <h3>{localStorage.getItem("email")}</h3>
-        <h3>{localStorage.getItem("photoURL")}</h3>
+        <h3>{localStorage.getItem("photoURL")}</h3> */}
     </div>
   );
 }

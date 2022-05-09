@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import ConditionalWindow from './conditionalWindow.jsx';
 import {useRecoilState} from 'recoil';
-import {pageView, resultModal, uploadModal, allSpeeches, editedSpeechText} from '../../atoms.jsx';
+import {pageView, allSpeeches, editedSpeechText} from '../../atoms.jsx';
 import axios from 'axios';
 import FileUploaderModal from "../file-uploader-modal/FileUploaderModal.jsx";
 import Results from '../../results/Results.jsx';
@@ -33,13 +33,6 @@ const Homepage = () => {
     })
   }
 
-  const submission = () => {
-    console.log(showResultModal)
-    setResultModal(true)
-
-  const logout = () => {
-    console.log('this should be replaced or linked to firebase logout?')
-  }
 
   const testingSubmission = () => {
     axios.post('/speech', {body: {editedValue}, name: 'Jonathan Will Atwood Sr.', email: 'hello@gmail.com'})
@@ -102,7 +95,7 @@ const Homepage = () => {
         }}>Post</button>
     </div>
   )
-}}
+}
 
 export default Homepage;
 
