@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import ConditionalWindow from './conditionalWindow.jsx';
 import {useRecoilState} from 'recoil';
-import {pageView, allSpeeches, editedSpeechText, updateTitle} from '../../atoms.jsx';
+import {pageView, allSpeeches, editedSpeechText, updateTitle, resultsModal} from '../../atoms.jsx';
 import axios from 'axios';
 import FileUploaderModal from "../file-uploader-modal/FileUploaderModal.jsx";
 import Results from '../../results/Results.jsx';
@@ -15,7 +15,7 @@ const Homepage = () => {
   const [pageValue, setPage] = useRecoilState(pageView);
   const [activeTab, setActiveTab] = useState(1);
   const [showUploader, setShowUploader] = useState(false);
-  const [showResults, setShowResults] = useState(false);
+  const [showResults, setShowResults] = useRecoilState(resultsModal);
   const [showModal, setShowModal] = useState(false);
   const [speechValue, setSpeechValue] = useRecoilState(allSpeeches);
   const [editedValue, setEdited] = useRecoilState(editedSpeechText);

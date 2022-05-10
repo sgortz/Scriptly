@@ -1,16 +1,13 @@
 import {useRecoilState} from 'recoil';
 import {currentSpeechText} from '../atoms.jsx';
+const parser = require('../components/shared/scriptlyShared.js');
 
 const Analyzer = () => {
 
   const [currentValue, setCurrent] = useRecoilState(currentSpeechText);
-<<<<<<< HEAD
-=======
 
-  // replace with speech state
->>>>>>> main
   // account for other characters on split/filter
-  let split = currentValue.split(' ');
+  let split = parser.parseTextToArray(currentValue)
 
   // ship this off with submit
   let emotion = {

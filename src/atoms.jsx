@@ -29,3 +29,8 @@ export const updateTitle = atom({
   key: 'updateTitle',
   default: '',
 })
+
+export const resultsModal = atom({
+  key: 'resultsModal',
+  default: false,
+})
