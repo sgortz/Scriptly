@@ -39,9 +39,6 @@ export const resultsModal = atom({
 
 export const currentAnalysis = atom({
   key: 'currentAnalysis',
-<<<<<<< HEAD
-  default: {},
-=======
   default: {
     fear: 0,
     joy: 0,
@@ -62,13 +59,10 @@ export const currentAnalysis2 = atom({
     negative: 0,
     wordCount: 0,
   },
->>>>>>> main
 })
 
-export const parseSelector = selector({
-  key: 'parseSelector',
-  get: ({get}) => {
-    let data = get(editedValue)
-    let parse = parser.parseTextToArray(data)
-  }
+export const currentSpeechId = atom({
+  key: 'currentSpeechId',
+  default: '627a9e00de163a667afa07a1',
+
 })

@@ -13,29 +13,15 @@ const Analyzer = () => {
 
     const funcWrapper = (string) => {
 
-<<<<<<< HEAD
       let split = parser.parseTextToArray(string);
 
       let emotion = {
         anger: 0,
-=======
-
-      // account for other characters on split/filter
-      let split = parser.parseTextToArray(string)
-      console.log(split, 'this is split')
-      // ship this off with submit
-      let emotion = {
-        fear: 0,
->>>>>>> main
         joy: 0,
         trust: 0,
         positive: 0,
         negative: 0,
-<<<<<<< HEAD
         totalCount: 0,
-=======
-        wordCount: 0,
->>>>>>> main
       }
 
       split.forEach((value) => {
@@ -53,10 +39,6 @@ const Analyzer = () => {
         }
       })
       setAnalysis(emotion)
-<<<<<<< HEAD
-=======
-      console.log(emotion)
->>>>>>> main
     }
 }
 
