@@ -24,3 +24,8 @@ export const loginStatus = atom({
   key: 'login',
   default: 'none',
 })
+
+export const updateTitle = atom({
+  key: 'updateTitle',
+  default: '',
+})

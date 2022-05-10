@@ -2,12 +2,7 @@ import React, { useState } from 'react';
 import Result1 from './Result1.jsx';
 import Result2 from './Result2.jsx';
 import Result3 from './Result3.jsx';
-<<<<<<< HEAD
-import {useRecoilState} from 'recoil';
-import {resultModal} from '../atoms.jsx';
-=======
 import Result4 from './Result4.jsx';
->>>>>>> main
 import { Modal } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';

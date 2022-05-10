@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import ConditionalWindow from './conditionalWindow.jsx';
 import {useRecoilState} from 'recoil';
-import {pageView, allSpeeches, editedSpeechText} from '../../atoms.jsx';
+import {pageView, allSpeeches, editedSpeechText, updateTitle} from '../../atoms.jsx';
 import axios from 'axios';
 import FileUploaderModal from "../file-uploader-modal/FileUploaderModal.jsx";
 import Results from '../../results/Results.jsx';
@@ -19,6 +19,8 @@ const Homepage = () => {
   const [showModal, setShowModal] = useState(false);
   const [speechValue, setSpeechValue] = useRecoilState(allSpeeches);
   const [editedValue, setEdited] = useRecoilState(editedSpeechText);
+  const [titleValue, setTitle] = useRecoilState(updateTitle);
+
 
 
   const email = 'hello@gmail.com';
@@ -35,38 +37,23 @@ const Homepage = () => {
 
 
   const testingSubmission = () => {
-    console.log(editedValue, 'this is in axios post', typeof(editedValue))
-    axios.post('/speech', {body: `${editedValue}`, name: 'Jonathan Will Atwood Sr.', email: 'hello@gmail.com'})
-    .then((response) => {
-      console.log('this is a post success')
-    })
-    .catch((error) => {
-      console.log(error, 'this is a post error')
-    })
+    if (editedValue.length > 0 && titleValue.length > 0) {
+      axios.post('/speech', {body: `${editedValue}`, title: `${titleValue}`, name: 'Jonathan Will Atwood Sr.', email: 'hello@gmail.com'})
+      .then((response) => {
+        console.log('this is a post success')
+      })
+      .catch((error) => {
+        console.log(error, 'this is a post error')
+      })
+    } else {
+      alert('Invalid Entry - Title and Body Must Exist')
+    }
   }
 
 
 
   return (
-<<<<<<< HEAD
-    <div>
-
-=======
     <div id="homepage">
-      <h1>
-        Scriptly Placeholder
-        <button onClick={() => logout()}>Logout</button>
-        <div style={{
-          position: 'absolute',
-          borderRadius: '50px',
-          height: '50px',
-          width: '50px',
-          backgroundColor: 'red',
-          top: '0%',
-          right: '0%'
-        }} onClick={avatar()}>AV</div>
-      </h1>
->>>>>>> main
       <button onClick={() => { setShowUploader(true) }}>Upload</button>
       <FileUploaderModal onClose={e => setShowUploader(false)} show={showUploader} />
 
@@ -120,12 +107,12 @@ const Homepage = () => {
           </button>
         </li>
       </ul>
-      <div style={{ height: '50vw', width: '50vw', border: '3px solid black' }}>
+      <div style={{ height: '80vw', width: '90vw', border: '3px solid black', overflow: 'auto' }}>
         <ConditionalWindow />
       </div>
       <button onClick={() => {
           testingSubmission()
-        }}>Post</button>
+        }}>This is a temporary button</button>
     </div>
   )
 }
