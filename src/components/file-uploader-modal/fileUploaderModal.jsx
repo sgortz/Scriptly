@@ -3,8 +3,7 @@ import axios from 'axios';
 import { useDropzone } from 'react-dropzone'
 import { BiLeftArrowAlt } from 'react-icons/bi'
 import './FileUploaderModal.css';
-import {useRecoilState} from 'recoil';
-import {uploadModal} from '../../atoms.jsx';
+const lib = require('../shared/ScriptlyShared.js');
 
 function FileUploaderModal(props) {
   const [fileName, setFileName] = useState('');
@@ -32,7 +31,14 @@ function FileUploaderModal(props) {
 
   const uploadFile = (e) => {
     e.preventDefault();
-    // axios.get('/speech', {data})
+    let words = lib.parseTextToArray(files[0]);
+    let totalWordCount = words.length;
+    // analysis here
+
+    // need users email, speech title,
+   // axios.post(/speech)
+
+
     alert('thank you for submitting')
   }
 
@@ -53,6 +59,7 @@ function FileUploaderModal(props) {
             }
             <p>{fileName}</p>
           </div>
+            <input type="text" name="title" placeholder="Enter speech title"/>
             <button className="submit-speech-button" onClick={uploadFile}>Submit</button>
           <ul>{acceptedFileItems}</ul>
         </div>
