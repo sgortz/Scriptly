@@ -3,12 +3,13 @@ import DoughnutChart from '../charts/DoughnutChart.jsx';
 
 function HistoryItem(props) {
   const { date, body, analysis } = props;
+  let bodyPreview = body.slice(0, 150);
 
   return (
-    <div className="list-item">
-      <div>{date}</div>
-      <div className="d-flex w-100 justify-content-between">
-        <h5 className="mb-1">{`${body.slice(0, 150)}...`}</h5>
+    <li className="speech-history-list-item">
+      <small className="speech-date">{date}</small>
+      <div className="speech-preview-chart">
+        <p className="speech-preview-body">{`${bodyPreview}...`}</p>
         <div className="doughnut-small">
           <DoughnutChart
             analysis={analysis}
@@ -16,7 +17,7 @@ function HistoryItem(props) {
           />
         </div>
       </div>
-    </div>
+    </li>
   );
 }
 

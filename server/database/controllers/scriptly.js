@@ -20,27 +20,32 @@ module.exports = {
   },
   addSpeech: (inputs) => {
     const { name, email, body, url, title, totalCount, positive, negative, trust, anger, joy } = inputs;
-    const newSpeech = new Speech({
-      name,
-      email,
-      title,
-      comments: [],
-      speeches: [{
-        title: title,
-        body: body,
-        url: url,
-        date: new Date(),
-        analysis: {
-          totalCount,
-          positive,
-          negative,
-          trust,
-          anger,
-          joy,
-        }
-      }]
-    })
-    return newSpeech.save()
+    if (typeof (body) === 'string') {
+      const newSpeech = new Speech({
+        name,
+        email,
+        title,
+        comments: [],
+        speeches: [{
+          title: title,
+          body: body,
+          url: url,
+          date: new Date(),
+          analysis: {
+            totalCount,
+            positive,
+            negative,
+            trust,
+            anger,
+            joy,
+          }
+        }]
+      })
+      return newSpeech.save()
+    }
+
+    console.log('Please check your format!')
+    return;
   },
   updateOneSpeech: (params, inputs) => {
     // get analysis for storage here
@@ -78,7 +83,7 @@ module.exports = {
     );
   },
   addCommentToSpeech: (params, inputs) => {
-    const {reviewerName, commentBody} = inputs;
+    const { reviewerName, commentBody } = inputs;
     const { id } = params;
     return Speech.findByIdAndUpdate(
       id,
@@ -144,8 +149,13 @@ module.exports = {
         //console.log('inputs', inputs)
         let resultWeWant = []       // [speech1, speech5, seppech 10, soeech...]. for each  push to the newarr []
         let result = data.map(obj => {
-          let temp = obj.speeches.filter(body => body.body.toLowerCase().includes(search.toLowerCase()));
+          let temp = obj.speeches.filter(body => {
+            body.body = body.body === null ? '' : body.body;
+            console.log('body.body', body.body)
+            return body.body.toLowerCase().includes(search.toLowerCase())
+          });
           //temp = [s1, s5], temp2 = [s7, s10]
+          //console.log(temp)
           temp.forEach((speech) => {
             resultWeWant.push(speech); // [ s1, s5, s7, s10]
           })
