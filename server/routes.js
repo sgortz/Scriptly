@@ -12,5 +12,8 @@ router.post('/user', controller.addUserFunction);
 router.post('/speech', controller.addSpeechFunction);
 router.post('/speech/:id', controller.updateOneSpeechFunction);
 router.post('/comment/:id', controller.addCommentToSpeechFunction);
+router.delete('/user/:id', controller.deleteUserFunction);
+router.delete('/speech/:id', controller.deleteSpeechFunction);
+router.delete('/comment/:id', controller.deleteCommentFunction);
 
 module.exports = router;

@@ -5,6 +5,11 @@ export const pageView = atom({
   default: 'speech'
 })
 
+export const allSpeeches = atom({
+  key: 'allSpeeches',
+  default: [],
+})
+
 export const currentSpeechText = atom({
   key: 'currentSpeechText',
   default: ''
@@ -17,5 +22,10 @@ export const editedSpeechText = atom({
 
 export const loginStatus = atom({
   key: 'login',
-  default: false
+  default: 'none',
+})
+
+export const updateTitle = atom({
+  key: 'updateTitle',
+  default: '',
 })
