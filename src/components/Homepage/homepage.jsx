@@ -29,7 +29,7 @@ const Homepage = () => {
   }
 
   return (
-    <div>
+    <div id="homepage">
       <h1>
         Scriptly Placeholder
         <button onClick={() => logout()}>Logout</button>
@@ -78,6 +78,21 @@ const Homepage = () => {
             onClick={() => { setPage('text'); setActiveTab(2); }}
           >
             Text Editor
+          </button>
+        </li>
+        <li className="nav-item" role="presentation">
+          <button
+            className={activeTab === 3 ? "nav-link active" : "nav-link"}
+            id="home-tab0"
+            data-mdb-toggle="tab"
+            data-mdb-target="#home0"
+            type="button"
+            role="tab"
+            aria-controls="home"
+            aria-selected="true"
+            onClick={() => { setPage('history'); setActiveTab(3); }}
+          >
+            History
           </button>
         </li>
       </ul>
