@@ -1,34 +1,45 @@
 import React, { useState } from 'react';
 import Result1 from './Result1.jsx';
+import Result2 from './Result2.jsx';
 import Result3 from './Result3.jsx';
+<<<<<<< HEAD
 import {useRecoilState} from 'recoil';
 import {resultModal} from '../atoms.jsx';
+=======
+import Result4 from './Result4.jsx';
+>>>>>>> main
 import { Modal } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './styles.css';
 
 export default function Results(props) {
   const [resultPage, setResultPage] = useState(1);
+  const [wordsCount, setWordsCount] = useState(0);
+  const [emotionCount, setEmotionCount] = useState(0);
 
   const changeResultPage = (direction) => {
     setResultPage(resultPage + direction);
   }
 
-  return (
+  return(
     <div>
-      <Modal show={props.show} size="lg" onClick={e => e.stopPropagation()} onHide={props.onClose} >
-        <Modal.Header>Emotional analysis</Modal.Header>
-        <Modal.Body>
-          {
-            resultPage === 1 ? <Result1 /> : <Result3 />
-          }
-        </Modal.Body>
-        <Modal.Footer>
-          {resultPage > 1 ?
-            <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={() => changeResultPage(-1)}>Previous</button>
-            : null
-          }
-          <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={() => changeResultPage(1)}>Next</button>
-        </Modal.Footer>
+      <Modal show={props.show} size="xl" onClick={e => e.stopPropagation()} onHide={props.onClose} centered className="results-modal">
+        {
+          resultPage === 1 ?
+          <Result1
+            wordsCount={wordsCount}
+            emotionCount={emotionCount}
+            changePage={changeResultPage}
+          /> :
+          resultPage === 2 ?
+          <Result2
+            changePage={changeResultPage}
+            emotionResults={['positive', 'negative', 'anger', 'trust', 'joy']}
+          /> :
+          resultPage === 3 ?
+          <Result3 changePage={changeResultPage}/>
+          : <Result4 changePage={changeResultPage}/>
+        }
       </Modal>
     </div>
   )

@@ -48,8 +48,25 @@ const Homepage = () => {
 
 
   return (
+<<<<<<< HEAD
     <div>
 
+=======
+    <div id="homepage">
+      <h1>
+        Scriptly Placeholder
+        <button onClick={() => logout()}>Logout</button>
+        <div style={{
+          position: 'absolute',
+          borderRadius: '50px',
+          height: '50px',
+          width: '50px',
+          backgroundColor: 'red',
+          top: '0%',
+          right: '0%'
+        }} onClick={avatar()}>AV</div>
+      </h1>
+>>>>>>> main
       <button onClick={() => { setShowUploader(true) }}>Upload</button>
       <FileUploaderModal onClose={e => setShowUploader(false)} show={showUploader} />
 
@@ -85,6 +102,21 @@ const Homepage = () => {
             onClick={() => { setPage('text'); setActiveTab(2); }}
           >
             Text Editor
+          </button>
+        </li>
+        <li className="nav-item" role="presentation">
+          <button
+            className={activeTab === 3 ? "nav-link active" : "nav-link"}
+            id="home-tab0"
+            data-mdb-toggle="tab"
+            data-mdb-target="#home0"
+            type="button"
+            role="tab"
+            aria-controls="home"
+            aria-selected="true"
+            onClick={() => { setPage('history'); setActiveTab(3); }}
+          >
+            History
           </button>
         </li>
       </ul>

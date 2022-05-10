@@ -8,6 +8,21 @@ import {uploadModal} from '../../atoms.jsx';
 
 function FileUploaderModal(props) {
   const [fileName, setFileName] = useState('');
+<<<<<<< HEAD
+  const [files, setFiles] = useState([]);
+
+  const { getRootProps, getInputProps, acceptedFiles, isDragActive } = useDropzone({
+    // accept: {
+    //   'text/*': [],
+    //   'video/*': []
+    // },
+    onDrop:(acceptedFiles) => {
+      console.log('acceptedFiles', acceptedFiles)
+      setFiles(acceptedFiles);
+    }
+  })
+  
+=======
   const [files, setFiles] = useState(null);
 
   const onDrop = useCallback(acceptedFiles => {
@@ -24,6 +39,7 @@ function FileUploaderModal(props) {
 
    const { getRootProps, getInputProps, acceptedFiles, isDragActive } = useDropzone({onDrop});
 
+>>>>>>> main
   const acceptedFileItems = acceptedFiles.map(file => (
     <li key={file.path}>
       {file.path} - {file.size} bytes
