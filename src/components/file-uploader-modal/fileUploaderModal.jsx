@@ -3,24 +3,11 @@ import axios from 'axios';
 import { useDropzone } from 'react-dropzone'
 import { BiLeftArrowAlt } from 'react-icons/bi'
 import './FileUploaderModal.css';
+import {useRecoilState} from 'recoil';
+import {uploadModal} from '../../atoms.jsx';
 
 function FileUploaderModal(props) {
   const [fileName, setFileName] = useState('');
-<<<<<<< HEAD
-  const [files, setFiles] = useState([]);
-
-  const { getRootProps, getInputProps, acceptedFiles, isDragActive } = useDropzone({
-    // accept: {
-    //   'text/*': [],
-    //   'video/*': []
-    // },
-    onDrop:(acceptedFiles) => {
-      console.log('acceptedFiles', acceptedFiles)
-      setFiles(acceptedFiles);
-    }
-  })
-  
-=======
   const [files, setFiles] = useState(null);
 
   const onDrop = useCallback(acceptedFiles => {
@@ -30,13 +17,13 @@ function FileUploaderModal(props) {
         setFiles([e.target.result]);
       };
       reader.readAsText(file);
+      console.log(file)
       return file;
     });
   }, []);
 
-   const { getRootProps, getInputProps, acceptedFiles, isDragActive } = useDropzone({onDrop});
+  const { getRootProps, getInputProps, acceptedFiles, isDragActive } = useDropzone({onDrop});
 
->>>>>>> main
   const acceptedFileItems = acceptedFiles.map(file => (
     <li key={file.path}>
       {file.path} - {file.size} bytes
