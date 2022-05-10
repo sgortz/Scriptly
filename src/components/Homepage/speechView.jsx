@@ -8,7 +8,7 @@ const SpeechView = () => {
   const [pageValue, setPage] = useRecoilState(pageView);
   const [speechValue, setSpeechValue] = useRecoilState(allSpeeches);
   const [editedValue, setEdited] = useRecoilState(editedSpeechText);
-  console.log(speechValue, 'this is speechvalue')
+  // console.log(speechValue, 'this is speechvalue')
 
   const handleEdit = (index) => {
     setCurrent(speechValue[index].speeches[0].body);
@@ -17,17 +17,15 @@ const SpeechView = () => {
   }
 
   const displayHistory = () => {
-    console.log('go to history modal')
+    // console.log('go to history modal')
   }
-
-
 
   return (
     <div>
       <div>
         {speechValue.map((value, index) => {
           let snippet = value.speeches[0].body.slice(0, 200);
-          console.log(snippet, 'this is a snippet')
+          // console.log(snippet, 'this is a snippet')
           return (
             <div style={{display: 'flex'}} onClick={displayHistory}>
               <span style={{border: '3px solid black', width: '40vw'}}>{value.speeches[0].date}</span>
