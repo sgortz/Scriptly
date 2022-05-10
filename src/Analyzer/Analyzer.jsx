@@ -4,8 +4,6 @@ import {currentSpeechText} from '../atoms.jsx';
 const Analyzer = () => {
 
   const [currentValue, setCurrent] = useRecoilState(currentSpeechText);
-
-  // replace with speech state
   // account for other characters on split/filter
   let split = currentValue.split(' ');
 
@@ -9058,8 +9056,6 @@ const positive = [
   'yell',
   'yelp',
   'youth']
-
-
 
 export default Analyzer;
 
