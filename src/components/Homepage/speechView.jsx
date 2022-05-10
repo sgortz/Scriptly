@@ -31,9 +31,9 @@ const SpeechView = () => {
           let snippet = value.speeches[0].body.slice(0, 200);
           return (
             <div style={{display: 'flex'}} onClick={() => {displayHistory(value)}}>
-              <span style={{border: '3px solid black', width: '40vw'}}>{value.speeches[0].date}</span>
-              <span style={{border: '3px solid black', width: '40vw'}}>{value.speeches[0].title}</span>
-              <span key={index} style={{border: '3px solid black'}}>{snippet}...</span>
+              <div style={{border: '3px solid black', width: '40vw'}}>{value.speeches[0].date}</div>
+              <div style={{border: '3px solid black', width: '40vw'}}>{value.speeches[0].title}</div>
+              <div key={index} style={{border: '3px solid black'}}>{snippet}...</div>
               <button onClick={() => {
                 handleEdit(index)
               }}>Edit</button>
