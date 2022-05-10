@@ -25,7 +25,7 @@ const speechesSchema = new mongoose.Schema({
     match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
   },
   title: { type: String, default: 'Please enter a title' },
-  url: String,
+  url: {type: String, default: '' },
   date: String,
   speeches: [{
     title: { type: String, default: 'Please enter a title.' },
@@ -38,7 +38,7 @@ const speechesSchema = new mongoose.Schema({
       anger: {type: Number, default: 0 },
       joy: {type: Number, default: 0},
     },
-    url: String,
+    url: { type: String, default: '' },
     date: String,
   }],
   comments: [commentsSchema]
