@@ -1,82 +1,104 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { signInWithGoogle, loggedIn, signInWithEmail , monitorAuthState} from '../auth/Firebase';
-import { loginStatus,showLoginModal, loginText } from '../atoms.jsx'
-import { useRecoilState } from 'recoil'
-
+import { createAccount, signInWithGoogle, loggedIn, logOut, signInWithEmail , monitorAuthState} from '../auth/Firebase';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 const SignIn = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [signUpStatus, setSignUpStatus] = useState(false)
+  const [loginStatus, setLoginStatus] = useState(Boolean(localStorage.email))
   const [show, setShow] = useState(false);
-  const [signStatus, setSignStatus] = useState(localStorage.email)
-  const [login, setLogin] = useRecoilState(loginStatus)
-  const [loginModal, setLoginModal] = useRecoilState(showLoginModal)
-  const [text, setLoginText] = useRecoilState(loginText)
 
-  // let signUP = () => {
-  //   return <SignUp/>
-  // }
-const handleClose = () => setShow(false)
-const handleShow = () => setShow(true)
+  useEffect(() => {
+    if(localStorage.email){
+      setLoginStatus(true)
+    } else {
+      setLoginStatus(false)
+    }
+  },[localStorage.email, show, loginStatus])
+
+  const handleClose = () => setShow(false);
+
+  const handleShow = () =>{
+    if(localStorage.email) {
+      logOut();
+      setLoginStatus(false)
+    }
+   setShow(true);
+   setSignUpStatus(false)
+  }
+
+const googleLogin = () => {
+  signInWithGoogle().then(result => {
+    setLoginStatus(true)
+    setSignUpStatus(false)
+    setShow(false)
+  }).catch(err=>{
+    alert(err.code)
+    localStorage.clear();
+  })
+
+}
+const emailLogin = (username,password) => {
+  signInWithEmail(username,password).then(result => {
+    setLoginStatus(true)
+    setSignUpStatus(false)
+    setShow(false)
+  }).catch(err => {
+    alert(err.code)
+    localStorage.clear();
+  })
+}
+
+ const signInOrLogin = (username,password) => {
+  if(signUpStatus) {
+    createAccount(username,password)
+  } else{
+    emailLogin(username,password)
+  }
+ }
+ console.log(localStorage.email)
   return (
+    <>
+    <Button variant="primary" onClick={handleShow}>
+     {loginStatus ? 'log out' : 'log in'}
+    </Button>
+
     <Modal show={show} onHide={handleClose}>
-    <SignInContainer>
-      <TopLoginContainer>
-      Scriptly
+      <Modal.Header closeButton>
+        <Modal.Title>Scriptly</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
 
-        <input type='text' onChange={(e)=>setUsername(e.target.value)}placeholder='email'></input>
-        <input type='password' onChange={(e)=>setPassword(e.target.value)}placeholder='password'></input>
-        <button onClick={()=>signInWithEmail(username,password)}>log-in</button>
-        <form method="dialog">
-          <button>click</button>
-        </form>
-        <div>----------- or -----------</div>
-
-        <button type="button" className="btn btn-primary" onClick={()=>signInWithGoogle()}>
-            Log-in with Google
-          </button>
-
-      </TopLoginContainer>
-      <BottomLoginContainer>
-        Don't have an account? <a href='' onClick= {()=>signUp()}>sign up</a>
-      </BottomLoginContainer>
-      </SignInContainer>
-      </Modal>
-
+      {!loginStatus ?
+      <>
+        <TopLoginContainer>Scriptly
+          <input type='text' onChange={(e)=>setUsername(e.target.value)}placeholder='email'/>
+          <input type='password' onChange={(e)=>setPassword(e.target.value)}placeholder='password'/>
+          <button onClick={()=>signInOrLogin(username,password)}>{!signUpStatus? 'login' : 'sign up'}</button>
+          <center>or</center>
+          <button type="button" className="btn btn-primary" onClick={()=>googleLogin()}>Log-in with Google</button>
+        </TopLoginContainer>
+        <BottomLoginContainer>Don't have an account? <Button variant='primary' onClick={()=>{setSignUpStatus(true)}}>sign up</Button></BottomLoginContainer>
+        </> : <div>You are logged out</div>}
+      </Modal.Body>
+    </Modal>
+  </>
   )
 }
 
 export default SignIn;
 
-const SignInContainer = styled.dialog`
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  height: 400px;
-
-  align-content: center;
-  background: rgba(171,186,234,2);
-`
 const TopLoginContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background-color:  #ABBAEA;
   padding: 1em;
   justify-content: center;
 `
 const BottomLoginContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background-color:  #ABBAEA;
   padding: 1em;
-`
-const BackDrop = styled.div`
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100vh;
-z-index: 2;
-background: rgba(0, 0, 0, 2);
 `

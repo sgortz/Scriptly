@@ -13,25 +13,13 @@ function App () {
   const [page, setPage] = useState('landing')
   const [login, setLogin] = useRecoilState(loginStatus)
 
-  const currentPage = page === 'landing' ? <Landing /> : page === 'signin' ? <Signin /> : <Homepage />
+  const currentPage = page === 'landing' ? <Landing /> : page === localStorage.email ? <Signin /> : <Homepage />
+
     return (
       <>
-      <div className="app-container">
-      <Header />
-      <Landing/>
-      {/* {!loginStatus ? <a onClick={()=>{setLogin(true)}}>log in/sign up</a> : <a onClick={()=>{setLogin(false)}}>log out</a>}
-        {(!loginStatus) && <SignIn/>} */}
-        {/* <Homepage/> */}
-        {/* <h1>
-          Hello {name}
-        </h1>
-
-        <button type="button" className="btn btn-primary" onClick={signInWithGoogle}>
-          This is a bootstrap button
-        </button>
-        <h2>{localStorage.getItem("name")}</h2>
-        <h3>{localStorage.getItem("email")}</h3>
-        <h3>{localStorage.getItem("photoURL")}</h3> */}
+        <div className="app-container">
+          <Header />
+          <Landing/>
         </div>
       </>
     );
