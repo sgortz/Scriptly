@@ -12,7 +12,7 @@ const Analyzer = () => {
     }, [editedValue]);
 
     const funcWrapper = (string) => {
-
+      console.log(string)
       let split = parser.parseTextToArray(string);
 
       let emotion = {
@@ -25,7 +25,7 @@ const Analyzer = () => {
       }
 
       split.forEach((value) => {
-        emotion.wordCount++;
+        emotion.totalCount++;
         if (fear.includes(value)) {
           emotion.fear++;
         } else if (positive.includes(value)) {
@@ -38,6 +38,7 @@ const Analyzer = () => {
           emotion.trust++;
         }
       })
+      console.log(analysisValue)
       setAnalysis(emotion)
     }
 }
