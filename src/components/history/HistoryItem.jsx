@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import DoughnutChart from '../charts/DoughnutChart.jsx';
+import {resultsModal, currentAnalysis2} from '../../atoms.jsx';
 import {resultsModal} from '../../atoms.jsx';
 import {useRecoilState} from 'recoil';
 import Results from '../../results/Results.jsx';
@@ -7,13 +8,17 @@ import Results from '../../results/Results.jsx';
 function HistoryItem(props) {
   const { date, body, analysis, title } = props;
   const [showResults, setShowResults] = useRecoilState(resultsModal);
+  const [currentAnalysis, setAnalysis] = useRecoilState(currentAnalysis2);
+
   let bodyPreview = body.slice(0, 150);
 
   console.log('inside result', showResults);
 
   const sendResults = (e) => {
-     setShowResults(true);
-     console.log('insideitem',e);
+    e.preventDefault();
+    setShowResults(true);
+    setAnalysis(analysis);
+    console.log('This should be currentAnalysis',currentAnalysis);
   }
 
   return (
