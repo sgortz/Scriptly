@@ -3,13 +3,16 @@ import axios from 'axios';
 import HistoryItem from './HistoryItem.jsx';
 import mockData from './mockData.js';
 import DoughnutChart from '../charts/DoughnutChart.jsx';
+import {currentSpeechId} from '../../atoms.jsx';
+import {useRecoilState} from 'recoil';
 
 function HistoryList(props) {
   const { id, title, name, email, speech } = mockData;
   const [history, setHistory] = useState([]);
+  const [currentId, setCurrentId] = useRecoilState(currentSpeechId);
 
   const getHistory = () => {
-    axios.get(`/speech/627a9e00de163a667afa07a1`)
+    axios.get(`/speech/${currentSpeechId}`)
       .then(res => {
         setHistory(res.data[0].speeches)
       })
