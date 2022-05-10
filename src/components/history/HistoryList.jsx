@@ -30,7 +30,6 @@ function HistoryList(props) {
         {arr.map((item, index) => (
           <HistoryItem
             key={item._id}
-            index={index}
             date={item.date}
             body={item.body}
             analysis={item.analysis}
