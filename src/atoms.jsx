@@ -1,4 +1,6 @@
-import { atom } from 'recoil';
+import { atom, selector } from 'recoil';
+const parser = require('./components/shared/scriptlyShared.js');
+
 
 export const pageView = atom({
   key: 'pageView',
@@ -17,7 +19,7 @@ export const currentSpeechText = atom({
 
 export const editedSpeechText = atom({
   key: 'editedSpeechText',
-  default: '',
+  default: 'a',
 })
 
 export const loginStatus = atom({
@@ -33,4 +35,17 @@ export const updateTitle = atom({
 export const resultsModal = atom({
   key: 'resultsModal',
   default: false,
+})
+
+export const currentAnalysis = atom({
+  key: 'currentAnalysis',
+  default: {},
+})
+
+export const parseSelector = selector({
+  key: 'parseSelector',
+  get: ({get}) => {
+    let data = get(editedValue)
+    let parse = parser.parseTextToArray(data)
+  }
 })

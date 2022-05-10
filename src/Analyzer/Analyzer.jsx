@@ -1,38 +1,53 @@
+import React, {useEffect} from 'react';
 import {useRecoilState} from 'recoil';
-import {currentSpeechText} from '../atoms.jsx';
+import {currentSpeechText, currentAnalysis, editedSpeechText} from '../atoms.jsx';
 const parser = require('../components/shared/scriptlyShared.js');
 
 const Analyzer = () => {
+  const [editedValue, setEdited] = useRecoilState(editedSpeechText);
+  const [analysisValue, setAnalysis] = useRecoilState(currentAnalysis);
 
-  const [currentValue, setCurrent] = useRecoilState(currentSpeechText);
+  useEffect(() => {
+    funcWrapper(editedValue);
+    }, [editedValue]);
 
-  // account for other characters on split/filter
-  let split = parser.parseTextToArray(currentValue)
+    const funcWrapper = (string) => {
 
-  // ship this off with submit
-  let emotion = {
-    fear: 0,
-    joy: 0,
-    trust: 0,
-    positive: 0,
-    negative: 0,
-  }
 
-  split.forEach((value) => {
-    if (fear.includes(value)) {
-      emotion.fear++;
-    } else if (positive.includes(value)) {
-      emotion.positive++;
-    } else if (negative.includes(value)) {
-      emotion.negative++;
-    } else if (joy.includes(value)) {
-      emotion.joy++;
-    } else if (trust.includes(value)) {
-      emotion.trust++;
+      // account for other characters on split/filter
+      let split = parser.parseTextToArray(string)
+      console.log(split, 'this is split')
+      // ship this off with submit
+      let emotion = {
+        fear: 0,
+        joy: 0,
+        trust: 0,
+        positive: 0,
+        negative: 0,
+        wordCount: 0,
+      }
+
+      split.forEach((value) => {
+        emotion.wordCount++;
+        if (fear.includes(value)) {
+          emotion.fear++;
+        } else if (positive.includes(value)) {
+          emotion.positive++;
+        } else if (negative.includes(value)) {
+          emotion.negative++;
+        } else if (joy.includes(value)) {
+          emotion.joy++;
+        } else if (trust.includes(value)) {
+          emotion.trust++;
+        }
+      })
+      setAnalysis(emotion)
+      console.log(emotion)
     }
-  })
-  console.log(emotion)
 }
+
+export default Analyzer;
+
 
 const positive = [
   'abba',
@@ -9059,10 +9074,4 @@ const positive = [
   'yelp',
   'youth']
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> main
-export default Analyzer;
 
