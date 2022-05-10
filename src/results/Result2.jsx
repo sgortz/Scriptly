@@ -40,31 +40,33 @@ export default function Result2({changePage, emotionResults}) {
         <Container>
           <Row>
             <Col>
-              <div className="result2-card">
-                {allEmojis[emotionResults[1]]}
-                <h3>{emotionResults[1]}</h3>
+              <div className="result2-card" id={emotionResults[1]}>
+                <div className="main-card-container">
+                  {allEmojis[emotionResults[1]]}
+                  <h3>{emotionResults[1]}</h3>
+                </div>
               </div>
             </Col>
             <Col>
-              <div className="result2-card">
+              <div className="result2-card" id={emotionResults[2]}>
                 {allEmojis[emotionResults[2]]}
                 <h3>{emotionResults[2]}</h3>
               </div>
             </Col>
             <Col sm={3}>
-              <div className="result2-card biggest-card">
+              <div className="result2-card biggest-card" id={emotionResults[0]}>
                 {allEmojis[emotionResults[0]]}
                 <h3>{emotionResults[0]}</h3>
               </div>
             </Col>
             <Col>
-              <div className="result2-card">
+              <div className="result2-card" id={emotionResults[3]}>
                 {allEmojis[emotionResults[3]]}
                 <h3>{emotionResults[3]}</h3>
               </div>
             </Col>
             <Col>
-              <div className="result2-card">
+              <div className="result2-card" id={emotionResults[4]}>
                 {allEmojis[emotionResults[4]]}
                 <h3>{emotionResults[4]}</h3>
               </div>

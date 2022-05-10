@@ -67,7 +67,7 @@ export default function Result4({changePage}) {
           </Col>
           <Col>
             <div style={{position: 'relative'}}>
-              <h3>Joy vs Fear</h3>
+              <h3>Joy vs Anger</h3>
               <Doughnut
                 data={dataChart2}
                 options={options}
