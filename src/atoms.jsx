@@ -1,8 +1,13 @@
-import {atom} from 'recoil';
+import { atom } from 'recoil';
 
 export const pageView = atom({
   key: 'pageView',
   default: 'speech'
+})
+
+export const allSpeeches = atom({
+  key: 'allSpeeches',
+  default: [],
 })
 
 export const currentSpeechText = atom({
@@ -17,5 +22,10 @@ export const editedSpeechText = atom({
 
 export const loginStatus = atom({
   key: 'login',
-  default: false
+  default: 'none',
+})
+
+export const updateTitle = atom({
+  key: 'updateTitle',
+  default: '',
 })
