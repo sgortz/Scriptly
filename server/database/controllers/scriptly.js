@@ -20,7 +20,6 @@ module.exports = {
   },
   addSpeech: (inputs) => {
     const { name, email, body, url, title, totalCount, positive, negative, trust, anger, joy } = inputs;
-<<<<<<< HEAD
     if (typeof (body) === 'string') {
       const newSpeech = new Speech({
         name,
@@ -47,29 +46,6 @@ module.exports = {
 
     console.log('Please check your format!')
     return;
-=======
-    const newSpeech = new Speech({
-      name,
-      email,
-      title,
-      comments: [],
-      speeches: [{
-        title: title,
-        body: body,
-        url: url,
-        date: new Date(),
-        analysis: {
-          totalCount,
-          positive,
-          negative,
-          trust,
-          anger,
-          joy,
-        }
-      }]
-    })
-    return newSpeech.save()
->>>>>>> main
   },
   updateOneSpeech: (params, inputs) => {
     // get analysis for storage here
@@ -107,11 +83,7 @@ module.exports = {
     );
   },
   addCommentToSpeech: (params, inputs) => {
-<<<<<<< HEAD
     const { reviewerName, commentBody } = inputs;
-=======
-    const {reviewerName, commentBody} = inputs;
->>>>>>> main
     const { id } = params;
     return Speech.findByIdAndUpdate(
       id,
@@ -177,7 +149,6 @@ module.exports = {
         //console.log('inputs', inputs)
         let resultWeWant = []       // [speech1, speech5, seppech 10, soeech...]. for each  push to the newarr []
         let result = data.map(obj => {
-<<<<<<< HEAD
           let temp = obj.speeches.filter(body => {
             body.body = body.body === null ? '' : body.body;
             console.log('body.body', body.body)
@@ -185,10 +156,6 @@ module.exports = {
           });
           //temp = [s1, s5], temp2 = [s7, s10]
           //console.log(temp)
-=======
-          let temp = obj.speeches.filter(body => body.body.toLowerCase().includes(search.toLowerCase()));
-          //temp = [s1, s5], temp2 = [s7, s10]
->>>>>>> main
           temp.forEach((speech) => {
             resultWeWant.push(speech); // [ s1, s5, s7, s10]
           })
