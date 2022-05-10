@@ -11,7 +11,7 @@ const SpeechView = () => {
   const [pageValue, setPage] = useRecoilState(pageView);
   const [speechValue, setSpeechValue] = useRecoilState(allSpeeches);
   const [editedValue, setEdited] = useRecoilState(editedSpeechText);
-
+  console.log(speechValue, 'this is speechvalue')
 
   const handleEdit = (index) => {
     setCurrent(Speech.Speech[index]);
@@ -29,10 +29,11 @@ const SpeechView = () => {
     <div>
       <div>
         {speechValue.map((value, index) => {
+          console.log(value.speeches[0], 'this is value')
           return (
             <div style={{display: 'flex'}} onClick={displayHistory}>
               <span style={{border: '3px solid black', width: '40vw'}}>{value.speeches[0].date}</span>
-              <span style={{border: '3px solid black', width: '40vw'}}>{value.title}</span>
+              <span style={{border: '3px solid black', width: '40vw'}}>{value.speeches[0].title}</span>
               <span key={index} style={{border: '3px solid black'}}>{value.speeches[0].body}</span>
               <button onClick={() => {
                 handleEdit(index)

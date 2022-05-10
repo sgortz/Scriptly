@@ -21,7 +21,7 @@ const MyEditor = () => {
   return (
     <Slate editor={editor} value={initialValue} onChange={(value) => {
       setEdited(value[0].children[0].text)
-      console.log(editedValue, 'edited value')
+      console.log(typeof(editedValue), 'edited value')
     }}>
       <Editable/>
     </Slate>

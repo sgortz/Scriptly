@@ -21,12 +21,12 @@ const Homepage = () => {
   const [editedValue, setEdited] = useRecoilState(editedSpeechText);
 
 
-  const email = 'hello@gmail.com'
+  const email = 'hello@gmail.com';
 
   const getSpeeches = () => {
     axios.get(`/history/${email}`)
     .then((response) => {
-      console.log('this is a post success')
+      setSpeechValue(response.data)
     })
     .catch((error) => {
       console.log('error')
@@ -35,7 +35,8 @@ const Homepage = () => {
 
 
   const testingSubmission = () => {
-    axios.post('/speech', {body: {editedValue}, name: 'Jonathan Will Atwood Sr.', email: 'hello@gmail.com'})
+    console.log(editedValue, 'this is in axios post', typeof(editedValue))
+    axios.post('/speech', {body: `${editedValue}`, name: 'Jonathan Will Atwood Sr.', email: 'hello@gmail.com'})
     .then((response) => {
       console.log('this is a post success')
     })
