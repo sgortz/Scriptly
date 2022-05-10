@@ -4,6 +4,7 @@ import {resultsModal, currentAnalysis2} from '../../atoms.jsx';
 import {useRecoilState} from 'recoil';
 import Results from '../../results/Results.jsx';
 
+
 function HistoryItem(props) {
   const { date, body, analysis, title } = props;
   const [showResults, setShowResults] = useRecoilState(resultsModal);
