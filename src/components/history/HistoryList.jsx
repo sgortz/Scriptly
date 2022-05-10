@@ -1,10 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import HistoryItem from './HistoryItem.jsx';
 import mockData from './mockData.js';
 import DoughnutChart from '../charts/DoughnutChart.jsx';
 
 function HistoryList(props) {
   const { id, title, name, email, speech } = mockData;
+  const [history, setHistory] = useState([]);
+
+  const getHistory = () => {
+    axios.get(`/speech/627a9e00de163a667afa07a1`)
+      .then(res => {
+        setHistory(res.data[0].speeches)
+      })
+      .catch(err => new Error('FAIL!!!!!!'));
+  }
+
+  useEffect(() => {
+    getHistory();
+    }, []);
 
   // assume that data will be passed down through props in homepage
   const renderList = (arr) => {
@@ -13,12 +27,14 @@ function HistoryList(props) {
     }
     return (
       <ul className="speech-version-list">
-        {arr.map((item) => (
+        {arr.map((item, index) => (
           <HistoryItem
-            key={item.id}
+            key={item._id}
+            index={index}
             date={item.date}
             body={item.body}
             analysis={item.analysis}
+            title={item.title}
           />
         ))}
       </ul>
@@ -36,7 +52,7 @@ function HistoryList(props) {
       </div>
       <hr />
       <div className="speech-version-scroll-list">
-        {speech ? renderList(speech) : null}
+        {history ? renderList(history) : null}
       </div>
     </div>
   );
