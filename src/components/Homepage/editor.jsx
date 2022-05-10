@@ -25,7 +25,6 @@ const MyEditor = () => {
   return (
     <Slate editor={editor} value={initialValue} onChange={(value) => {
       setEdited(value[0].children[0].text)
-      console.log(editedValue)
     }}>
       <form>
         <input type='text' placeholder='Input Title' onChange={titleListener}></input>

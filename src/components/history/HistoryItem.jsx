@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import DoughnutChart from '../charts/DoughnutChart.jsx';
 
+
 function HistoryItem(props) {
   const { date, body, analysis } = props;
   let bodyPreview = body.slice(0, 150);
