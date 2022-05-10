@@ -15,20 +15,14 @@ function App() {
 
   return (
     <div className="app-container">
-      <Header />
-      <a onClick={() => setLogin(!login)}>Log-in</a>
+      {/* <Header /> */}
+      {/* <a onClick={() => setLogin(!login)}>Log-in</a>
 
         {login && <SignIn/>}
-        {currentPage}
+        {currentPage} */}
         <Homepage />
-      {/* The code below is to be added to Homepage, instead of App.js */}
-      {/* <button onClick={() => setShow(true)}>show modal</button> */}
-      {/* <FileUploaderModal onClose={() => setShow(false)} show={show} /> */}
-      {/* <h1>
-          Hello {name}
-        </h1>
 
-        <button type="button" className="btn btn-primary" onClick={signInWithGoogle}>
+        {/* <button type="button" className="btn btn-primary" onClick={signInWithGoogle}>
           This is a bootstrap button
         </button>
         <h2>{localStorage.getItem("name")}</h2>

@@ -16,11 +16,12 @@ function FileUploaderModal(props) {
         setFiles([e.target.result]);
       };
       reader.readAsText(file);
+      console.log(file)
       return file;
     });
   }, []);
 
-   const { getRootProps, getInputProps, acceptedFiles, isDragActive } = useDropzone({onDrop});
+  const { getRootProps, getInputProps, acceptedFiles, isDragActive } = useDropzone({onDrop});
 
   const acceptedFileItems = acceptedFiles.map(file => (
     <li key={file.path}>
