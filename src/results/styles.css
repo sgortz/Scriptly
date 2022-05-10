@@ -1,0 +1,26 @@
+.results-footer {
+  background-color: #8FBEC5;
+  color: #fff;
+}
+
+.results-footer p {
+  margin-right: 1rem;
+}
+
+.result2-card {
+  box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.1);
+  height: 300px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 3rem;
+}
+
+.biggest-card {
+  height: 400px;
+}
+
+.emotion-icon {
+  font-size: 4.5rem;
+}
