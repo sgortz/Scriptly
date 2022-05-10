@@ -7,7 +7,10 @@ function Header () {
 
     return (
       <>
-        <div className="header"><GiQuillInk /> Scriptly </div>
+        <div className="header">
+          <GiQuillInk /> Scriptly
+          <script>login</script>
+          </div>
       </>
     );
 }
