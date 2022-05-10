@@ -34,7 +34,26 @@ export const resultsModal = atom({
 
 export const currentAnalysis = atom({
   key: 'currentAnalysis',
-  default: {},
+  default: {
+    fear: 0,
+    joy: 0,
+    trust: 0,
+    positive: 0,
+    negative: 0,
+    wordCount: 0,
+  },
+})
+
+export const currentAnalysis2 = atom({
+  key: 'currentAnalysis2',
+  default: {
+    fear: 0,
+    joy: 0,
+    trust: 0,
+    positive: 0,
+    negative: 0,
+    wordCount: 0,
+  },
 })
 
 export const parseSelector = selector({
