@@ -2,9 +2,10 @@
 .cache/
 coverage/
 dist/
-!dist/index.html
+dist/index.html
 node_modules/
 *.log
+index.html
 
 # OS generated files
 .DS_Store
@@ -15,4 +16,3 @@ node_modules/
 ehthumbs.db
 Thumbs.db
 package-lock.json
-index.html
