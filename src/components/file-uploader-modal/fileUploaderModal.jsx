@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useDropzone } from 'react-dropzone'
 import { BiLeftArrowAlt } from 'react-icons/bi'
 import './FileUploaderModal.css';
+import {useRecoilState} from 'recoil';
+import {uploadModal} from '../../atoms.jsx';
 
 function FileUploaderModal(props) {
   const [fileName, setFileName] = useState('');
@@ -15,11 +17,12 @@ function FileUploaderModal(props) {
         setFiles([e.target.result]);
       };
       reader.readAsText(file);
+      console.log(file)
       return file;
     });
   }, []);
 
-   const { getRootProps, getInputProps, acceptedFiles, isDragActive } = useDropzone({onDrop});
+  const { getRootProps, getInputProps, acceptedFiles, isDragActive } = useDropzone({onDrop});
 
   const acceptedFileItems = acceptedFiles.map(file => (
     <li key={file.path}>
