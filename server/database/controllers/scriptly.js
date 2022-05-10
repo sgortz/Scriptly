@@ -7,55 +7,73 @@ module.exports = {
   },
   getUserInfo: (params) => {
     const { email } = params
-    return User.find({email: email})
+    return User.find({ email: email })
 
   },
   findOneSpeech: (params) => {
     const id = params.id;
-    return Speech.find({_id: id})
+    return Speech.find({ _id: id })
   },
   findUserSpeeches: (params) => {
     return Speech.find(params)
-
   },
   addSpeech: (inputs) => {
-    const { name, email, body, url, positive, negative, trust, anger, joy } = inputs;
-    const newSpeech = new Speech({
-      name,
-      email,
-      speeches: [{
-        body: body,
-        url: url,
-        analysis: {
-          positive,
-          negative,
-          trust,
-          anger,
-          joy,
-        }
-      }]
-    })
-    return newSpeech.save()
+    const { name, email, body, url, title, totalCount, positive, negative, trust, anger, joy } = inputs;
+    console.log('inputs', inputs)
+    if (typeof (body) === 'string') {
+      const newSpeech = new Speech({
+        name,
+        email,
+        title,
+        comments: [],
+        speeches: [{
+          title: title,
+          body: body,
+          url: url,
+          date: new Date(),
+          analysis: {
+            totalCount,
+            positive,
+            negative,
+            trust,
+            anger,
+            joy,
+          }
+        }]
+      })
+      return newSpeech.save()
+    }
+    console.log('Please check your format!')
+    return;
+  },
+  deleteSpeech: (params) => {
+    const { id } = params
+    return Speech.findByIdAndDelete(id)
+  },
+  deleteComment: (params) => {
+    const { id } = params
+    return Speech.findByIdAndDelete(id)
   },
   updateOneSpeech: (params, inputs) => {
-    // get analysis for storage here
-    // positive, negative, trust, anger, joy
     console.log('params', params, 'inputs', inputs)
     const id = params.id;
-    const { body, email, name, url, positive, negative, trust, anger, joy } = inputs;
+    const { title, body, email, url, totalCount, positive, negative, trust, anger, joy } = inputs;
+
     return Speech.findByIdAndUpdate(
       id,
       {
-        name,
         email,
-
+        title,
         $push: {
           speeches: {
             $each: [
               {
-                body: body,
-                url: url,
+                title,
+                body,
+                url,
+                date: new Date(),
                 analysis: {
+                  totalCount,
                   positive,
                   negative,
                   trust,
@@ -68,14 +86,38 @@ module.exports = {
           },
         },
       },
-      { upsert: true, new: true }
-    );
+      { upsert: true, new: true, runValidators: true }
+    )
+
+
+  },
+  addCommentToSpeech: (params, inputs) => {
+    const { reviewerName, commentBody } = inputs;
+    const { id } = params;
+    return Speech.findByIdAndUpdate(
+      id,
+      {
+        $push: {
+          comments: {
+            $each: [
+              {
+                reviewerName,
+                commentBody,
+                commentDate: new Date(),
+              },
+            ],
+            $position: 0,
+          },
+        },
+      },
+      { upsert: true, new: true, runValidators: true }
+    )
   },
   addUser: (inputs) => {
     const { name, email, url } = inputs;
     return User.find({})
-    .sort({ id: -1 })
-    .then((data) => {
+      .sort({ id: -1 })
+      .then((data) => {
         let currentID = 1;
         if (data[0]) {
           currentID = data[0].id + 1;
@@ -91,7 +133,42 @@ module.exports = {
         });
         return embed.save();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => err);
   },
-
+  deleteUser: (params) => {
+    const { id } = params
+    return User.findByIdAndDelete(id)
+  },
+  searchSpeechTitle: (inputs) => {
+    const { search } = inputs;
+    return Speech.find({})
+      .then((data) => {
+        let result = data.filter((speech) => {
+          return speech.title.toLowerCase().includes(search.toLowerCase())
+        })
+        return result;
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  },
+  searchBodyTitle: (inputs) => {
+    const { search } = inputs;
+    return Speech.find({})
+      .then(data => {
+        let resultWeWant = []
+        let result = data.map(obj => {
+          let temp = obj.speeches.filter(body => {
+            body.body = body.body === null ? '' : body.body;
+            console.log('body.body', body.body)
+            return body.body.toLowerCase().includes(search.toLowerCase())
+          });
+          temp.forEach((speech) => {
+            resultWeWant.push(speech);
+          })
+        })
+        return resultWeWant;
+      })
+      .catch(err => console.log(err))
+  }
 };
