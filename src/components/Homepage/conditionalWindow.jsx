@@ -12,10 +12,8 @@ const ConditionalWindow = () => {
   if (pageValue === 'speech') {
     return (<SpeechView/>)
   } else if (pageValue === 'text') {
-    console.log(pageValue)
     return (<TextEdit/>)
   } else if (pageValue === 'history') {
-    console.log(pageValue)
     return (<HistoryList />)
   }
 }
