@@ -3,13 +3,16 @@ import { Chart as ChartJS, ArcElement, Legend, Tooltip, Title } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { Modal, Container, Col, Row } from 'react-bootstrap';
 
-export default function Result4({changePage}) {
+export default function Result4({ changePage, emotions, wordsCount }) {
+  const { positive, negative, joy, anger, trust, neutral } = emotions;
+
   ChartJS.register(ArcElement, Legend, Tooltip, Title);
+
   const dataChart1 = {
     labels: ['Positive', 'Negative'],
     datasets: [
       {
-        data: [22, 35],
+        data: [positive, negative],
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
           'rgba(54, 162, 235, 0.2)',
@@ -19,10 +22,10 @@ export default function Result4({changePage}) {
   };
 
   const dataChart2 = {
-    labels: ['Joy', 'Anger'],
+    labels: ['Joy', 'Fear'],
     datasets: [
       {
-        data: [69, 15],
+        data: [joy, anger],
         backgroundColor: [
           'rgba(255, 206, 86, 0.2)',
           'rgba(75, 192, 192, 0.2)',
@@ -50,7 +53,7 @@ export default function Result4({changePage}) {
 
   return (<>
     <Modal.Header>
-      Emotional analysis 4/4
+    Tone analysis 4/4
     </Modal.Header>
     <Modal.Body>
       <Container>
@@ -78,7 +81,7 @@ export default function Result4({changePage}) {
           <Col>
             <div style={{position: 'relative'}}>
               <h3>Trust</h3>
-              <span>..%</span>
+              <span>{ trust / wordsCount }%</span>
             </div>
           </Col>
         </Row>

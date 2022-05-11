@@ -4,15 +4,15 @@ import { Doughnut } from 'react-chartjs-2';
 import { Modal, Container, Col, Row } from 'react-bootstrap';
 import './styles.css';
 
-export default function Result1({wordsCount, emotionCount, changePage}) {
+export default function Result1({ wordsCount, emotionCount, changePage, neutralCount }) {
   ChartJS.register(Legend, Tooltip, Title, ArcElement);
 
   const data = {
-    labels: ['Neutral', 'Emotional'],
+    labels: ['Neutral', 'Strong tonality'],
     datasets: [{
-      data: [43, 57],
+      data: [neutralCount, emotionCount],
       backgroundColor: [
-        'rgba(255, 206, 86, 0.2)',
+        'rgba(255, 159, 64, 0.2)',
         'rgba(75, 192, 192, 0.2)',
       ]
     }]
@@ -33,7 +33,7 @@ export default function Result1({wordsCount, emotionCount, changePage}) {
 
   return(<>
     <Modal.Header>
-      Emotional analysis 1/4
+      Tone analysis 1/4
     </Modal.Header>
     <Modal.Body>
       <Container>
@@ -57,7 +57,7 @@ export default function Result1({wordsCount, emotionCount, changePage}) {
       </Container>
     </Modal.Body>
     <Modal.Footer className="results-footer">
-      <p>{`Out of the ${wordsCount} words of your speech, ${emotionCount} are highly correlated to an emotion`}</p>
+      <p>{`Out of the ${wordsCount} words of your speech, ${emotionCount} have a strong tonality`}</p>
       <button type="button" className="btn btn-primary results-btn" data-toggle="modal" data-target="#exampleModal" onClick={() => changePage(1)}>Next</button>
     </Modal.Footer>
   </>
