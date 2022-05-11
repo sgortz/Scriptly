@@ -15,7 +15,6 @@ function FileUploaderModal(props) {
   const [page, setPage] = useState(1);
   const [titleValue, setTitle] = useRecoilState(updateTitle);
 
-
   const onDrop = useCallback(acceptedFiles => {
     acceptedFiles.map(file => {
       const reader = new FileReader();
