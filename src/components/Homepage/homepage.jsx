@@ -8,6 +8,7 @@ import {
 import axios from 'axios';
 import FileUploaderModal from "../file-uploader-modal/FileUploaderModal.jsx";
 import Results from '../../results/Results.jsx';
+import Thinking from './thinking.jsx';
 
 const Homepage = () => {
 
@@ -28,7 +29,6 @@ const Homepage = () => {
   const [analysisValue, setAnalysis] = useRecoilState(currentAnalysis);
   const [currentId, setCurrentId] = useRecoilState(currentSpeechId);
 
-
   const email = localStorage.email; // replace with live email
 
   const getSpeeches = () => {
@@ -48,14 +48,12 @@ const Homepage = () => {
         title: `${titleValue}`,
         name: 'Jonathan Will Atwood Sr.',
         email: `${email}`,
-        // analysis: {
-        //   totalCount: {analysisValue.totalCount},
-        //   positive: {analysisValue.positive},
-        //   negative: {analysisValue.negative},
-        //   trust: {analysisValue.trust},
-        //   anger: {analysisValue.anger},
-        //   joy: {analysisValue.joy},
-        // }
+        totalCount: analysisValue.totalCount,
+        positive: analysisValue.positive,
+        negative: analysisValue.negative,
+        trust: analysisValue.trust,
+        anger: analysisValue.anger,
+        joy: analysisValue.joy,
       })
       .then((response) => {
         console.log('this is a post success')
@@ -71,6 +69,8 @@ const Homepage = () => {
 
   return (
     <div id="homepage">
+      {/* <Thinking/> */}
+
       <button onClick={() => { setShowUploader(true) }}>Upload</button>
       <FileUploaderModal onClose={e => setShowUploader(false)} show={showUploader} />
 
@@ -127,7 +127,6 @@ const Homepage = () => {
       <div style={{ height: '80vw', width: '90vw', border: '3px solid black', overflow: 'auto' }}>
         <ConditionalWindow />
       </div>
-
     </div>
   )
 }
