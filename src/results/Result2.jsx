@@ -28,7 +28,7 @@ export default function Result2({changePage, strongEmotions, weakEmotions}) {
       <div className="result2-card biggest-card" id={emotion}>
         <div className="main-card-container">
           {allEmojis[emotion]}
-          <h3>{emotion}</h3>
+          <h3>{emotion === 'anger' ? 'fear' : emotion}</h3>
         </div>
       </div>
     </Col>
@@ -39,7 +39,7 @@ export default function Result2({changePage, strongEmotions, weakEmotions}) {
       <div className="result2-card" id={emotion}>
         <div className="main-card-container">
           {allEmojis[emotion]}
-          <h3>{emotion}</h3>
+          <h3>{emotion === 'anger' ? 'fear' : emotion}</h3>
         </div>
       </div>
     </Col>
