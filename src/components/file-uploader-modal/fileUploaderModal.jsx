@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { useRecoilState } from 'recoil';
-import { editedSpeechText, resultsModal, updateTitle} from '../../atoms.jsx';
+import { editedSpeechText, resultsModal, updateTitle } from '../../atoms.jsx';
 import { useDropzone } from 'react-dropzone'
 import { BiLeftArrowAlt } from 'react-icons/bi'
 import './FileUploaderModal.css';
@@ -14,6 +14,7 @@ function FileUploaderModal(props) {
   const [showResults, setShowResults] = useRecoilState(resultsModal);
   const [page, setPage] = useState(1);
   const [titleValue, setTitle] = useRecoilState(updateTitle);
+
 
   const onDrop = useCallback(acceptedFiles => {
     acceptedFiles.map(file => {
