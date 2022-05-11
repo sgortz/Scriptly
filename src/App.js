@@ -8,16 +8,17 @@ import Homepage from './components/Homepage/homepage.jsx';
 import SignIn from './components/SignIn';
 
 function App() {
-  const [page, setPage] = useState('homepage')
+  const [page, setPage] = useState('landing')
   const [login, setLogin] = useState(false)
 
 
   const currentPage = page === 'landing' ? <Landing setLogin={setLogin} login={login} /> : <Homepage />
   return (
     <div className="app-container">
-      <SignIn />
-      <Homepage />
-      {currentPage}
+
+        <SignIn setPage={setPage}/>
+        <Header />
+        {currentPage}
     </div>
   );
 }
