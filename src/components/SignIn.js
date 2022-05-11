@@ -4,7 +4,7 @@ import { createAccount, signInWithGoogle, loggedIn, logOut, signInWithEmail , mo
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-const SignIn = () => {
+const SignIn = ({setPage}) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [signUpStatus, setSignUpStatus] = useState(false)
@@ -25,6 +25,7 @@ const SignIn = () => {
     if(localStorage.email) {
       logOut();
       setLoginStatus(false)
+      setPage('landing')
     }
    setShow(true);
    setSignUpStatus(false)
@@ -35,6 +36,7 @@ const googleLogin = () => {
     setLoginStatus(true)
     setSignUpStatus(false)
     setShow(false)
+    setPage('homepage')
   }).catch(err=>{
     alert(err.code)
     localStorage.clear();
@@ -46,6 +48,7 @@ const emailLogin = (username,password) => {
     setLoginStatus(true)
     setSignUpStatus(false)
     setShow(false)
+    setPage('homepage')
   }).catch(err => {
     alert(err.code)
     localStorage.clear();
