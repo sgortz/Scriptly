@@ -16,7 +16,6 @@ function App() {
   return (
     <div className="app-container">
       <SignIn />
-      <Homepage />
       {currentPage}
     </div>
   );
