@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { signInWithGoogle } from './auth/Firebase';
@@ -12,13 +12,12 @@ function App() {
   const [login, setLogin] = useState(false)
 
 
-  const currentPage = page === 'landing' ? <Landing setLogin={setLogin} login={login}/> : <Homepage />
+  const currentPage = page === 'landing' ? <Landing setLogin={setLogin} login={login} /> : <Homepage />
   return (
     <div className="app-container">
-
-      <SignIn/>
-        <Homepage />
-   {currentPage}
+      <SignIn />
+      <Homepage />
+      {currentPage}
     </div>
   );
 }
