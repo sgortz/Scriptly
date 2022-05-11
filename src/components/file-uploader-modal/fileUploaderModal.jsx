@@ -1,13 +1,17 @@
 import React, { useState, useCallback } from 'react';
 import axios from 'axios';
 import { useDropzone } from 'react-dropzone'
+import {useRecoilState} from 'recoil';
+import {editedSpeechText} from '../../atoms.jsx';
 import { BiLeftArrowAlt } from 'react-icons/bi'
 import './FileUploaderModal.css';
 const lib = require('../shared/ScriptlyShared.js');
 
 function FileUploaderModal(props) {
+
   const [fileName, setFileName] = useState('');
   const [files, setFiles] = useState(null);
+  const [editedValue, setEdited] = useRecoilState(editedSpeechText);
 
   const onDrop = useCallback(acceptedFiles => {
     acceptedFiles.map(file => {
@@ -31,10 +35,8 @@ function FileUploaderModal(props) {
 
   const uploadFile = (e) => {
     e.preventDefault();
-    let words = lib.parseTextToArray(files[0]);
-    let totalWordCount = words.length;
+    setEdited(files[0])
     // analysis here
-
     // need users email, speech title,
    // axios.post(/speech)
 

@@ -19,7 +19,7 @@ export const currentSpeechText = atom({
 
 export const editedSpeechText = atom({
   key: 'editedSpeechText',
-  default: 'a',
+  default: '      ',
 })
 
 export const updateTitle = atom({
