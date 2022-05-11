@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
 function Landing(props) {
 const {setLogin, login} = props;
     return (
