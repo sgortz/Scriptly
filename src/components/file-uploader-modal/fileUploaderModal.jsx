@@ -1,9 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useRecoilState } from 'recoil';
-import { editedSpeechText, resultsModal } from '../../atoms.jsx';
+import { editedSpeechText, resultsModal, updateTitle} from '../../atoms.jsx';
 import { useDropzone } from 'react-dropzone'
-import {useRecoilState} from 'recoil';
-import {editedSpeechText} from '../../atoms.jsx';
 import { BiLeftArrowAlt } from 'react-icons/bi'
 import './FileUploaderModal.css';
 
@@ -16,7 +14,7 @@ function FileUploaderModal(props) {
   const [showResults, setShowResults] = useRecoilState(resultsModal);
   const [page, setPage] = useState(1);
   const [titleValue, setTitle] = useRecoilState(updateTitle);
-  
+
   const onDrop = useCallback(acceptedFiles => {
     acceptedFiles.map(file => {
       const reader = new FileReader();
@@ -32,7 +30,7 @@ function FileUploaderModal(props) {
 
   const acceptedFileItems = acceptedFiles.map(file => (
     <li className="uploaded-file-info" key={file.path}>
-      <p><strong>Title: </strong>{speechTitle}</p>
+      <p><strong>Title: </strong>{titleValue}</p>
       <p><strong>Filename: </strong>{file.path}</p>
       <p><strong>File size: </strong>{file.size} bytes</p>
     </li>
@@ -42,10 +40,10 @@ function FileUploaderModal(props) {
     e.preventDefault();
     // sending to speech analysis
     setEdited(files[0])
-    // send the info to results' modal 
+    // send the info to results' modal
     setShowResults(true);
   }
-    
+
     return (
       <div className={`file-uploader-modal ${props.show ? 'file-uploader-modal-show' : ''}`} onClick={props.onClose}>
       <div className="file-uploader-modal-content" onClick={e => e.stopPropagation()}>
@@ -66,13 +64,13 @@ function FileUploaderModal(props) {
             className="form-control speech-title-input"
             name="title"
             placeholder="Enter speech title"
-            value={speechTitle}
+            value={titleValue}
             onChange={
               e => {
                 setTitle(e.target.value);
                 setEnableButton(false);
               }} />
-          {speechTitle.length === 0 ? <div className="form-text">Please add a title to your speech before submitting.</div> : null}
+          {titleValue.length === 0 ? <div className="form-text">Please add a title to your speech before submitting.</div> : null}
           <ul style={{ listStyle: 'none', marginTop: '2em', padding: 0 }}>{acceptedFileItems}</ul>
           <button className="submit-speech-button" onClick={uploadFile} disabled={enableButton}>Submit</button>
         </div>
