@@ -12,7 +12,7 @@ function HistoryList(props) {
   const [currentId, setCurrentId] = useRecoilState(currentSpeechId);
 
   const getHistory = () => {
-    axios.get(`/speech/${currentSpeechId}`)
+    axios.get(`/speech/${currentId}`)
       .then(res => {
         setHistory(res.data[0].speeches)
       })
