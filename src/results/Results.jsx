@@ -20,7 +20,9 @@ export default function Results(props) {
   const [weakestEmotions, setWeakestEmotions] = useState([]);
 
   useEffect(() => {
-    if (textEditorAnalysis.wordCount) {
+    console.log('textEditorAnalysis', textEditorAnalysis);
+    console.log('historyAnalysis', historyAnalysis);
+    if (textEditorAnalysis.totalCount) {
       setDisplayedAnalysis(textEditorAnalysis);
     } else {
       setDisplayedAnalysis(historyAnalysis);
@@ -34,7 +36,7 @@ export default function Results(props) {
     let biggestNum = -1;
 
     for (const key in displayedAnalysis) {
-      if (key !== 'wordCount') {
+      if (key !== 'totalCount') {
         const value = displayedAnalysis[key]
         count += value;
 
@@ -68,10 +70,10 @@ export default function Results(props) {
         {
           resultPage === 1 ?
           <Result1
-            wordsCount={displayedAnalysis.wordCount}
+            wordsCount={displayedAnalysis.totalCount}
             emotionCount={emotionCount}
             changePage={changeResultPage}
-            neutralCount={displayedAnalysis.wordCount - emotionCount}
+            neutralCount={displayedAnalysis.totalCount - emotionCount}
           /> :
           resultPage === 2 ?
           // <Result2
@@ -83,12 +85,12 @@ export default function Results(props) {
           <Result3
             changePage={changeResultPage}
             emotions={displayedAnalysis}
-            neutral={displayedAnalysis.wordCount - emotionCount}
+            neutral={displayedAnalysis.totalCount - emotionCount}
           />
           : <Result4
             changePage={changeResultPage}
             emotions={displayedAnalysis}
-            wordsCount={displayedAnalysis.wordCount}
+            wordsCount={displayedAnalysis.totalCount}
           />
         }
       </Modal>

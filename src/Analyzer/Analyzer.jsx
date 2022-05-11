@@ -25,9 +25,9 @@ const Analyzer = () => {
       }
 
       split.forEach((value) => {
-        emotion.wordCount++;
+        emotion.totalCount++;
         if (fear.includes(value)) {
-          emotion.fear++;
+          emotion.anger++;
         } else if (positive.includes(value)) {
           emotion.positive++;
         } else if (negative.includes(value)) {
@@ -39,6 +39,7 @@ const Analyzer = () => {
         }
       })
       setAnalysis(emotion)
+      console.log('analysis', analysisValue);
     }
 }
 
