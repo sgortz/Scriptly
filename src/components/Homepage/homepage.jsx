@@ -1,17 +1,21 @@
 import React, {useState, useEffect} from 'react';
 import ConditionalWindow from './conditionalWindow.jsx';
 import {useRecoilState} from 'recoil';
-import {pageView, allSpeeches, editedSpeechText, updateTitle, resultsModal, currentSpeechText, currentAnalysis} from '../../atoms.jsx';
+import {
+  pageView, allSpeeches, editedSpeechText,
+  updateTitle, resultsModal, currentSpeechText,
+  currentAnalysis, currentSpeechId} from '../../atoms.jsx';
 import axios from 'axios';
 import FileUploaderModal from "../file-uploader-modal/FileUploaderModal.jsx";
 import Results from '../../results/Results.jsx';
 import SignIn from '../SignIn.jsx';
+import Thinking from './thinking.jsx';
 
 const Homepage = ( props ) => {
 
   useEffect(() => {
     getSpeeches();
-    }, []);
+    }, [pageValue]);
 
   const [activeTab, setActiveTab] = useState(1);
   const [showUploader, setShowUploader] = useState(false);
@@ -24,6 +28,7 @@ const Homepage = ( props ) => {
   const [titleValue, setTitle] = useRecoilState(updateTitle);
   const [currentValue, setCurrent] = useRecoilState(currentSpeechText);
   const [analysisValue, setAnalysis] = useRecoilState(currentAnalysis);
+  const [currentId, setCurrentId] = useRecoilState(currentSpeechId);
 
   const email = localStorage.email; // replace with live email
 
@@ -37,10 +42,46 @@ const Homepage = ( props ) => {
     })
   }
 
-
-  const testingSubmission = () => {
+  const handleAnalyze = () => {
     if (editedValue.length > 0 && titleValue.length > 0) {
-      axios.post('/speech', {body: `${editedValue}`, title: `${titleValue}`, name: 'Jonathan Will Atwood Sr.', email: `${email}`})
+      axios.post(`/speech/${currentId}`, {
+        body: `${editedValue}`,
+        title: `${titleValue}`,
+        name: 'Trevor Edwards',
+        email: `${email}`,
+        totalCount: analysisValue.totalCount,
+        positive: analysisValue.positive,
+        negative: analysisValue.negative,
+        trust: analysisValue.trust,
+        anger: analysisValue.anger,
+        joy: analysisValue.joy,
+      })
+      .then((response) => {
+        console.log('this is a post success')
+      })
+      .catch((error) => {
+        console.log(error, 'this is a post error')
+      })
+    } else {
+      alert('Invalid Entry - Title and Body Must Exist')
+    }
+    setShowResults(true)
+  }
+
+  const handleSubmit = () => {
+    if (editedValue.length > 0 && titleValue.length > 0) {
+      axios.post(`/speech/`, {
+        body: `${editedValue}`,
+        title: `${titleValue}`,
+        name: 'Trevor Edwards',
+        email: `${email}`,
+        totalCount: analysisValue.totalCount,
+        positive: analysisValue.positive,
+        negative: analysisValue.negative,
+        trust: analysisValue.trust,
+        anger: analysisValue.anger,
+        joy: analysisValue.joy,
+      })
       .then((response) => {
         console.log('this is a post success')
       })
@@ -52,20 +93,18 @@ const Homepage = ( props ) => {
     }
   }
 
-  const handleSubmit = () => {
-    setShowResults(true)
-  }
-
-
-
   return (
     <div id="homepage">
       <SignIn setPage={props.setPage} page={props.page}/>
+      {/* <Thinking/> */}
+
       <button onClick={() => { setShowUploader(true) }}>Upload</button>
       <FileUploaderModal onClose={e => setShowUploader(false)} show={showUploader} />
 
-      <button onClick={() => { handleSubmit() }}>Submit</button>
+      <button onClick={() => { handleAnalyze() }}>Analyze</button>
       <Results show={showResults}  onClose={e => setShowResults(false)}/>
+
+      <button onClick={() => { handleSubmit() }}>Submit</button>
 
       <ul className="nav nav-tabs mb-3" id="myTab0" role="tablist">
         <li className="nav-item" role="presentation">
@@ -117,11 +156,6 @@ const Homepage = ( props ) => {
       <div style={{ height: '80vw', width: '90vw', border: '3px solid black', overflow: 'auto' }}>
         <ConditionalWindow />
       </div>
-      <button onClick={() => {
-        testingSubmission()
-      }}>
-        Test Button
-      </button>
     </div>
   )
 }

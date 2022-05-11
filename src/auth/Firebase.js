@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* eslint-disable linebreak-style */
 import { initializeApp } from 'firebase/app';
 import {
@@ -5,6 +6,10 @@ import {
   signInWithPopup, createUserWithEmailAndPassword,
   signOut, signInWithEmailAndPassword,
 } from 'firebase/auth';
+=======
+import { initializeApp } from "firebase/app";
+import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword } from "firebase/auth";
+>>>>>>> main
 
 import { getStorage } from 'firebase/storage';
 import 'core-js/stable';
@@ -46,7 +51,6 @@ export const signInWithEmail = async (email, password) => {
       localStorage.clear();
       alert(err.code);
     });
-  localStorage.setItem('email', email);
 };
 
 export const createAccount = async (email, password) => {
