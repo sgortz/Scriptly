@@ -2,10 +2,13 @@ import React, { useState, useCallback } from 'react';
 import { useRecoilState } from 'recoil';
 import { editedSpeechText, resultsModal } from '../../atoms.jsx';
 import { useDropzone } from 'react-dropzone'
+import {useRecoilState} from 'recoil';
+import {editedSpeechText} from '../../atoms.jsx';
 import { BiLeftArrowAlt } from 'react-icons/bi'
 import './FileUploaderModal.css';
 
 function FileUploaderModal(props) {
+
   const [fileName, setFileName] = useState('');
   const [files, setFiles] = useState(null);
   const [enableButton, setEnableButton] = useState(true);
