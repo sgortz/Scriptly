@@ -8,10 +8,10 @@ import './FileUploaderModal.css';
 const lib = require('../shared/ScriptlyShared.js');
 
 function FileUploaderModal(props) {
+
   const [fileName, setFileName] = useState('');
   const [files, setFiles] = useState(null);
   const [editedValue, setEdited] = useRecoilState(editedSpeechText);
-
 
   const onDrop = useCallback(acceptedFiles => {
     acceptedFiles.map(file => {

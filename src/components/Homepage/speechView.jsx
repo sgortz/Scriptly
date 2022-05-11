@@ -46,17 +46,10 @@ const SpeechView = () => {
         {speechValue.map((value, index) => {
           let snippet = value.speeches[0].body.slice(0, 200);
           return (
-<<<<<<< HEAD
             <div style={{display: 'flex'}} >
               <div style={{border: '3px solid black', width: '33vw'}}>{moment(value.speeches[0].date).format("dddd, MMMM Do YYYY, h:mm:ss a")}</div>
               <div style={{border: '3px solid black', width: '33vw'}}>{value.speeches[0].title}</div>
               <div key={index} style={{border: '3px solid black', width: '33vw'}} onClick={() => {displayHistory(value)}}>{snippet}...</div>
-=======
-            <div style={{display: 'flex'}} onClick={() => {displayHistory(value)}}>
-              <div style={{border: '3px solid black', width: '40vw'}}>{value.speeches[0].date}</div>
-              <div style={{border: '3px solid black', width: '40vw'}}>{value.speeches[0].title}</div>
-              <div key={index} style={{border: '3px solid black'}}>{snippet}...</div>
->>>>>>> main
               <button onClick={() => {
                 handleEdit(index)
               }}>Edit</button>
