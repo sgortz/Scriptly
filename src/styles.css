@@ -1,8 +1,6 @@
 .header {
   font-size: 125px;
-  text-align: center;
-  display: flex;
-  flex-direction: row;
+ margin-left: 25%;
 }
 
 /*Landing*/

@@ -6,7 +6,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 function DoughnutChart(props) {
   const {analysis, labelsOn} = props;
-  const {positive, negative, joy, anger, trust} = analysis;
+  const {positive, negative, joy, anger, trust, totalCount} = analysis;
   console.log(props)
   const labels = labelsOn ? ['postitive', 'negative', 'joy', 'anger', 'trust'] : null;
   const data = {

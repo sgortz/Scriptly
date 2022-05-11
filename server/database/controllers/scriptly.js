@@ -25,11 +25,12 @@ module.exports = {
         name,
         email,
         title,
+        url,
         comments: [],
         speeches: [{
-          title: title,
-          body: body,
-          url: url,
+          title,
+          body,
+          url,
           date: new Date(),
           analysis: {
             totalCount,
@@ -62,6 +63,7 @@ module.exports = {
     return Speech.findByIdAndUpdate(
       id,
       {
+        url,
         email,
         title,
         $push: {
