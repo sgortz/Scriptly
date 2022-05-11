@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
 function Landing() {
-
     return (
       <div className="headerText">
         <br /><br /><br /><br />

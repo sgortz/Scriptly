@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import ConditionalWindow from './conditionalWindow.jsx';
 import {useRecoilState} from 'recoil';
-import {pageView, allSpeeches, editedSpeechText, updateTitle} from '../../atoms.jsx';
+import {pageView, allSpeeches, editedSpeechText, updateTitle, resultsModal, currentSpeechText, currentAnalysis} from '../../atoms.jsx';
 import axios from 'axios';
 import FileUploaderModal from "../file-uploader-modal/FileUploaderModal.jsx";
 import Results from '../../results/Results.jsx';
@@ -12,14 +12,17 @@ const Homepage = () => {
     getSpeeches();
     }, []);
 
-  const [pageValue, setPage] = useRecoilState(pageView);
   const [activeTab, setActiveTab] = useState(1);
   const [showUploader, setShowUploader] = useState(false);
-  const [showResults, setShowResults] = useState(false);
   const [showModal, setShowModal] = useState(false);
+
+  const [pageValue, setPage] = useRecoilState(pageView);
+  const [showResults, setShowResults] = useRecoilState(resultsModal);
   const [speechValue, setSpeechValue] = useRecoilState(allSpeeches);
   const [editedValue, setEdited] = useRecoilState(editedSpeechText);
   const [titleValue, setTitle] = useRecoilState(updateTitle);
+  const [currentValue, setCurrent] = useRecoilState(currentSpeechText);
+  const [analysisValue, setAnalysis] = useRecoilState(currentAnalysis);
 
   const email = 'hello@gmail.com';
 
@@ -32,7 +35,6 @@ const Homepage = () => {
       console.log('error')
     })
   }
-
 
   const testingSubmission = () => {
     if (editedValue.length > 0 && titleValue.length > 0) {
@@ -48,14 +50,16 @@ const Homepage = () => {
     }
   }
 
-
+  const handleSubmit = () => {
+    setShowResults(true)
+  }
 
   return (
     <div id="homepage">
       <button onClick={() => { setShowUploader(true) }}>Upload</button>
       <FileUploaderModal onClose={e => setShowUploader(false)} show={showUploader} />
 
-      <button onClick={() => { setShowResults(true) }}>Submit</button>
+      <button onClick={() => { handleSubmit() }}>Submit</button>
       <Results show={showResults}  onClose={e => setShowResults(false)}/>
 
       <ul className="nav nav-tabs mb-3" id="myTab0" role="tablist">
@@ -108,9 +112,6 @@ const Homepage = () => {
       <div style={{ height: '80vw', width: '90vw', border: '3px solid black', overflow: 'auto' }}>
         <ConditionalWindow />
       </div>
-      <button onClick={() => {
-          testingSubmission()
-        }}>This is a temporary button</button>
     </div>
   )
 }

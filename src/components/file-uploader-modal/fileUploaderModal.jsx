@@ -1,20 +1,19 @@
 import React, { useState, useCallback } from 'react';
 import { useRecoilState } from 'recoil';
-import { currentSpeechText } from '../../atoms.jsx';
+import { editedSpeechText, resultsModal } from '../../atoms.jsx';
 import { useDropzone } from 'react-dropzone'
 import { BiLeftArrowAlt } from 'react-icons/bi'
 import './FileUploaderModal.css';
-const lib = require('../shared/ScriptlyShared.js');
-// import Analyzer from '../../Analyzer/speechAnalyzer.js';
-import Analyzer from '../../Analyzer/Analyzer.jsx'
 
 function FileUploaderModal(props) {
   const [fileName, setFileName] = useState('');
   const [files, setFiles] = useState(null);
-  const [speechTitle, setSpeechTitle] = useState('');
   const [enableButton, setEnableButton] = useState(true);
-  const [currentValue, setCurrent] = useRecoilState(currentSpeechText);
-
+  const [editedValue, setEdited] = useRecoilState(editedSpeechText);
+  const [showResults, setShowResults] = useRecoilState(resultsModal);
+  const [page, setPage] = useState(1);
+  const [titleValue, setTitle] = useRecoilState(updateTitle);
+  
   const onDrop = useCallback(acceptedFiles => {
     acceptedFiles.map(file => {
       const reader = new FileReader();
@@ -22,7 +21,6 @@ function FileUploaderModal(props) {
         setFiles([e.target.result]);
       };
       reader.readAsText(file);
-      // console.log(file)
       return file;
     });
   }, []);
@@ -39,19 +37,14 @@ function FileUploaderModal(props) {
 
   const uploadFile = (e) => {
     e.preventDefault();
-
-    let words = lib.parseTextToArray(files[0]);
-
     // sending to speech analysis
-    let speechAnalizer = Analyzer(files[0]);
-
-    // send the info to Amina's modal 
-      // need users email, speech title, emotions obj
-
+    setEdited(files[0])
+    // send the info to results' modal 
+    setShowResults(true);
   }
-
-  return (
-    <div className={`file-uploader-modal ${props.show ? 'file-uploader-modal-show' : ''}`} onClick={props.onClose}>
+    
+    return (
+      <div className={`file-uploader-modal ${props.show ? 'file-uploader-modal-show' : ''}`} onClick={props.onClose}>
       <div className="file-uploader-modal-content" onClick={e => e.stopPropagation()}>
         <div className="file-uploader-back-button">
           <BiLeftArrowAlt onClick={props.onClose} />
@@ -61,7 +54,7 @@ function FileUploaderModal(props) {
             <input {...getInputProps()} />
             {
               isDragActive ?
-                <p className="file-uploader">Drop the files here</p> :
+              <p className="file-uploader">Drop the files here</p> :
                 <p className="file-uploader">Drag and drop or click here to add some files </p>
             }
             <p>{fileName}</p>
@@ -73,7 +66,7 @@ function FileUploaderModal(props) {
             value={speechTitle}
             onChange={
               e => {
-                setSpeechTitle(e.target.value);
+                setTitle(e.target.value);
                 setEnableButton(false);
               }} />
           {speechTitle.length === 0 ? <div className="form-text">Please add a title to your speech before submitting.</div> : null}

@@ -11,8 +11,7 @@ const SpeechView = () => {
   // console.log(speechValue, 'this is speechvalue')
 
   const handleEdit = (index) => {
-    setCurrent(speechValue[index].speeches[0].body);
-    setEdited(currentValue);
+    setEdited(speechValue[index].speeches[0].body);
     setPage('text');
   }
 
@@ -25,7 +24,6 @@ const SpeechView = () => {
       <div>
         {speechValue.map((value, index) => {
           let snippet = value.speeches[0].body.slice(0, 200);
-          // console.log(snippet, 'this is a snippet')
           return (
             <div style={{display: 'flex'}} onClick={displayHistory}>
               <span style={{border: '3px solid black', width: '40vw'}}>{value.speeches[0].date}</span>
