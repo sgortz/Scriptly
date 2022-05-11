@@ -23,38 +23,14 @@ const MyEditor = () => {
     setTitle(event.target.value)
   }
 
-<<<<<<< HEAD
-  let counter = 0;
-=======
-
->>>>>>> main
 
   return (
     <Slate editor={editor} value={initialValue} onChange={(value) => {
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> main
       let currentString = '';
       value.forEach((element) => {
         currentString += element.children[0].text;
       })
       setEdited(currentString)
-<<<<<<< HEAD
-=======
-=======
-
-        if (event.inputType === 'insertParagraph') {
-          let data = editedValue + ' '
-          setEdited(value[0].children[0].text + ' ')
-        } else {
-          setEdited(value[0].children[0].text)
-          console.log(editedValue, 'edited value')
-          console.log(event)
-        }
-
->>>>>>> main
->>>>>>> main
     }}>
       <form>
         <input type='text' placeholder={titleValue} value={titleValue} onChange={titleListener}></input>
