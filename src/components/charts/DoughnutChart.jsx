@@ -8,7 +8,7 @@ function DoughnutChart(props) {
   const {analysis, labelsOn} = props;
   const {positive, negative, joy, anger, trust, totalCount} = analysis;
   console.log(props)
-  const labels = labelsOn ? ['postitive', 'negative', 'joy', 'anger', 'trust'] : null;
+  const labels = labelsOn ? ['postitive', 'negative', 'joy', 'fear', 'trust'] : null;
   const data = {
     labels,
     datasets: [
