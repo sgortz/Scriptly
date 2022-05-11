@@ -1,5 +1,5 @@
 import React from 'react';
-import {currentSpeechText, pageView, allSpeeches, editedSpeechText} from '../../atoms.jsx';
+import {currentSpeechText, pageView, allSpeeches, editedSpeechText, currentSpeechId} from '../../atoms.jsx';
 import {useRecoilState} from 'recoil';
 
 const SpeechView = () => {
@@ -8,6 +8,7 @@ const SpeechView = () => {
   const [pageValue, setPage] = useRecoilState(pageView);
   const [speechValue, setSpeechValue] = useRecoilState(allSpeeches);
   const [editedValue, setEdited] = useRecoilState(editedSpeechText);
+  const [currentId, setCurrentId] = useRecoilState(currentSpeechId);
   console.log(speechValue, 'this is speechvalue')
 
   const handleEdit = (index) => {
@@ -15,8 +16,10 @@ const SpeechView = () => {
     setPage('text');
   }
 
-  const displayHistory = () => {
-    console.log('go to history modal')
+  const displayHistory = (value) => {
+    setCurrentId(value._id)
+    setPage('history')
+    console.log(currentId, 'this is current id')
   }
 
 
@@ -27,10 +30,10 @@ const SpeechView = () => {
         {speechValue.map((value, index) => {
           let snippet = value.speeches[0].body.slice(0, 200);
           return (
-            <div style={{display: 'flex'}} onClick={displayHistory}>
-              <span style={{border: '3px solid black', width: '40vw'}}>{value.speeches[0].date}</span>
-              <span style={{border: '3px solid black', width: '40vw'}}>{value.speeches[0].title}</span>
-              <span key={index} style={{border: '3px solid black'}}>{snippet}...</span>
+            <div style={{display: 'flex'}} onClick={() => {displayHistory(value)}}>
+              <div style={{border: '3px solid black', width: '40vw'}}>{value.speeches[0].date}</div>
+              <div style={{border: '3px solid black', width: '40vw'}}>{value.speeches[0].title}</div>
+              <div key={index} style={{border: '3px solid black'}}>{snippet}...</div>
               <button onClick={() => {
                 handleEdit(index)
               }}>Edit</button>

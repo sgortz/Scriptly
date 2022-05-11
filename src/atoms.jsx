@@ -22,11 +22,6 @@ export const editedSpeechText = atom({
   default: 'a',
 })
 
-export const loginStatus = atom({
-  key: 'login',
-  default: 'none',
-})
-
 export const updateTitle = atom({
   key: 'updateTitle',
   default: '',
@@ -61,10 +56,8 @@ export const currentAnalysis2 = atom({
   },
 })
 
-export const parseSelector = selector({
-  key: 'parseSelector',
-  get: ({get}) => {
-    let data = get(editedValue)
-    let parse = parser.parseTextToArray(data)
-  }
+export const currentSpeechId = atom({
+  key: 'currentSpeechId',
+  default: '627a9e00de163a667afa07a1',
+
 })
