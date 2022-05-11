@@ -24,7 +24,7 @@ export default function Result2({changePage, strongEmotions, weakEmotions}) {
   };
 
   const mainEmotions = strongEmotions.map(emotion =>
-    <Col>
+    <Col key={Math.random() * 1000}>
       <div className="result2-card biggest-card" id={emotion}>
         <div className="main-card-container">
           {allEmojis[emotion]}
@@ -35,7 +35,7 @@ export default function Result2({changePage, strongEmotions, weakEmotions}) {
   )
 
   const otherEmotions = weakEmotions.map(emotion =>
-    <Col>
+    <Col key={Math.random() * 1000}>
       <div className="result2-card" id={emotion}>
         <div className="main-card-container">
           {allEmojis[emotion]}

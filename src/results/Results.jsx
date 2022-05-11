@@ -62,7 +62,7 @@ export default function Results(props) {
 
 
   return(
-    <div>
+    <div onClick={() => setResultPage(1)}>
       <Analyzer/>
       <Modal show={props.show} size="xl" onClick={e => e.stopPropagation()} onHide={props.onClose} centered className="results-modal">
         {
