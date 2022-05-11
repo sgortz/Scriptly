@@ -2,8 +2,6 @@ import React, { useState, useCallback } from 'react';
 import { useRecoilState } from 'recoil';
 import { editedSpeechText, resultsModal, updateTitle } from '../../atoms.jsx';
 import { useDropzone } from 'react-dropzone'
-import {useRecoilState} from 'recoil';
-import {editedSpeechText} from '../../atoms.jsx';
 import { BiLeftArrowAlt } from 'react-icons/bi'
 import './FileUploaderModal.css';
 
