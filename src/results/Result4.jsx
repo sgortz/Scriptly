@@ -2,9 +2,16 @@ import React from 'react';
 import { Chart as ChartJS, ArcElement, Legend, Tooltip, Title } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { Modal, Container, Col, Row } from 'react-bootstrap';
+import { useRecoilState } from 'recoil';
+import { editedSpeechText, updateTitle, currentSpeechId } from './../atoms.jsx';
+import axios from 'axios';
 
 export default function Result4({ changePage, emotions, wordsCount }) {
   const { positive, negative, joy, anger, trust, neutral } = emotions;
+
+  const [editedValue, setEdited] = useRecoilState(editedSpeechText);
+  const [titleValue, setTitle] = useRecoilState(updateTitle);
+  const [currentId, setCurrentId] = useRecoilState(currentSpeechId);
 
   ChartJS.register(ArcElement, Legend, Tooltip, Title);
 
@@ -51,6 +58,28 @@ export default function Result4({ changePage, emotions, wordsCount }) {
     }
   }
 
+  const handleSubmit = () => {
+    axios.post(`/speech/`, {
+      body: `${editedValue}`,
+      title: `${titleValue}`,
+      name: 'Trevor Edwards',
+      email: `${localStorage.email}`,
+      totalCount: emotions.totalCount,
+      positive: emotions.positive,
+      negative: emotions.negative,
+      trust: emotions.trust,
+      anger: emotions.anger,
+      joy: emotions.joy,
+    })
+    .then((response) => {
+      console.log('this is a post success')
+    })
+    .catch((error) => {
+      console.error(error, 'this is a post error')
+    })
+  }
+
+
   return (<>
     <Modal.Header>
     Tone analysis 4/4
@@ -89,7 +118,7 @@ export default function Result4({ changePage, emotions, wordsCount }) {
     </Modal.Body>
     <Modal.Footer className="results-footer">
       <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={() => changePage(-1)}>Previous</button>
-      <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Submit</button>
+      <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={handleSubmit}>Submit</button>
     </Modal.Footer>
   </>
   )
