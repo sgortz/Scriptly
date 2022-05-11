@@ -1,16 +1,20 @@
 import React, {useState, useEffect} from 'react';
 import ConditionalWindow from './conditionalWindow.jsx';
 import {useRecoilState} from 'recoil';
-import {pageView, allSpeeches, editedSpeechText, updateTitle, resultsModal, currentSpeechText, currentAnalysis} from '../../atoms.jsx';
+import {
+  pageView, allSpeeches, editedSpeechText,
+  updateTitle, resultsModal, currentSpeechText,
+  currentAnalysis, currentSpeechId} from '../../atoms.jsx';
 import axios from 'axios';
 import FileUploaderModal from "../file-uploader-modal/FileUploaderModal.jsx";
 import Results from '../../results/Results.jsx';
+import Thinking from './thinking.jsx';
 
 const Homepage = () => {
 
   useEffect(() => {
     getSpeeches();
-    }, []);
+    }, [pageValue]);
 
   const [activeTab, setActiveTab] = useState(1);
   const [showUploader, setShowUploader] = useState(false);
@@ -23,12 +27,9 @@ const Homepage = () => {
   const [titleValue, setTitle] = useRecoilState(updateTitle);
   const [currentValue, setCurrent] = useRecoilState(currentSpeechText);
   const [analysisValue, setAnalysis] = useRecoilState(currentAnalysis);
+  const [currentId, setCurrentId] = useRecoilState(currentSpeechId);
 
-
-
-
-
-  const email = 'hello@gmail.com';
+  const email = localStorage.email; // replace with live email
 
   const getSpeeches = () => {
     axios.get(`/history/${email}`)
@@ -40,10 +41,20 @@ const Homepage = () => {
     })
   }
 
-
-  const testingSubmission = () => {
+  const handleSubmit = () => {
     if (editedValue.length > 0 && titleValue.length > 0) {
-      axios.post('/speech', {body: `${editedValue}`, title: `${titleValue}`, name: 'Jonathan Will Atwood Sr.', email: 'hello@gmail.com'})
+      axios.post(`/speech/${currentId}`, {
+        body: `${editedValue}`,
+        title: `${titleValue}`,
+        name: 'Trevor Edwards',
+        email: `${email}`,
+        totalCount: analysisValue.totalCount,
+        positive: analysisValue.positive,
+        negative: analysisValue.negative,
+        trust: analysisValue.trust,
+        anger: analysisValue.anger,
+        joy: analysisValue.joy,
+      })
       .then((response) => {
         console.log('this is a post success')
       })
@@ -53,16 +64,13 @@ const Homepage = () => {
     } else {
       alert('Invalid Entry - Title and Body Must Exist')
     }
-  }
-
-  const handleSubmit = () => {
     setShowResults(true)
   }
 
-
-
   return (
     <div id="homepage">
+      {/* <Thinking/> */}
+
       <button onClick={() => { setShowUploader(true) }}>Upload</button>
       <FileUploaderModal onClose={e => setShowUploader(false)} show={showUploader} />
 
