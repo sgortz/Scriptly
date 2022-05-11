@@ -65,7 +65,6 @@ export const signInWithEmail = async (email, password) => {
       localStorage.setItem('email', email);
     })
     .catch((err) => {
-      console.log('wrong email or password')
       localStorage.clear();
       alert(err.code);
     });

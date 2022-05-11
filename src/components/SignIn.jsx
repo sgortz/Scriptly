@@ -36,13 +36,11 @@ function SignIn({ setPage }) {
     }
   };
   const emailLogin = async () => {
-    // try {
     await signInWithEmail(username, password);
     if (localStorage.email) {
       setLoginStatus(true);
       setSignUpStatus(false);
       setShow(false);
-      console.log('login successfully');
       setPage('homepage');
     }
   };
