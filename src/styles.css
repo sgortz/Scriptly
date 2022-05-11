@@ -1,6 +1,8 @@
 .header {
   font-size: 125px;
   text-align: center;
+  display: flex;
+  flex-direction: row;
 }
 
 .carouselOne {
@@ -75,6 +77,12 @@ flex-direction: row;
 
 .landingButton:hover {
   transform: scale(1.1);
+}
+
+.header-login {
+  font-size: small;
+padding-right: 25%;
+color: #66BDD0;
 }
 
 .header-login {
