@@ -39,7 +39,6 @@ const Analyzer = () => {
         }
       })
       setAnalysis(emotion)
-      console.log('analysis', analysisValue);
     }
 }
 

@@ -20,8 +20,6 @@ export default function Results(props) {
   const [weakestEmotions, setWeakestEmotions] = useState([]);
 
   useEffect(() => {
-    console.log('textEditorAnalysis', textEditorAnalysis);
-    console.log('historyAnalysis', historyAnalysis);
     if (textEditorAnalysis.totalCount) {
       setDisplayedAnalysis(textEditorAnalysis);
     } else {
@@ -41,7 +39,7 @@ export default function Results(props) {
         count += value;
 
         if (value > biggestNum) {
-          weakest.concat(strongest);
+          weakest.push(strongest);
           strongest = [key];
           biggestNum = value;
         } else if (value === biggestNum) {
@@ -54,7 +52,7 @@ export default function Results(props) {
 
     setEmotionCount(count);
     setStrongestEmotions(strongest);
-    setWeakestEmotions(weakest);
+    setWeakestEmotions(weakest.flat());
 
   }, [props.show])
 
@@ -76,12 +74,12 @@ export default function Results(props) {
             neutralCount={displayedAnalysis.totalCount - emotionCount}
           /> :
           resultPage === 2 ?
-          // <Result2
-          //   changePage={changeResultPage}
-          //   strongEmotions={strongestEmotions}
-          //   weakEmotions={weakestEmotions}
-          // /> :
-          // resultPage === 3 ?
+          <Result2
+            changePage={changeResultPage}
+            strongEmotions={strongestEmotions}
+            weakEmotions={weakestEmotions}
+          /> :
+          resultPage === 3 ?
           <Result3
             changePage={changeResultPage}
             emotions={displayedAnalysis}

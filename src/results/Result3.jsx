@@ -72,7 +72,7 @@ export default function Result3({ changePage, emotions }) {
       </Container>
     </Modal.Body>
     <Modal.Footer className="results-footer">
-      <p>{`Out of the words of your speech, are highly correlated to an emotion`}</p>
+      {/* <p>{`Out of the words of your speech, are highly correlated to an emotion`}</p> */}
       <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={() => changePage(-1)}>Previous</button>
       <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={() => changePage(1)}>Next</button>
     </Modal.Footer>
