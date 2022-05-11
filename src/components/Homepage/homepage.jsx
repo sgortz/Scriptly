@@ -5,8 +5,9 @@ import {pageView, allSpeeches, editedSpeechText, updateTitle, resultsModal, curr
 import axios from 'axios';
 import FileUploaderModal from "../file-uploader-modal/FileUploaderModal.jsx";
 import Results from '../../results/Results.jsx';
+import SignIn from '../SignIn.jsx';
 
-const Homepage = () => {
+const Homepage = ( props ) => {
 
   useEffect(() => {
     getSpeeches();
@@ -24,11 +25,7 @@ const Homepage = () => {
   const [currentValue, setCurrent] = useRecoilState(currentSpeechText);
   const [analysisValue, setAnalysis] = useRecoilState(currentAnalysis);
 
-
-
-
-
-  const email = 'hello@gmail.com';
+  const email = localStorage.email; // replace with live email
 
   const getSpeeches = () => {
     axios.get(`/history/${email}`)
@@ -43,7 +40,7 @@ const Homepage = () => {
 
   const testingSubmission = () => {
     if (editedValue.length > 0 && titleValue.length > 0) {
-      axios.post('/speech', {body: `${editedValue}`, title: `${titleValue}`, name: 'Jonathan Will Atwood Sr.', email: 'hello@gmail.com'})
+      axios.post('/speech', {body: `${editedValue}`, title: `${titleValue}`, name: 'Jonathan Will Atwood Sr.', email: `${email}`})
       .then((response) => {
         console.log('this is a post success')
       })
@@ -63,6 +60,7 @@ const Homepage = () => {
 
   return (
     <div id="homepage">
+      <SignIn setPage={props.setPage} page={props.page}/>
       <button onClick={() => { setShowUploader(true) }}>Upload</button>
       <FileUploaderModal onClose={e => setShowUploader(false)} show={showUploader} />
 
@@ -119,6 +117,11 @@ const Homepage = () => {
       <div style={{ height: '80vw', width: '90vw', border: '3px solid black', overflow: 'auto' }}>
         <ConditionalWindow />
       </div>
+      <button onClick={() => {
+        testingSubmission()
+      }}>
+        Test Button
+      </button>
     </div>
   )
 }
