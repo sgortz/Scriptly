@@ -30,8 +30,6 @@ const SpeechView = () => {
     console.log(currentId, 'this is current id')
   }
 
-
-
   return (
     <div>
       <div>
