@@ -1,24 +1,28 @@
-import React, { useState,useEffect } from "react";
+/* eslint-disable linebreak-style */
+import React, { useState } from 'react';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { signInWithGoogle } from './auth/Firebase';
-import Header from './components/Header.jsx';
 import Landing from './components/Landing/Landing.jsx';
 import Homepage from './components/Homepage/homepage.jsx';
-import SignIn from './components/SignIn';
+import Header from './components/header.jsx';
+import { monitorAuthState } from './auth/Firebase';
+
+const which = () => {
+  return localStorage.email ? 'homepage' : 'landing';
+}
+
 
 function App() {
-  const [page, setPage] = useState('landing')
-  const [login, setLogin] = useState(false)
+  const [page, setPage] = useState(which());
+  const [login, setLogin] = useState(false);
 
-
-  const currentPage = page === 'landing' ? <Landing setLogin={setLogin} login={login}/> : <Homepage />
+  const currentPage = page === 'landing' ? <Landing setLogin={setLogin} login={login} setPage={setPage} page={page} /> : <Homepage setPage={setPage} page={page} />;
   return (
     <div className="app-container">
-
-        <SignIn setPage={setPage}/>
-        <Header />
-        {currentPage}
+      <Header />
+      {/* <SignIn/>
+        <Homepage /> */}
+      {currentPage}
     </div>
   );
 }
