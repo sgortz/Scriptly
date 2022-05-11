@@ -1,32 +1,40 @@
 .header {
-  font-size: 200px;
+  font-size: 125px;
   text-align: center;
+  display: flex;
+  flex-direction: row;
 }
 
 /*Landing*/
 .headerText {
-  margin-left: 150px;
-  margin-right: 100px;
-  padding-bottom: 100px;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding-bottom: 10%;
   background-color: #E4EFF0;
 }
 
 .headerTextLarger {
   text-align: right;
   font-size: xx-large;
-  padding-right: 250px;
+  padding-right: 28%;
   top: 50%;
 }
 
 .headerTextSmall {
   text-align: right;
   font-size: medium;
-  padding-right: 190px;
+  padding-right: 22%;
 }
 
 .landingButton {
   margin-left: 60%;
   background-color: #66BDD0;
+}
+
+.header-login {
+  font-size: small;
+padding-right: 25%;
+color: #66BDD0;
 }
 
 /* Homepage */
