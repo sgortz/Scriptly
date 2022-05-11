@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useRecoilState } from 'recoil';
+import { currentAnalysis, currentAnalysis2 } from './../atoms.jsx';
 import Result1 from './Result1.jsx';
 import Result2 from './Result2.jsx';
 import Result3 from './Result3.jsx';
@@ -10,12 +12,54 @@ import './styles.css';
 
 export default function Results(props) {
   const [resultPage, setResultPage] = useState(1);
-  const [wordsCount, setWordsCount] = useState(0);
   const [emotionCount, setEmotionCount] = useState(0);
+  const [displayedAnalysis, setDisplayedAnalysis] = useState({});
+  const [textEditorAnalysis, setTextEditorAnalysis] = useRecoilState(currentAnalysis);
+  const [historyAnalysis, setHistoryAnalysis] = useRecoilState(currentAnalysis2);
+  const [strongestEmotions, setStrongestEmotions] = useState([]);
+  const [weakestEmotions, setWeakestEmotions] = useState([]);
+
+  useEffect(() => {
+    if (textEditorAnalysis.wordCount) {
+      setDisplayedAnalysis(textEditorAnalysis);
+    } else {
+      setDisplayedAnalysis(historyAnalysis);
+    }
+  }, [textEditorAnalysis, historyAnalysis])
+
+  useEffect(() => {
+    let count = 0;
+    let strongest = [];
+    let weakest = [];
+    let biggestNum = -1;
+
+    for (const key in displayedAnalysis) {
+      if (key !== 'wordCount') {
+        const value = displayedAnalysis[key]
+        count += value;
+
+        if (value > biggestNum) {
+          weakest.concat(strongest);
+          strongest = [key];
+          biggestNum = value;
+        } else if (value === biggestNum) {
+          strongest.push(key);
+        } else {
+          weakest.push(key);
+        }
+      }
+    }
+
+    setEmotionCount(count);
+    setStrongestEmotions(strongest);
+    setWeakestEmotions(weakest);
+
+  }, [props.show])
 
   const changeResultPage = (direction) => {
     setResultPage(resultPage + direction);
   }
+
 
   return(
     <div>
@@ -24,18 +68,28 @@ export default function Results(props) {
         {
           resultPage === 1 ?
           <Result1
-            wordsCount={wordsCount}
+            wordsCount={displayedAnalysis.wordCount}
             emotionCount={emotionCount}
             changePage={changeResultPage}
+            neutralCount={displayedAnalysis.wordCount - emotionCount}
           /> :
           resultPage === 2 ?
-          <Result2
+          // <Result2
+          //   changePage={changeResultPage}
+          //   strongEmotions={strongestEmotions}
+          //   weakEmotions={weakestEmotions}
+          // /> :
+          // resultPage === 3 ?
+          <Result3
             changePage={changeResultPage}
-            emotionResults={['positive', 'negative', 'anger', 'trust', 'joy']}
-          /> :
-          resultPage === 3 ?
-          <Result3 changePage={changeResultPage}/>
-          : <Result4 changePage={changeResultPage}/>
+            emotions={displayedAnalysis}
+            neutral={displayedAnalysis.wordCount - emotionCount}
+          />
+          : <Result4
+            changePage={changeResultPage}
+            emotions={displayedAnalysis}
+            wordsCount={displayedAnalysis.wordCount}
+          />
         }
       </Modal>
     </div>
