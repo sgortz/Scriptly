@@ -28,7 +28,7 @@ module.exports = {
   addUserFunction: (req, res) => {
     controller.addUser(req.body)
     .then(data => res.send(data))
-    .catch(err => console.log(err))
+    .catch(err => res.send(err))
   },
   addSpeechFunction: (req, res) => {
     controller.addSpeech(req.body)
@@ -37,18 +37,13 @@ module.exports = {
   },
   updateOneSpeechFunction: (req, res) => {
     controller.updateOneSpeech(req.params, req.body)
-    .then(data => {
-      console.log('updateOneFunction ', data)
-      res.send(data)
-    })
-    .catch(err => console.log(err))
+    .then(data => res.send(data))
+    .catch(err => res.send(err))
   },
   searchSpeechTitleFunction: (req, res) => {
     controller.searchSpeechTitle(req.params)
     .then(data => res.send(data))
-    .catch(err => {
-      console.log(err);
-    })
+    .catch(err => console.log(err))
   },
   searchBodyTitleFunction: (req, res) => {
     controller.searchBodyTitle(req.params)
@@ -58,7 +53,21 @@ module.exports = {
   addCommentToSpeechFunction: (req, res) => {
     controller.addCommentToSpeech(req.params, req.body)
     .then(data => res.send(data))
-    .catch(err => console.log(err))
+    .catch(err => res.send(err))
+  },
+  deleteUserFunction: (req, res) => {
+    controller.deleteUser(req.params)
+    .then(data => res.send(data))
+    .catch(err => res.send(err))
+  },
+  deleteSpeechFunction: (req, res) => {
+    controller.deleteSpeech(req.params)
+    .then(data => res.send(data))
+    .catch(err => res.send(err))
+  },
+  deleteCommentFunction: (req, res) => {
+    controller.deleteComment(req.params)
+    .then(data => res.send(data))
+    .catch(err => res.send(err))
   }
-
 }

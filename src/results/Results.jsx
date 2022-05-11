@@ -4,6 +4,7 @@ import Result2 from './Result2.jsx';
 import Result3 from './Result3.jsx';
 import Result4 from './Result4.jsx';
 import { Modal } from 'react-bootstrap';
+import Analyzer from '../Analyzer/Analyzer.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 
@@ -18,6 +19,7 @@ export default function Results(props) {
 
   return(
     <div>
+      <Analyzer/>
       <Modal show={props.show} size="xl" onClick={e => e.stopPropagation()} onHide={props.onClose} centered className="results-modal">
         {
           resultPage === 1 ?
@@ -39,3 +41,4 @@ export default function Results(props) {
     </div>
   )
 }
+

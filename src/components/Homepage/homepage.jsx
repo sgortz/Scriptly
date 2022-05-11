@@ -1,54 +1,70 @@
-import React, { useState } from 'react';
+import React, {useState, useEffect} from 'react';
 import ConditionalWindow from './conditionalWindow.jsx';
-import { useRecoilState } from 'recoil';
-import { pageView } from '../../atoms.jsx';
+import {useRecoilState} from 'recoil';
+import {pageView, allSpeeches, editedSpeechText, updateTitle, resultsModal, currentSpeechText, currentAnalysis} from '../../atoms.jsx';
+import axios from 'axios';
 import FileUploaderModal from "../file-uploader-modal/FileUploaderModal.jsx";
 import Results from '../../results/Results.jsx';
 
 const Homepage = () => {
 
-  const [pageValue, setPage] = useRecoilState(pageView);
+  useEffect(() => {
+    getSpeeches();
+    }, []);
+
   const [activeTab, setActiveTab] = useState(1);
   const [showUploader, setShowUploader] = useState(false);
-  const [showResults, setShowResults] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
-  // const submission = () => {
-  //   console.log('this should submit current text for analysis')
-  // }
+  const [pageValue, setPage] = useRecoilState(pageView);
+  const [showResults, setShowResults] = useRecoilState(resultsModal);
+  const [speechValue, setSpeechValue] = useRecoilState(allSpeeches);
+  const [editedValue, setEdited] = useRecoilState(editedSpeechText);
+  const [titleValue, setTitle] = useRecoilState(updateTitle);
+  const [currentValue, setCurrent] = useRecoilState(currentSpeechText);
+  const [analysisValue, setAnalysis] = useRecoilState(currentAnalysis);
 
-  // const upload = () => {
-  //   console.log('this should navigate to modal/page for upload')
-  // }
+  const email = localStorage.email; // replace with live email
 
-  const logout = () => {
-    console.log('this should be replaced or linked to firebase logout?')
+  const getSpeeches = () => {
+    axios.get(`/history/${email}`)
+    .then((response) => {
+      setSpeechValue(response.data)
+    })
+    .catch((error) => {
+      console.log('error')
+    })
   }
 
-  const avatar = () => {
-    console.log('this should go to some sort of profile page?  Firebase?')
+
+  const testingSubmission = () => {
+    if (editedValue.length > 0 && titleValue.length > 0) {
+      axios.post('/speech', {body: `${editedValue}`, title: `${titleValue}`, name: 'Jonathan Will Atwood Sr.', email: `${email}`})
+      .then((response) => {
+        console.log('this is a post success')
+      })
+      .catch((error) => {
+        console.log(error, 'this is a post error')
+      })
+    } else {
+      alert('Invalid Entry - Title and Body Must Exist')
+    }
   }
+
+  const handleSubmit = () => {
+    setShowResults(true)
+  }
+
+
 
   return (
     <div id="homepage">
-      <h1>
-        Scriptly Placeholder
-        <button onClick={() => logout()}>Logout</button>
-        <div style={{
-          position: 'absolute',
-          borderRadius: '50px',
-          height: '50px',
-          width: '50px',
-          backgroundColor: 'red',
-          top: '0%',
-          right: '0%'
-        }} onClick={avatar()}>AV</div>
-      </h1>
       <button onClick={() => { setShowUploader(true) }}>Upload</button>
       <FileUploaderModal onClose={e => setShowUploader(false)} show={showUploader} />
 
-      <button onClick={() => { setShowResults(true) }}>Submit</button>
+      <button onClick={() => { handleSubmit() }}>Submit</button>
       <Results show={showResults}  onClose={e => setShowResults(false)}/>
-      
+
       <ul className="nav nav-tabs mb-3" id="myTab0" role="tablist">
         <li className="nav-item" role="presentation">
           <button
@@ -96,13 +112,17 @@ const Homepage = () => {
           </button>
         </li>
       </ul>
-      <div style={{ height: '50vw', width: '50vw', border: '3px solid black' }}>
+      <div style={{ height: '80vw', width: '90vw', border: '3px solid black', overflow: 'auto' }}>
         <ConditionalWindow />
       </div>
-
+      <button onClick={() => {
+        testingSubmission()
+      }}>
+        Test Button
+      </button>
     </div>
   )
-};
+}
 
 export default Homepage;
 

@@ -16,20 +16,21 @@ module.exports = {
   },
   findUserSpeeches: (params) => {
     return Speech.find(params)
-
   },
   addSpeech: (inputs) => {
     const { name, email, body, url, title, totalCount, positive, negative, trust, anger, joy } = inputs;
+    console.log('inputs', inputs)
     if (typeof (body) === 'string') {
       const newSpeech = new Speech({
         name,
         email,
         title,
+        url,
         comments: [],
         speeches: [{
-          title: title,
-          body: body,
-          url: url,
+          title,
+          body,
+          url,
           date: new Date(),
           analysis: {
             totalCount,
@@ -43,27 +44,35 @@ module.exports = {
       })
       return newSpeech.save()
     }
-
     console.log('Please check your format!')
     return;
   },
+  deleteSpeech: (params) => {
+    const { id } = params
+    return Speech.findByIdAndDelete(id)
+  },
+  deleteComment: (params) => {
+    const { id } = params
+    return Speech.findByIdAndDelete(id)
+  },
   updateOneSpeech: (params, inputs) => {
-    // get analysis for storage here
-    // positive, negative, trust, anger, joy
     console.log('params', params, 'inputs', inputs)
     const id = params.id;
-    const { title, body, url, totalCount, positive, negative, trust, anger, joy } = inputs;
+    const { title, body, email, url, totalCount, positive, negative, trust, anger, joy } = inputs;
+
     return Speech.findByIdAndUpdate(
       id,
       {
-        title: title,
+        url,
+        email,
+        title,
         $push: {
           speeches: {
             $each: [
               {
-                title: title,
-                body: body,
-                url: url,
+                title,
+                body,
+                url,
                 date: new Date(),
                 analysis: {
                   totalCount,
@@ -79,8 +88,10 @@ module.exports = {
           },
         },
       },
-      { upsert: true, new: true }
-    );
+      { upsert: true, new: true, runValidators: true }
+    )
+
+
   },
   addCommentToSpeech: (params, inputs) => {
     const { reviewerName, commentBody } = inputs;
@@ -101,7 +112,7 @@ module.exports = {
           },
         },
       },
-      { upsert: true, new: true }
+      { upsert: true, new: true, runValidators: true }
     )
   },
   addUser: (inputs) => {
@@ -124,40 +135,38 @@ module.exports = {
         });
         return embed.save();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => err);
+  },
+  deleteUser: (params) => {
+    const { id } = params
+    return User.findByIdAndDelete(id)
   },
   searchSpeechTitle: (inputs) => {
     const { search } = inputs;
     return Speech.find({})
-      .then((data) => { // [speech1, speech2.....]
+      .then((data) => {
         let result = data.filter((speech) => {
-          return speech.title.toLowerCase().includes(search.toLowerCase())// true or false
-        }) // [speech2, speech5 ...]
-        return result; // res.send(result);
+          return speech.title.toLowerCase().includes(search.toLowerCase())
+        })
+        return result;
       })
       .catch(err => {
         console.log(err)
       })
-    //   speeches.filter((speech) => { // [speech1, speech2]
-    //   speech.title.toLowerCase().include(title.toLowerCase())
-    // })
   },
   searchBodyTitle: (inputs) => {
     const { search } = inputs;
     return Speech.find({})
       .then(data => {
-        //console.log('inputs', inputs)
-        let resultWeWant = []       // [speech1, speech5, seppech 10, soeech...]. for each  push to the newarr []
+        let resultWeWant = []
         let result = data.map(obj => {
           let temp = obj.speeches.filter(body => {
             body.body = body.body === null ? '' : body.body;
             console.log('body.body', body.body)
             return body.body.toLowerCase().includes(search.toLowerCase())
           });
-          //temp = [s1, s5], temp2 = [s7, s10]
-          //console.log(temp)
           temp.forEach((speech) => {
-            resultWeWant.push(speech); // [ s1, s5, s7, s10]
+            resultWeWant.push(speech);
           })
         })
         return resultWeWant;
