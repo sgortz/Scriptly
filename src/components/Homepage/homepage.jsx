@@ -95,7 +95,7 @@ const Homepage = ( props ) => {
 
   return (
     <div id="homepage">
-      <SignIn setPage={props.setPage} page={props.page}/>
+      <SignIn setPage={props.setPage}/>
       {/* <Thinking/> */}
 
       <button onClick={() => { setShowUploader(true) }}>Upload</button>

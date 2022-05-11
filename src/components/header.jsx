@@ -1,16 +1,18 @@
-import React from "react";
+/* eslint-disable linebreak-style */
+import React from 'react';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { GiQuillInk } from "react-icons/gi"
-import SignIn from './SignIn'
+import { GiQuillInk } from 'react-icons/gi';
 
-function Header () {
-
-
+function Header() {
   return (
     <>
-      <SignIn/>
-      <div className="header"><GiQuillInk /> Scriptly </div>
+      <div className="header">
+        <GiQuillInk />
+        {' '}
+        Scriptly
+        {' '}
+      </div>
     </>
   );
 }

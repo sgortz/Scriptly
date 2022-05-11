@@ -7,20 +7,12 @@ import {
   createAccount, signInWithGoogle, logOut, signInWithEmail,
 } from '../auth/Firebase';
 
-function SignIn({ setPage, page }) {
+function SignIn({ setPage }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [signUpStatus, setSignUpStatus] = useState(false);
   const [loginStatus, setLoginStatus] = useState(Boolean(localStorage.email));
   const [show, setShow] = useState(false);
-
-  // useEffect(() => {
-  //   if(localStorage.email){
-  //     setLoginStatus(true)
-  //   } else {
-  //     setLoginStatus(false)
-  //   }
-  // },[localStorage.email, show, loginStatus])
 
   const handleClose = () => setShow(false);
 
@@ -35,48 +27,24 @@ function SignIn({ setPage, page }) {
   };
 
   const googleLogin = async () => {
-    try {
-      await signInWithGoogle();
+    await signInWithGoogle();
+    if (localStorage.email) {
       setLoginStatus(true);
       setSignUpStatus(false);
       setShow(false);
       setPage('homepage');
-    } catch (err) {
-      alert(err.code);
-      localStorage.clear();
     }
-    // signInWithGoogle().then((result) => {
-    //   setLoginStatus(true);
-    //   setSignUpStatus(false);
-    //   setShow(false);
-    //   setPage('homepage');
-    // }).catch((err) => {
-    //   alert(err.code);
-    //   localStorage.clear();
-    // });
   };
   const emailLogin = async () => {
-    try {
-      await signInWithEmail(username, password);
+    // try {
+    await signInWithEmail(username, password);
+    if (localStorage.email) {
       setLoginStatus(true);
       setSignUpStatus(false);
       setShow(false);
+      console.log('login successfully');
       setPage('homepage');
-    } catch (err) {
-      alert(err.code);
-      localStorage.clear();
     }
-    // signInWithEmail(username, password).then((result) => {
-    //   //console.log('thinks it logged in');
-    //   setLoginStatus(true);
-    //   setSignUpStatus(false);
-    //   setShow(false);
-    //   setPage('homepage');
-    // }).catch((err) => {
-    //  // console.log('something went wrong');
-    //   alert(err.code);
-    //   localStorage.clear();
-    // });
   };
 
   const signInOrLogin = () => {
@@ -86,7 +54,7 @@ function SignIn({ setPage, page }) {
       emailLogin(username, password);
     }
   };
-  console.log(page);
+
   return (
     <>
       <Button variant="primary" className="landingButton" onClick={handleShow}>

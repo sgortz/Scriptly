@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* eslint-disable linebreak-style */
 import { initializeApp } from 'firebase/app';
 import {
@@ -6,10 +5,14 @@ import {
   signInWithPopup, createUserWithEmailAndPassword,
   signOut, signInWithEmailAndPassword,
 } from 'firebase/auth';
-=======
-import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword } from "firebase/auth";
->>>>>>> main
+import {
+  getFirestore,
+  query,
+  getDocs,
+  collection,
+  where,
+  addDoc,
+} from "firebase/firestore";
 
 import { getStorage } from 'firebase/storage';
 import 'core-js/stable';
@@ -28,6 +31,7 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const storage = getStorage(app);
 const provider = new GoogleAuthProvider();
+//const db = getFirestore(app);
 
 export const signInWithGoogle = async () => {
   await signInWithPopup(auth, provider)
@@ -39,7 +43,20 @@ export const signInWithGoogle = async () => {
       localStorage.clear();
       alert(err.code);
     });
+
 };
+
+// export const signInWithEmail = async (email, password) => {
+//   await signInWithEmailAndPassword(auth, email, password)
+//     .then((result) => {
+//       const { email } = result.user;
+//       localStorage.setItem('email', email);
+//     })
+//     .catch((err) => {
+//       localStorage.clear();
+//       alert(err.code);
+//     });
+// };
 
 export const signInWithEmail = async (email, password) => {
   await signInWithEmailAndPassword(auth, email, password)
@@ -48,6 +65,7 @@ export const signInWithEmail = async (email, password) => {
       localStorage.setItem('email', email);
     })
     .catch((err) => {
+      console.log('wrong email or password')
       localStorage.clear();
       alert(err.code);
     });
