@@ -2,13 +2,8 @@ import React, { useState } from "react";
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-<<<<<<< HEAD
-function Landing() {
-=======
-
 function Landing(props) {
 const {setLogin, login} = props;
->>>>>>> main
     return (
       <div className="headerText">
         <br /><br /><br /><br />
