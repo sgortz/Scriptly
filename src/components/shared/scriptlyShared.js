@@ -1,5 +1,5 @@
 module.exports ={
-  parseTextToArray: function(text) {
+  parseTextToArray(text) {
     if (!text) {
       return new Error('Envalid Input')
     }
@@ -9,7 +9,7 @@ module.exports ={
     const words= [];
     const strLength = text.length;
     let word = '';
-    let isALetter = function(char) {
+    let isALetter = function (char) {
       const ASCII = char.toLowerCase().charCodeAt(0);
       if (ASCII >= 97 && ASCII <= 122) {
         return true;
@@ -17,7 +17,7 @@ module.exports ={
       return false;
     }
 
-    for(let idx = 0; idx < strLength; idx++ ) {
+    for (let idx = 0; idx < strLength; idx++ ) {
       if (isALetter(text[idx])) {
         word += text[idx];
       } else if (word.length > 0) {
@@ -30,5 +30,37 @@ module.exports ={
       }
     }
     return words;
- },
-}
+  },
+  sumToneValues(array) {
+    if (!array) {
+      return new Error('Input must be an array');
+    }
+    let angerSum = 0;
+    let joySum = 0;
+    let negativeSum = 0;
+    let positiveSum = 0;
+    let totalCountSum = 0;
+    let trustSum = 0;
+
+    array.forEach((speechVersion) => {
+      const { anger, joy, negative, positive, totalCount, trust } = speechVersion.analysis;
+      angerSum += anger;
+      joySum += joy;
+      negativeSum += negative;
+      positiveSum += positive;
+      totalCountSum += totalCount;
+      trustSum += trust;
+    });
+
+    const sumToneObj = {
+      anger: angerSum,
+      joy: joySum,
+      negative: negativeSum,
+      positive: positiveSum,
+      totalCount: totalCountSum,
+      trust: trustSum,
+    };
+
+    return sumToneObj;
+  },
+};
