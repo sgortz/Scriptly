@@ -11,17 +11,12 @@ function FileUploaderModal(props) {
 
   const [fileName, setFileName] = useState('');
   const [files, setFiles] = useState(null);
-<<<<<<< HEAD
-  const [editedValue, setEdited] = useRecoilState(editedSpeechText);
-
-=======
   const [enableButton, setEnableButton] = useState(true);
   const [editedValue, setEdited] = useRecoilState(editedSpeechText);
   const [showResults, setShowResults] = useRecoilState(resultsModal);
   const [page, setPage] = useState(1);
   const [titleValue, setTitle] = useRecoilState(updateTitle);
-  
->>>>>>> main
+
   const onDrop = useCallback(acceptedFiles => {
     acceptedFiles.map(file => {
       const reader = new FileReader();
@@ -56,11 +51,11 @@ function FileUploaderModal(props) {
 =======
     // sending to speech analysis
     setEdited(files[0])
-    // send the info to results' modal 
+    // send the info to results' modal
     setShowResults(true);
 >>>>>>> main
   }
-    
+
     return (
       <div className={`file-uploader-modal ${props.show ? 'file-uploader-modal-show' : ''}`} onClick={props.onClose}>
       <div className="file-uploader-modal-content" onClick={e => e.stopPropagation()}>
