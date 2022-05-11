@@ -29,7 +29,11 @@ const Homepage = () => {
   const [analysisValue, setAnalysis] = useRecoilState(currentAnalysis);
   const [currentId, setCurrentId] = useRecoilState(currentSpeechId);
 
+<<<<<<< HEAD
+  const email = 'hello@gmail.com';
+=======
   const email = localStorage.email; // replace with live email
+>>>>>>> main
 
   const getSpeeches = () => {
     axios.get(`/history/${email}`)
