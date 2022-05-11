@@ -7,12 +7,15 @@ import SignIn from './SignIn'
 function Header () {
 
 
-  return (
-    <>
-      <SignIn/>
-      <div className="header"><GiQuillInk /> Scriptly </div>
-    </>
-  );
+    return (
+      <>
+        <div className="header">
+          <GiQuillInk /> Scriptly
+          <script>login</script>
+          </div>
+      </>
+    );
+
 }
 
 export default Header;
