@@ -29,9 +29,11 @@ const Homepage = () => {
   const [analysisValue, setAnalysis] = useRecoilState(currentAnalysis);
   const [currentId, setCurrentId] = useRecoilState(currentSpeechId);
 
-  const email = localStorage.email; // replace with live email
 
   const getSpeeches = () => {
+    console.log('this should rerender my speeches')
+    const email = localStorage.email;
+
     axios.get(`/history/${email}`)
     .then((response) => {
       setSpeechValue(response.data)
@@ -159,6 +161,7 @@ const Homepage = () => {
 }
 
 export default Homepage;
+
 
 
 
