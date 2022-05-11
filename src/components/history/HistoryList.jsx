@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import {useRecoilState} from 'recoil';
+import {currentSpeechId} from '../../atoms.jsx';
 import axios from 'axios';
 import HistoryItem from './HistoryItem.jsx';
 import mockData from './mockData.js';
 import DoughnutChart from '../charts/DoughnutChart.jsx';
-import {currentSpeechId} from '../../atoms.jsx';
-import {useRecoilState} from 'recoil';
 
 function HistoryList(props) {
-  const { id, title, name, email, speech } = mockData;
   const [history, setHistory] = useState([]);
   const [currentId, setCurrentId] = useRecoilState(currentSpeechId);
 
