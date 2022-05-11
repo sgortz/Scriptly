@@ -19,7 +19,7 @@ export const currentSpeechText = atom({
 
 export const editedSpeechText = atom({
   key: 'editedSpeechText',
-  default: 'a',
+  default: '      ',
 })
 
 export const updateTitle = atom({
@@ -35,24 +35,24 @@ export const resultsModal = atom({
 export const currentAnalysis = atom({
   key: 'currentAnalysis',
   default: {
-    fear: 0,
+    anger: 0,
     joy: 0,
     trust: 0,
     positive: 0,
     negative: 0,
-    wordCount: 0,
+    totalCount: 0,
   },
 })
 
 export const currentAnalysis2 = atom({
   key: 'currentAnalysis2',
   default: {
-    fear: 0,
+    anger: 0,
     joy: 0,
     trust: 0,
     positive: 0,
     negative: 0,
-    wordCount: 0,
+    totalCount: 0,
   },
 })
 
