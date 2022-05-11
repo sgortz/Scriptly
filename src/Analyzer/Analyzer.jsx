@@ -48,7 +48,6 @@ const Analyzer = () => {
           emotion.trust++;
         }
       })
-      console.log(analysisValue, 'analysis1', analysisValue2, 'analysis 2')
       setAnalysis2(emotion)
       setAnalysis(emotion)
       console.log(emotion)

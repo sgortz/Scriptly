@@ -56,10 +56,12 @@ export const currentAnalysis2 = atom({
   },
 })
 
-export const parseSelector = selector({
-  key: 'parseSelector',
-  get: ({get}) => {
-    let data = get(editedValue)
-    let parse = parser.parseTextToArray(data)
-  }
+export const currentSpeechId = atom({
+  key: 'currentSpeechId',
+  default: '627a9e00de163a667afa07a1',
+})
+
+export const editBoolean = atom({
+  key: 'editBoolean',
+  default: false,
 })

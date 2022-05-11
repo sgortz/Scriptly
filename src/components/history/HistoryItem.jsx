@@ -17,6 +17,7 @@ function HistoryItem(props) {
     e.preventDefault();
     setShowResults(true);
     setAnalysis(analysis);
+    console.log(analysis, 'this is the analysis on click')
     console.log('This should be currentAnalysis',currentAnalysis);
   }
 
