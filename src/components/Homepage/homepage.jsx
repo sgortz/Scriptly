@@ -43,6 +43,7 @@ const Homepage = () => {
 
   const handleSubmit = () => {
     if (editedValue.length > 0 && titleValue.length > 0) {
+<<<<<<< HEAD
       axios.post(`/speech/${currentId}`, {
         body: `${editedValue}`,
         title: `${titleValue}`,
@@ -55,6 +56,9 @@ const Homepage = () => {
         anger: analysisValue.anger,
         joy: analysisValue.joy,
       })
+=======
+      axios.post('/speech', {body: `${editedValue}`, title: `${titleValue}`, name: 'Jonathan Will Atwood Sr.', email: `${email}`})
+>>>>>>> main
       .then((response) => {
         console.log('this is a post success')
       })
@@ -127,6 +131,11 @@ const Homepage = () => {
       <div style={{ height: '80vw', width: '90vw', border: '3px solid black', overflow: 'auto' }}>
         <ConditionalWindow />
       </div>
+      <button onClick={() => {
+        testingSubmission()
+      }}>
+        Test Button
+      </button>
     </div>
   )
 }
