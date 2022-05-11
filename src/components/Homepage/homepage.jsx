@@ -69,6 +69,31 @@ const Homepage = () => {
     setShowResults(true)
   }
 
+  const handleSubmit = () => {
+    if (editedValue.length > 0 && titleValue.length > 0) {
+      axios.post(`/speech/`, {
+        body: `${editedValue}`,
+        title: `${titleValue}`,
+        name: 'Trevor Edwards',
+        email: `${email}`,
+        totalCount: analysisValue.totalCount,
+        positive: analysisValue.positive,
+        negative: analysisValue.negative,
+        trust: analysisValue.trust,
+        anger: analysisValue.anger,
+        joy: analysisValue.joy,
+      })
+      .then((response) => {
+        console.log('this is a post success')
+      })
+      .catch((error) => {
+        console.log(error, 'this is a post error')
+      })
+    } else {
+      alert('Invalid Entry - Title and Body Must Exist')
+    }
+  }
+
   return (
     <div id="homepage">
       {/* <Thinking/> */}
@@ -78,6 +103,8 @@ const Homepage = () => {
 
       <button onClick={() => { handleAnalyze() }}>Analyze</button>
       <Results show={showResults}  onClose={e => setShowResults(false)}/>
+
+      <button onClick={() => { handleSubmit() }}>Submit</button>
 
       <ul className="nav nav-tabs mb-3" id="myTab0" role="tablist">
         <li className="nav-item" role="presentation">
