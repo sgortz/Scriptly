@@ -9,8 +9,9 @@ import axios from 'axios';
 import FileUploaderModal from "../file-uploader-modal/FileUploaderModal.jsx";
 import Results from '../../results/Results.jsx';
 import Thinking from './thinking.jsx';
+import SignIn from '../SignIn.jsx';
 
-const Homepage = () => {
+const Homepage = (props) => {
 
   useEffect(() => {
     getSpeeches();
@@ -97,7 +98,7 @@ const Homepage = () => {
   return (
     <div id="homepage">
       {/* <Thinking/> */}
-
+      <SignIn setPage={props.setPage}/>
       <button onClick={() => { setShowUploader(true) }}>Upload</button>
       <FileUploaderModal onClose={e => setShowUploader(false)} show={showUploader} />
 
