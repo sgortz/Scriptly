@@ -8,8 +8,8 @@ import {
 import axios from 'axios';
 import FileUploaderModal from "../file-uploader-modal/FileUploaderModal.jsx";
 import Results from '../../results/Results.jsx';
-import SignIn from '../SignIn.jsx';
 import Thinking from './thinking.jsx';
+import SignIn from '../SignIn.jsx';
 
 const Homepage = (props) => {
 
@@ -36,11 +36,8 @@ const Homepage = (props) => {
   const email = localStorage.email;
 
   const getSpeeches = () => {
-    console.log('this should rerender my speeches')
-
     axios.get(`/history/${email}`)
     .then((response) => {
-      console.log(response.data)
       setSpeechValue(response.data)
     })
     .catch((error) => {
