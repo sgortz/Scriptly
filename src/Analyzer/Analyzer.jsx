@@ -35,13 +35,17 @@ const Analyzer = () => {
         emotion.totalCount++;
         if (fear.includes(value)) {
           emotion.anger++;
-        } else if (positive.includes(value)) {
+        }
+        if (positive.includes(value)) {
           emotion.positive++;
-        } else if (negative.includes(value)) {
+        }
+        if (negative.includes(value)) {
           emotion.negative++;
-        } else if (joy.includes(value)) {
+        }
+        if (joy.includes(value)) {
           emotion.joy++;
-        } else if (trust.includes(value)) {
+        }
+        if (trust.includes(value)) {
           emotion.trust++;
         }
       })

@@ -37,10 +37,10 @@
 
 /* History List */
 .history-list-container {
-  width: 50vw;
+  width: 90vw;
   padding: 25px;
-  max-height: 70vh;
-  overflow: scroll;
+  height: 100vh;
+  overflow: auto;
 }
 
 .speech-history-title {
