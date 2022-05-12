@@ -33,11 +33,9 @@ const Homepage = (props) => {
   const [analysisValue, setAnalysis] = useRecoilState(currentAnalysis);
   const [currentId, setCurrentId] = useRecoilState(currentSpeechId);
 
+  const email = localStorage.email;
 
   const getSpeeches = () => {
-    console.log('this should rerender my speeches')
-    const email = localStorage.email;
-
     axios.get(`/history/${email}`)
     .then((response) => {
       setSpeechValue(response.data)
