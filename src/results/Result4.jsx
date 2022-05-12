@@ -3,7 +3,7 @@ import { Chart as ChartJS, ArcElement, Legend, Tooltip, Title } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { Modal, Container, Col, Row } from 'react-bootstrap';
 import { useRecoilState } from 'recoil';
-import { editedSpeechText, updateTitle, currentSpeechId, editBoolean, pageView, allSpeeches, resultsModal } from './../atoms.jsx';
+import { editedSpeechText, updateTitle, currentSpeechId, editBoolean, pageView, allSpeeches, resultsModal, formattedSpeech } from './../atoms.jsx';
 import axios from 'axios';
 
 export default function Result4({ changePage, emotions, wordsCount }) {
@@ -16,6 +16,8 @@ export default function Result4({ changePage, emotions, wordsCount }) {
   const [pageValue, setPage] = useRecoilState(pageView);
   const [speechValue, setSpeechValue] = useRecoilState(allSpeeches);
   const [showResults, setShowResults] = useRecoilState(resultsModal);
+  const [formattedValue, setFormatted] = useRecoilState(formattedSpeech);
+
 
   ChartJS.register(ArcElement, Legend, Tooltip, Title);
 
@@ -75,7 +77,7 @@ export default function Result4({ changePage, emotions, wordsCount }) {
     }
 
     axios.post(url, {
-      body: `${editedValue}`,
+      body: `${formattedValue}`,
       title: `${titleValue}`,
       name: 'Trevor Edwards',
       email: `${localStorage.email}`,
