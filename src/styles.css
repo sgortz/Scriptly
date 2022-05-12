@@ -14,11 +14,13 @@ padding-bottom: 10px;
 background-image: url('https://firebasestorage.googleapis.com/v0/b/scriptly-dcd67.appspot.com/o/mlk_celebration_header.jpg?alt=media&token=3f2af626-bb7a-481a-b29f-737debd9988e');
 background-size: 300px 460px;
 background-repeat: no-repeat;
+padding-top: 2%;
+padding-right: 2%;
 }
 
 .carouselOne img {
 width: 500px;
-padding-right: 70px;
+padding-left: 50px;
 padding-top: 30px;
 }
 
