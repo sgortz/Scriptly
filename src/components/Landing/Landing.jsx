@@ -5,15 +5,15 @@ import SignIn from '../SignIn.jsx';
 import Carousel from './Carousel.jsx';
 import JoinBanner from './JoinBanner.jsx'
 
-function Landing(props) {
-const {setLogin, login} = props;
+function Landing({ setPage }) {
+
     return (
       <div>
 
       <div className="landing-page">
         <Carousel />
       </div>
-      <JoinBanner login={login} setLogin={setLogin} />
+      <JoinBanner setPage={setPage} />
     </div>
     );
 }

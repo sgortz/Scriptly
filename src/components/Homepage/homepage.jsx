@@ -54,7 +54,7 @@ const Homepage = (props) => {
   return (
     <div id="homepage">
       {/* <Thinking/> */}
-      <SignIn setPage={props.setPage}/>
+      {/* <SignIn setPage={props.setPage}/> */}
       <button onClick={() => { setShowUploader(true) }}>Upload</button>
       <FileUploaderModal onClose={e => setShowUploader(false)} show={showUploader} />
 
