@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import PageImage from '../../../assets/PageImage.jsx'
+
 
 function LandingPage2() {
 
