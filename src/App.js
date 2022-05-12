@@ -3,7 +3,7 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { signInWithGoogle } from './auth/Firebase';
 import Header from './components/Header.jsx';
-import Landing from './components/Landing/Landing.jsx';
+import Carousel from './components/Landing/Carousel.jsx';
 import Homepage from './components/Homepage/homepage.jsx';
 import SignIn from './components/SignIn';
 
@@ -12,7 +12,7 @@ function App() {
   const [login, setLogin] = useState(false)
 
 
-  const currentPage = page === 'landing' ? <Landing setLogin={setLogin} login={login}/> : <Homepage />
+  const currentPage = page === 'landing' ? <Carousel setLogin={setLogin} login={login}/> : <Homepage />
   return (
     <div className="app-container">
 
