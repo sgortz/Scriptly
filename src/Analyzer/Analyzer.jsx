@@ -20,6 +20,10 @@ const Analyzer = () => {
 
     const funcWrapper = (string) => {
 
+      if (string.length === 0) {
+        setEdited(' ')
+      } else {
+
       let split = parser.parseTextToArray(string);
 
       let emotion = {
@@ -52,6 +56,7 @@ const Analyzer = () => {
       setAnalysis2(emotion)
       setAnalysis(emotion)
     }
+  }
 }
 
 export default Analyzer;
