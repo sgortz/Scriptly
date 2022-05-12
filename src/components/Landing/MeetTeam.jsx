@@ -18,8 +18,8 @@ function MeetTeam() {
       <h3 className="intro-team">✨ Meet the  Dream Team ✨</h3>
       <hr />
       <br />
-      {teamMembers.map((person) => (
-        <div className="card member-card col-4">
+      {teamMembers.map((person,i) => (
+        <div key={i} className="card member-card col-4">
           <img className="member-photo" src={`https://avatars.githubusercontent.com/u/${person.photo}?v=4`} alt="team member" />
           <div className="card-body">
             <h2 className="card-title member-name">{person.name}</h2>
