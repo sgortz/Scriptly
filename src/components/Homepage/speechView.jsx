@@ -33,7 +33,7 @@ const SpeechView = () => {
     setTitle(reversed[index].title)
   }
 
-  const displayHistory = (value) => {
+  const displayHistory = (value) =>{
     setCurrentId(value._id)
     setPage('history')
   }
