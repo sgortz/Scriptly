@@ -7,6 +7,8 @@ import {editedSpeechText, updateTitle} from '../../atoms.jsx';
 
 const MyEditor = () => {
   const [editor] = useState(() => withReact(createEditor()))
+  const [tempText, setTemp] = useState('')
+
   const [editedValue, setEdited] = useRecoilState(editedSpeechText);
   const [titleValue, setTitle] = useRecoilState(updateTitle);
 
@@ -21,11 +23,22 @@ const MyEditor = () => {
     setTitle(event.target.value)
   }
 
+<<<<<<< HEAD
+  let counter = 0;
+=======
 
+>>>>>>> main
 
 
   return (
     <Slate editor={editor} value={initialValue} onChange={(value) => {
+<<<<<<< HEAD
+      let currentString = '';
+      value.forEach((element) => {
+        currentString += element.children[0].text;
+      })
+      setEdited(currentString)
+=======
 
         if (event.inputType === 'insertParagraph') {
           let data = editedValue + ' '
@@ -36,6 +49,7 @@ const MyEditor = () => {
           console.log(event)
         }
 
+>>>>>>> main
     }}>
       <form>
         <input type='text' placeholder={titleValue} value={titleValue} onChange={titleListener}></input>
