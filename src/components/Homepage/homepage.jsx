@@ -14,10 +14,10 @@ import SignIn from '../SignIn.jsx';
 const Homepage = (props) => {
 
   useEffect(() => {
+    getSpeeches();
     if (pageValue === 'speech') {
       return setActiveTab(1);
     }
-    getSpeeches();
   }, [pageValue]);
 
   const [activeTab, setActiveTab] = useState(1);
