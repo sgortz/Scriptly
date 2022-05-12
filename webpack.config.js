@@ -2,6 +2,8 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
+
 
 const config = {
   entry: './src/index.js',
@@ -45,6 +47,11 @@ const config = {
     ]
   },
   optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin()],
+    splitChunks: {
+      chunks: "all"
+    },
     runtimeChunk: 'single',
     splitChunks: {
       cacheGroups: {
