@@ -3,7 +3,7 @@ module.exports ={
     if (!text) {
       return new Error('Envalid Input')
     }
-    if (text.length == 0) {
+    if (text.length === 0) {
       return new Error('Empty Input')
     }
     const words= [];
@@ -43,7 +43,14 @@ module.exports ={
     let trustSum = 0;
 
     array.forEach((speechVersion) => {
-      const { anger, joy, negative, positive, totalCount, trust } = speechVersion.analysis;
+      const {
+        anger,
+        joy,
+        negative,
+        positive,
+        totalCount,
+        trust,
+      } = speechVersion.analysis;
       angerSum += anger;
       joySum += joy;
       negativeSum += negative;

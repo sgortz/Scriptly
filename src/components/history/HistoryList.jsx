@@ -13,24 +13,23 @@ function HistoryList(props) {
 
   const getHistory = () => {
     axios.get(`/speech/${currentId}`)
-      .then(res => {
+      .then((res) => {
         setHistory(res.data[0].speeches);
       })
-      .catch(err => new Error('FAIL!!!!!!'));
+      .catch(() => new Error('FAIL!!!!!!'));
   }
 
   useEffect(() => {
     getHistory();
-    }, []);
+  }, []);
 
-  // assume that data will be passed down through props in homepage
   const renderList = (arr) => {
     if (!arr) {
       return null;
     }
     return (
       <ul className="speech-version-list">
-        {arr.map((item, index) => (
+        {arr.map((item) => (
           <HistoryItem
             key={item._id}
             date={item.date}
@@ -50,14 +49,14 @@ function HistoryList(props) {
     const sumVals = lib.sumToneValues(data);
     return (
       <>
-      <h5 className="mb-1">{`SpeechHistory`}</h5>
-      <small>{'Tone - All Versions'}</small>
-      <div className="doughnut-medium ">
-        <DoughnutChart
-          analysis={sumVals}
-          labelsOn={true}
-        />
-      </div>
+        <h5 className="mb-1">SpeechHistory</h5>
+        <small>Tone - All Versions</small>
+        <div className="doughnut-medium ">
+          <DoughnutChart
+            analysis={sumVals}
+            labelsOn={true}
+          />
+        </div>
       </>
     );
   };
