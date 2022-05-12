@@ -23,10 +23,6 @@ const MyEditor = () => {
     setTitle(event.target.value)
   }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> main
 
   return (
     <Slate editor={editor} value={initialValue} onChange={(value) => {

@@ -40,6 +40,7 @@ const Homepage = (props) => {
 
     axios.get(`/history/${email}`)
     .then((response) => {
+      console.log(response.data)
       setSpeechValue(response.data)
     })
     .catch((error) => {
