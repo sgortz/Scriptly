@@ -46,7 +46,7 @@ const SpeechView = () => {
             <div style={{display: 'flex'}} >
               <SpeechDiv key={Math.random()} style={{width: '10vw'}}>{moment(value.speeches[0].date).format("dddd, MMMM Do YYYY")}</SpeechDiv>
               <SpeechDiv key={Math.random()} style={{width: '20vw', textAlign: 'center', justifyContent: 'center'}}>{value.speeches[0].title}</SpeechDiv>
-              <SpeechDiv key={Math.random()} style={{width: '70vw'}} onClick={() => {displayHistory(value)}}>{snippet}...
+              <SpeechDiv className="bg-image hover-overlay" key={Math.random()} style={{width: '70vw'}} onClick={() => {displayHistory(value)}}>{snippet}...
                 <ViewHistory>View Version History{'     '}
                   <BsFillCalendarCheckFill style={{height: '2vw', width: '2vw', }}/>
                 </ViewHistory>
@@ -77,3 +77,17 @@ const ViewHistory = styled.div`
   background: rgb(122,125,121);
   background: linear-gradient(85deg, rgba(122,125,121,0.6783088235294117) 0%, rgba(204,209,203,0.6418942577030813) 16%, rgba(255,255,255,0.9920343137254902) 50%);
 `
+
+{/* <div >
+  <img class="w-100" />
+  <div
+    class="mask"
+    style="
+      background: linear-gradient(
+        45deg,
+        rgba(29, 236, 197, 0.5),
+        rgba(91, 14, 214, 0.5) 100%
+      );
+    "
+  ></div>
+</div> */}

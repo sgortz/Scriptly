@@ -34,17 +34,9 @@ const MyEditor = () => {
         currentString += element.children[0].text;
       })
       setEdited(currentString)
-<<<<<<< HEAD
       value.forEach((value) => {
         formatted += value.children[0].text + '\n';
         setFormatted(formatted);
-=======
-      console.log(value)
-      value.forEach((value) => {
-        formatted += value.children[0].text + '\n';
-        setFormatted(formatted);
-        console.log(formattedValue, 'this is a formatted value')
->>>>>>> main
       })
     }}>
       <form>

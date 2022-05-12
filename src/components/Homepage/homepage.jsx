@@ -120,8 +120,3 @@ export default Homepage;
 
 
 
-
-const EditButton = styled.button`
-  border-radius: 50px;
-  background-color: blue;
-`
