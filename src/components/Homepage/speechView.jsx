@@ -20,18 +20,18 @@ const SpeechView = () => {
 
 
   const handleEdit = (index) => {
-    setEdited(speechValue[index].speeches[0].body);
-    setCurrent(speechValue[index].speeches[0].body);
+    console.log(index)
+    setEdited(reversed[index].speeches[0].body);
+    setCurrent(reversed[index].speeches[0].body);
     setEditBoolean(true)
     setPage('text');
-    setCurrentId(speechValue[index]._id)
-    setTitle(speechValue[index].title)
+    setCurrentId(reversed[index]._id)
+    setTitle(reversed[index].title)
   }
 
   const displayHistory = (value) => {
     setCurrentId(value._id)
     setPage('history')
-    console.log(currentId, 'this is current id')
   }
   return (
     <div>

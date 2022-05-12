@@ -73,7 +73,6 @@ export const reverser = selector({
     let flipped = []
     for (let x = array.length - 1; x >= 0; x--) {
       flipped.push(array[x])
-      console.log(flipped)
     }
     return flipped;
   }
