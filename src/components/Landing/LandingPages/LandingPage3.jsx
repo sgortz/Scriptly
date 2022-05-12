@@ -9,8 +9,9 @@ function LandingPage3() {
     return (
       <div className="carouselTwo">
         <div className="carousel">
-Is this the real life? Is this just fantasy? Caught in a landside, <br />
-No escape from reality. Open your eyes, Look up to the skies <br />
+Is this the real life? Is this just fantasy? <br />
+Caught in a landside, No escape from reality<br />
+Open your eyes, Look up to the skies <br />
 and see, I'm just a poor boy, I need no sympathy,<br />
 Because I'm easy come, easy go,<br />
 Little high, little low, Any way the wind blows <br />
