@@ -74,8 +74,6 @@ const SpeechDiv = styled.div`
   padding: 1vw;
 `
 const ViewHistory = styled.div`
-  background: rgb(57,218,20);
-  background: linear-gradient(85deg, rgba(57,218,20,1) 0%, rgba(178,230,166,0.8883928571428571) 23%, rgba(255,255,255,1) 75%);
-  height: auto;
-  text-align-vertical: bottom;
+  background: rgb(122,125,121);
+  background: linear-gradient(85deg, rgba(122,125,121,0.6783088235294117) 0%, rgba(204,209,203,0.6418942577030813) 16%, rgba(255,255,255,0.9920343137254902) 50%);
 `
