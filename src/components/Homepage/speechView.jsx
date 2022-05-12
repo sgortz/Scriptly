@@ -6,6 +6,10 @@ import {
   editBoolean, reverser} from '../../atoms.jsx';
 import {useRecoilState, useRecoilValue} from 'recoil';
 import moment from 'moment';
+import styled from 'styled-components';
+import {BsFillCalendarCheckFill} from 'react-icons/bs'
+import { GiQuillInk } from "react-icons/gi"
+
 
 const SpeechView = () => {
 
@@ -40,12 +44,18 @@ const SpeechView = () => {
           let snippet = value.speeches[0].body.slice(0, 200);
           return (
             <div style={{display: 'flex'}} >
-              <div key={Math.random()} style={{border: '3px solid black', width: '33vw'}}>{moment(value.speeches[0].date).format("dddd, MMMM Do YYYY, h:mm:ss a")}</div>
-              <div key={Math.random()} style={{border: '3px solid black', width: '33vw'}}>{value.speeches[0].title}</div>
-              <div key={Math.random()} style={{border: '3px solid black', width: '33vw'}} onClick={() => {displayHistory(value)}}>{snippet}...</div>
-              <button onClick={() => {
+              <SpeechDiv key={Math.random()} style={{width: '10vw'}}>{moment(value.speeches[0].date).format("dddd, MMMM Do YYYY")}</SpeechDiv>
+              <SpeechDiv key={Math.random()} style={{width: '20vw', textAlign: 'center', justifyContent: 'center'}}>{value.speeches[0].title}</SpeechDiv>
+              <SpeechDiv key={Math.random()} style={{width: '70vw'}} onClick={() => {displayHistory(value)}}>{snippet}...
+                <ViewHistory>View Version History{'     '}
+                  <BsFillCalendarCheckFill style={{height: '2vw', width: '2vw', }}/>
+                </ViewHistory>
+              </SpeechDiv>
+              <GiQuillInk style={{
+                height: '3vw', width: '3vw', display: 'flex', alignItems: 'center',
+                justifyContent: 'center', flexDirection: 'column'}} onClick={() => {
                 handleEdit(index)
-              }}>Edit</button>
+              }}>Edit</GiQuillInk>
             </div>
           )
         })}
@@ -56,4 +66,16 @@ const SpeechView = () => {
 
 export default SpeechView;
 
-
+const SpeechDiv = styled.div`
+  font-weight: bold;
+  background: rgb(143,190,197);
+  background: linear-gradient(85deg, rgba(143,190,197,1) 0%, rgba(168,231,241,0.8883928571428571) 23%, rgba(255,255,255,1) 75%);
+  border-bottom: 2px solid black;
+  padding: 1vw;
+`
+const ViewHistory = styled.div`
+  background: rgb(57,218,20);
+  background: linear-gradient(85deg, rgba(57,218,20,1) 0%, rgba(178,230,166,0.8883928571428571) 23%, rgba(255,255,255,1) 75%);
+  height: auto;
+  text-align-vertical: bottom;
+`

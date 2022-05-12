@@ -10,6 +10,7 @@ import FileUploaderModal from "../file-uploader-modal/FileUploaderModal.jsx";
 import Results from '../../results/Results.jsx';
 import Thinking from './thinking.jsx';
 import SignIn from '../SignIn.jsx';
+import styled from 'styled-components';
 
 const Homepage = (props) => {
 
@@ -120,3 +121,7 @@ export default Homepage;
 
 
 
+const EditButton = styled.button`
+  border-radius: 50px;
+  background-color: blue;
+`
