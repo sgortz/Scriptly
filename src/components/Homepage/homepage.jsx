@@ -8,8 +8,8 @@ import {
 import axios from 'axios';
 import FileUploaderModal from "../file-uploader-modal/FileUploaderModal.jsx";
 import Results from '../../results/Results.jsx';
-import Thinking from './thinking.jsx';
 import SignIn from '../SignIn.jsx';
+import Thinking from './thinking.jsx';
 
 const Homepage = (props) => {
 
