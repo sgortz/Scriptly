@@ -10,6 +10,7 @@ import Analyzer from '../Analyzer/Analyzer.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 
+
 export default function Results(props) {
   const [resultPage, setResultPage] = useState(1);
   const [emotionCount, setEmotionCount] = useState(0);
@@ -62,7 +63,7 @@ export default function Results(props) {
 
 
   return(
-    <div>
+    <div onClick={() => setResultPage(1)}>
       <Analyzer/>
       <Modal show={props.show} size="xl" onClick={e => e.stopPropagation()} onHide={props.onClose} centered className="results-modal">
         {

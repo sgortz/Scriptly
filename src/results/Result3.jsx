@@ -3,9 +3,9 @@ import { Chart as ChartJS, BarElement, BarController, LinearScale, CategoryScale
 import { Bar } from 'react-chartjs-2';
 import { Modal, Container, Col, Row } from 'react-bootstrap';
 
-export default function Result3({ changePage, emotions }) {
+export default function Result3({ changePage, emotions, neutral }) {
   ChartJS.register(BarElement, BarController, CategoryScale, LinearScale, Legend, Tooltip, Title);
-  const { positive, negative, joy, anger, trust, neutral } = emotions;
+  const { positive, negative, joy, anger, trust } = emotions;
   const data = {
     labels: ['Positive', 'Negative', 'Joy', 'Fear', 'Trust', 'Neutral'],
     datasets: [
