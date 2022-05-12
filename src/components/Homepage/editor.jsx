@@ -33,6 +33,7 @@ const MyEditor = () => {
 
         currentString += element.children[0].text;
       })
+      console.log(currentString, event, value)
       setEdited(currentString)
       console.log(value)
       value.forEach((value) => {
