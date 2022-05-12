@@ -1,75 +1,101 @@
-import { initializeApp } from "firebase/app";
-import {getAuth, GoogleAuthProvider, onAuthStateChanged,signInWithPopup, createUserWithEmailAndPassword,signOut, signInWithEmailAndPassword } from "firebase/auth";
+/* eslint-disable linebreak-style */
+import { initializeApp } from 'firebase/app';
+import {
+  getAuth, GoogleAuthProvider, onAuthStateChanged,
+  signInWithPopup, createUserWithEmailAndPassword,
+  signOut, signInWithEmailAndPassword,
+} from 'firebase/auth';
+import {
+  getFirestore,
+  query,
+  getDocs,
+  collection,
+  where,
+  addDoc,
+} from "firebase/firestore";
 
-import { getStorage } from "firebase/storage";
-import "core-js/stable";
-import "regenerator-runtime/runtime";
+import { getStorage } from 'firebase/storage';
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDBUXJ1CUG0xbnzFH5DkMtFSQI-ha2YW0I",
-  authDomain: "scriptly-dcd67.firebaseapp.com",
-  projectId: "scriptly-dcd67",
-  storageBucket: "scriptly-dcd67.appspot.com",
-  messagingSenderId: "375366431036",
-  appId: "1:375366431036:web:06e50c45682ae8ee8dae39"
+  apiKey: 'AIzaSyDBUXJ1CUG0xbnzFH5DkMtFSQI-ha2YW0I',
+  authDomain: 'scriptly-dcd67.firebaseapp.com',
+  projectId: 'scriptly-dcd67',
+  storageBucket: 'scriptly-dcd67.appspot.com',
+  messagingSenderId: '375366431036',
+  appId: '1:375366431036:web:06e50c45682ae8ee8dae39',
 };
 
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app)
-export const storage = getStorage(app)
-const provider = new GoogleAuthProvider()
+export const auth = getAuth(app);
+export const storage = getStorage(app);
+const provider = new GoogleAuthProvider();
+//const db = getFirestore(app);
 
 export const signInWithGoogle = async () => {
   await signInWithPopup(auth, provider)
-  .then(result => {
-    const {displayName, email, photoURL} = result.user
-    localStorage.setItem('email', email)
-  })
-  .catch(err =>{
-    localStorage.clear();
-    alert(err.code)
-  })
-}
-
-export const signInWithEmail = async (email,password) => {
-  await signInWithEmailAndPassword(auth,email,password)
-  .then(result => {
-    const {displayName, email, photoURL} = result.user
-    localStorage.setItem('email', email)
-  })
-  .catch(err =>{
-    localStorage.clear();
-    alert(err.code)
-  })
-  localStorage.setItem('email', email)
-}
-
-export const createAccount = async (email, password) => {
-    await createUserWithEmailAndPassword(auth, email, password).then(result => {
-      const {displayName, email, photoURL} = result.user
-      localStorage.setItem('email', email)
-    }).catch(err => {
+    .then((result) => {
+      const { email } = result.user;
+      localStorage.setItem('email', email);
+    })
+    .catch((err) => {
       localStorage.clear();
-      if(err.code==='auth/email-already-in-use') alert("email is already taken")
-      else alert(err.code)
+      alert(err.code);
     });
 
-}
+};
+
+// export const signInWithEmail = async (email, password) => {
+//   await signInWithEmailAndPassword(auth, email, password)
+//     .then((result) => {
+//       const { email } = result.user;
+//       localStorage.setItem('email', email);
+//     })
+//     .catch((err) => {
+//       localStorage.clear();
+//       alert(err.code);
+//     });
+// };
+
+export const signInWithEmail = async (email, password) => {
+  await signInWithEmailAndPassword(auth, email, password)
+    .then((result) => {
+      const { email } = result.user;
+      localStorage.setItem('email', email);
+    })
+    .catch((err) => {
+      localStorage.clear();
+      alert(err.code);
+    });
+};
+
+export const createAccount = async (email, password) => {
+  await createUserWithEmailAndPassword(auth, email, password).then((result) => {
+    const { email } = result.user;
+    localStorage.setItem('email', email);
+  }).catch((err) => {
+    localStorage.clear();
+    if (err.code === 'auth/email-already-in-use') alert('email is already taken');
+    else alert(err.code);
+  });
+};
 
 export const monitorAuthState = () => {
-  let result = false
-  onAuthStateChanged(auth,user => {
-    if(user) {
-       result = true
+  let result = false;
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      result = true;
     } else {
       localStorage.clear();
-      result = false
+      result = false;
     }
-  })
-  return result
-}
+  });
+  return result;
+};
 
 export const logOut = () => {
-  signOut(auth)
-  monitorAuthState()
-}
+  signOut(auth);
+  monitorAuthState();
+  localStorage.clear();
+};

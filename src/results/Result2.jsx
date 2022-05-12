@@ -9,14 +9,7 @@ import {
   BsFillEmojiWinkFill
 } from 'react-icons/bs';
 
-export default function Result2({changePage, emotionResults}) {
-  const [mainEmotion, setMainEmotion] = useState('');
-  const [emotionsDisplayed, setEmotionDisplayed] = useState(0);
-
-  useEffect(() => {
-    setMainEmotion(emotionResults[0]);
-  }, [emotionResults])
-
+export default function Result2({ changePage, strongEmotions, weakEmotions }) {
   const allEmojis = {
     anger:
       <BsFillEmojiAngryFill className="emotion-icon"/> ,
@@ -30,53 +23,48 @@ export default function Result2({changePage, emotionResults}) {
     <BsFillEmojiSmileFill className="emotion-icon"/>
   };
 
+  const mainEmotions = strongEmotions.map(emotion =>
+    <Col key={Math.random() * 1000}>
+      <div className="result2-card biggest-card" id={emotion}>
+        <div className="main-card-container">
+          {allEmojis[emotion]}
+          <h3>{emotion === 'anger' ? 'fear' : emotion}</h3>
+        </div>
+      </div>
+    </Col>
+  )
 
-  return(
+  const otherEmotions = weakEmotions.map(emotion =>
+    <Col key={Math.random() * 1000}>
+      <div className="result2-card" id={emotion}>
+        <div className="main-card-container">
+          {allEmojis[emotion]}
+          <h3>{emotion === 'anger' ? 'fear' : emotion}</h3>
+        </div>
+      </div>
+    </Col>
+  )
+
+
+  return (
     <>
       <Modal.Header>
-        Emotional analysis 2/4
+        Tone analysis 2/4
       </Modal.Header>
       <Modal.Body>
         <Container>
           <Row>
-            <Col>
-              <div className="result2-card">
-                {allEmojis[emotionResults[1]]}
-                <h3>{emotionResults[1]}</h3>
-              </div>
-            </Col>
-            <Col>
-              <div className="result2-card">
-                {allEmojis[emotionResults[2]]}
-                <h3>{emotionResults[2]}</h3>
-              </div>
-            </Col>
-            <Col sm={3}>
-              <div className="result2-card biggest-card">
-                {allEmojis[emotionResults[0]]}
-                <h3>{emotionResults[0]}</h3>
-              </div>
-            </Col>
-            <Col>
-              <div className="result2-card">
-                {allEmojis[emotionResults[3]]}
-                <h3>{emotionResults[3]}</h3>
-              </div>
-            </Col>
-            <Col>
-              <div className="result2-card">
-                {allEmojis[emotionResults[4]]}
-                <h3>{emotionResults[4]}</h3>
-              </div>
-            </Col>
+            {mainEmotions}
+            {otherEmotions}
           </Row>
         </Container>
       </Modal.Body>
       <Modal.Footer className="results-footer">
-        <p>{`Out of the words of your speech, are highly correlated to an emotion`}</p>
+        <p>{`Your speech mainly convey a ${strongEmotions[0]} tone.`}</p>
         <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={() => changePage(-1)}>Previous</button>
         <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={() => changePage(1)}>Next</button>
       </Modal.Footer>
     </>
   )
+
 }
