@@ -3,8 +3,8 @@ import {
   currentSpeechText, pageView,
   allSpeeches, editedSpeechText,
   currentSpeechId, updateTitle,
-  editBoolean} from '../../atoms.jsx';
-import {useRecoilState} from 'recoil';
+  editBoolean, reverser} from '../../atoms.jsx';
+import {useRecoilState, useRecoilValue} from 'recoil';
 import moment from 'moment';
 
 const SpeechView = () => {
@@ -16,6 +16,7 @@ const SpeechView = () => {
   const [currentId, setCurrentId] = useRecoilState(currentSpeechId);
   const [titleValue, setTitle] = useRecoilState(updateTitle);
   const [editBooleanValue, setEditBoolean] = useRecoilState(editBoolean);
+  const reversed = useRecoilValue(reverser)
 
 
   const handleEdit = (index) => {
@@ -32,11 +33,10 @@ const SpeechView = () => {
     setPage('history')
     console.log(currentId, 'this is current id')
   }
-
   return (
     <div>
       <div>
-        {speechValue.map((value, index) => {
+        {reversed.map((value, index) => {
           let snippet = value.speeches[0].body.slice(0, 200);
           return (
             <div style={{display: 'flex'}} >

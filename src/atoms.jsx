@@ -65,3 +65,16 @@ export const editBoolean = atom({
   key: 'editBoolean',
   default: false,
 })
+
+export const reverser = selector({
+  key: 'reverser',
+  get: ({get}) => {
+    let array = get(allSpeeches)
+    let flipped = []
+    for (let x = array.length - 1; x >= 0; x--) {
+      flipped.push(array[x])
+      console.log(flipped)
+    }
+    return flipped;
+  }
+})

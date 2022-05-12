@@ -28,8 +28,10 @@ const MyEditor = () => {
     <Slate editor={editor} value={initialValue} onChange={(value) => {
       let currentString = '';
       value.forEach((element) => {
+
         currentString += element.children[0].text;
       })
+      console.log(currentString, event, value)
       setEdited(currentString)
     }}>
       <form>
