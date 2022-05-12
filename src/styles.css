@@ -1,6 +1,7 @@
 .header {
-  font-size: 200px;
+  font-size: 8.5vh;
   text-align: center;
+  padding-bottom: 3%;
 }
 
 .carouselOne {
@@ -53,42 +54,15 @@ flex-direction: row;
 margin-left: 20%;
 margin-right: 20%;
 }
-/*Landing*/
-.headerText {
-  margin-left: 15%;
-  margin-right: 15%;
-  padding-bottom: 10%;
-  background-color: #E4EFF0;
+
+.page-slogan {
+  padding-top: 12%;
+  padding-right: 10%;
+}
+.page-drawing {
+  padding-top: 5%;
 }
 
-.headerTextLarger {
-  text-align: right;
-  font-size: xx-large;
-  padding-right: 250px;
-  top: 50%;
-}
-
-.headerTextSmall {
-  text-align: right;
-  font-size: medium;
-  padding-right: 190px;
-}
-
-.landingButton {
-  margin-left: 60%;
-  background-color: #66BDD0;
-  border: #66BDD0;
-}
-
-.landingButton:hover {
-  transform: scale(1.1);
-}
-
-.header-login {
-  font-size: small;
-padding-right: 25%;
-color: #66BDD0;
-}
 
 /* Homepage */
 
