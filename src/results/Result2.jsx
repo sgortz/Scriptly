@@ -24,25 +24,25 @@ export default function Result2({ changePage, strongEmotions, weakEmotions }) {
   };
 
   const mainEmotions = strongEmotions.map(emotion =>
-    <Col key={Math.random() * 1000}>
-      <div className="result2-card biggest-card" id={emotion}>
-        <div className="main-card-container">
+    // <Col >
+      <div className="card-wrapper biggest-card" id={emotion} key={Math.random() * 1000}>
+        <div className="card-content-container">
           {allEmojis[emotion]}
           <h3>{emotion === 'anger' ? 'fear' : emotion}</h3>
         </div>
       </div>
-    </Col>
+    // </Col>
   )
 
   const otherEmotions = weakEmotions.map(emotion =>
-    <Col key={Math.random() * 1000}>
-      <div className="result2-card" id={emotion}>
-        <div className="main-card-container">
+    // <Col >
+      <div className="card-wrapper" id={emotion} key={Math.random() * 1000}>
+        <div className="card-content-container">
           {allEmojis[emotion]}
           <h3>{emotion === 'anger' ? 'fear' : emotion}</h3>
         </div>
       </div>
-    </Col>
+    // </Col>
   )
 
 
@@ -52,12 +52,12 @@ export default function Result2({ changePage, strongEmotions, weakEmotions }) {
         Tone analysis 2/4
       </Modal.Header>
       <Modal.Body>
-        <Container>
-          <Row>
+        {/* <Container> */}
+          {/* <Row> */}
             {mainEmotions}
             {otherEmotions}
-          </Row>
-        </Container>
+          {/* </Row> */}
+        {/* </Container> */}
       </Modal.Body>
       <Modal.Footer className="results-footer">
         <p>{`Your speech mainly convey a ${strongEmotions[0]} tone.`}</p>
