@@ -26,14 +26,7 @@ const config = {
       },
       {
         test: /\.svg$/,
-        use: [
-          {
-            loader: 'svg-url-loader',
-            options: {
-              limit: 10000,
-            },
-          },
-        ],
+        loader: 'svg-inline-loader',
       },
       {
         test: /\.css$/,
@@ -41,6 +34,17 @@ const config = {
           'style-loader',
           'css-loader',
         ]
+      },
+      {
+        test: /\.(png|jpg|gif)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+            },
+          },
+        ],
       },
       {
         test: /\.png$/,

@@ -1,0 +1,50 @@
+/* Header component */
+.main-title {
+  font-size: 41px;
+  display: flex;
+  align-items: center;
+}
+
+.header {
+  margin-left: 50px;
+}
+
+.header-menu {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  margin-right: 50px;
+}
+
+.header-menu span {
+  margin: 0 15px;
+}
+
+.about-us a {
+  color: black;
+  transition: 200ms ease-in-out;
+  text-decoration: none;
+}
+
+.about-us a:hover {
+  text-decoration: underline;
+  color: rgba(0, 0, 0, 0.5);
+  transition: 200ms ease-in-out;
+}
+
+/* Landing component */
+.landing-page {
+  align-items: center;
+  background-color: #E4EFF0;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-around;
+  margin: 0 30px;
+  overflow: scroll;
+  padding: 48px 93px;
+}
+
+.page-slogan h2 {
+  font-size: 2em;
+  width: 28vw;
+}
