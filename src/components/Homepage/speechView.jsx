@@ -2,7 +2,8 @@ import React from 'react';
 import {
   currentSpeechText, pageView,
   allSpeeches, editedSpeechText,
-  currentSpeechId, updateTitle} from '../../atoms.jsx';
+  currentSpeechId, updateTitle,
+  editBoolean} from '../../atoms.jsx';
 import {useRecoilState} from 'recoil';
 import moment from 'moment';
 
@@ -10,18 +11,20 @@ const SpeechView = () => {
 
   const [currentValue, setCurrent] = useRecoilState(currentSpeechText);
   const [pageValue, setPage] = useRecoilState(pageView);
-  const [speechValue, setSpeechValue] = useRecoilState(allSpeeches);
   const [editedValue, setEdited] = useRecoilState(editedSpeechText);
+  const [speechValue, setSpeechValue] = useRecoilState(allSpeeches);
   const [currentId, setCurrentId] = useRecoilState(currentSpeechId);
   const [titleValue, setTitle] = useRecoilState(updateTitle);
+  const [editBooleanValue, setEditBoolean] = useRecoilState(editBoolean);
 
 
   const handleEdit = (index) => {
     setEdited(speechValue[index].speeches[0].body);
+    setCurrent(speechValue[index].speeches[0].body);
+    setEditBoolean(true)
     setPage('text');
     setCurrentId(speechValue[index]._id)
     setTitle(speechValue[index].title)
-    // setCurrentId()
   }
 
   const displayHistory = (value) => {
