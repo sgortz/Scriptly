@@ -1,5 +1,5 @@
 .results-footer {
-  background-color: #8FBEC5;
+  background-color: #222f3e;
   color: #fff;
 }
 
@@ -9,58 +9,149 @@
 
 .all-cards-container {
   display: flex;
-  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0 2.5rem;
 }
 
 .card-wrapper {
   display: inline-block;
-  box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.1);
-  height: 300px;
-  width: 15%;
-  padding-top: 3rem;
-  margin: 60px 0;
-  color: rgba(255, 255, 255, 0.2);
+  height: 400px;
+  min-height: 300px;
+  width: 20%;
+
+  margin: 5% 0.5rem;
+  padding-top: 2rem;
+
   border-radius: 10px;
+  box-shadow: 1.5px 2px 2px 1.2px rgba(0, 0, 0, 0.07);
+  color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(241, 242, 246,0.5);
+
+  position: relative;
+
+  transform-style: preserve-3d;
+  transition: all 0.5s ease;
 }
 
-/* .card-content-container {
-  width: 100%;
-  height: 50%;
+.full-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-} */
+  justify-content: center;
 
-/* #joy {
-  background-color: #1dd1a1;
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+  backface-visibility: hidden;
 }
 
-#positive {
-  background-color: #222f3e;
+.card-wrapper:hover {
+  transform: rotateY(180deg);
 }
 
-#trust {
-  background-color: rgba(153, 102, 255, 1)
+.front-card {
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  position: absolute;
 }
 
-#anger {
+.back-card {
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+  background-color: #fff;
+  position: absolute;
+}
+
+.full-card h3 {
+  width: 100%;
+  font-size: 1.05rem;
+  margin-top: 0.5rem;
+  padding: 10px;
+
+  text-transform: capitalize;
+  text-align: center;
+
+  color: #fff;
+}
+
+.full-card p {
+  font-size: 0.8rem;
+  padding: 0.2rem 1.2rem;
+  color: #222f3e;
+  margin-bottom: 0;
+}
+
+.good-score {
+  color: #10ac84;
+  margin-right: 5px;
+}
+
+.score {
+  font-size: 1.5rem;
+  color: #222f3e;
+  text-align: center;
+  margin: 0 auto;
+}
+
+p.score {
+  font-size: 1.5rem;
+}
+
+.result-text {
+  text-align: center;
+}
+
+.emotion-icon {
+  color: #c8d6e5;
+  font-size: 3.5rem;
+  margin-bottom: 10px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+
+#joy.main-tone h3 {
+  background-color: #487eb0;
+}
+
+#joy.main-tone .emotion-icon {
+  color: #487eb0;
+}
+
+#positive.main-tone h3 {
+  background-color: #fbc531;
+}
+
+#positive.main-tone .emotion-icon {
+  color: #fbc531;
+}
+
+#trust.main-tone h3 {
+  background-color: #8c7ae6;
+}
+
+#trust.main-tone .emotion-icon {
+  color: #8c7ae6;
+}
+
+#anger.main-tone h3 {
   background-color: #ff6b6b;
 }
 
-#negative {
-  background-color: #ff9f43;
-  } */
-
-/* .biggest-card {
-  height: 370px;
-  margin: 20px 0;
-} */
-
-.emotion-icon {
-  font-size: 3.5rem;
-  margin-bottom: 10px;
+#anger.main-tone .emotion-icon {
+  background-color: #ff6b6b;
 }
 
-/* .biggest-card .emotion-icon {
-  font-size: 5rem;
-} */
+#negative.main-tone h3 {
+  background-color: #ff9f43;
+}
+
+#negative.main-tone .emotion-icon {
+  background-color: #ff9f43;
+}

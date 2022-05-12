@@ -78,7 +78,7 @@ export default function Results(props) {
           <Result2
             changePage={changeResultPage}
             strongEmotions={strongestEmotions}
-            weakEmotions={weakestEmotions}
+            emotions={displayedAnalysis}
           /> :
           resultPage === 3 ?
           <Result3
