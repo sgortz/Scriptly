@@ -2,9 +2,6 @@ module.exports = {
   joy: [
     'absolution',
     'abundance',
-    'abundant',
-    'accolade',
-    'accompaniment',
     'accomplish',
     'accomplished',
     'achieve',
@@ -687,4 +684,4 @@ module.exports = {
     'zeal',
     'zealous',
     'zest']
-} 
+}

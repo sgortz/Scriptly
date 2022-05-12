@@ -3,7 +3,7 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { GiQuillInk } from 'react-icons/gi';
 import './Landing/Landing.css';
-import SignIn from './SignIn.js';
+import SignIn from './SignIn.jsx';
 
 function Header() {
   return (

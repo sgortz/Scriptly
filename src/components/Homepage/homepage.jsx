@@ -10,8 +10,10 @@ import {
 import FileUploaderModal from "../file-uploader-modal/FileUploaderModal.jsx";
 import Results from '../../results/Results.jsx';
 import Thinking from './thinking.jsx';
+import SignIn from '../SignIn.jsx';
 
-const Homepage = () => {
+const Homepage = (props) => {
+
   useEffect(() => {
     getSpeeches();
   }, [pageValue]);
@@ -29,9 +31,14 @@ const Homepage = () => {
   const [analysisValue, setAnalysis] = useRecoilState(currentAnalysis);
   const [currentId, setCurrentId] = useRecoilState(currentSpeechId);
 
+
+
   const email = localStorage.email; // replace with live email
 
   const getSpeeches = () => {
+    console.log('this should rerender my speeches')
+    const email = localStorage.email;
+
     axios.get(`/history/${email}`)
       .then((response) => {
         setSpeechValue(response.data)
@@ -41,7 +48,7 @@ const Homepage = () => {
       })
   }
 
-  const handleSubmit = () => {
+  const handleAnalyze = () => {
     if (editedValue.length > 0 && titleValue.length > 0) {
       axios.post(`/speech/${currentId}`, {
         body: `${editedValue}`,
@@ -67,15 +74,42 @@ const Homepage = () => {
     setShowResults(true)
   }
 
+  const handleSubmit = () => {
+    if (editedValue.length > 0 && titleValue.length > 0) {
+      axios.post(`/speech/`, {
+        body: `${editedValue}`,
+        title: `${titleValue}`,
+        name: 'Trevor Edwards',
+        email: `${email}`,
+        totalCount: analysisValue.totalCount,
+        positive: analysisValue.positive,
+        negative: analysisValue.negative,
+        trust: analysisValue.trust,
+        anger: analysisValue.anger,
+        joy: analysisValue.joy,
+      })
+        .then((response) => {
+          console.log('this is a post success')
+        })
+        .catch((error) => {
+          console.log(error, 'this is a post error')
+        })
+    } else {
+      alert('Invalid Entry - Title and Body Must Exist')
+    }
+  }
+
   return (
     <div id="homepage">
       {/* <Thinking/> */}
-
+      <SignIn setPage={props.setPage} />
       <button onClick={() => { setShowUploader(true) }}>Upload</button>
       <FileUploaderModal onClose={e => setShowUploader(false)} show={showUploader} />
 
-      <button onClick={() => { handleSubmit() }}>Submit</button>
+      <button onClick={() => { handleAnalyze() }}>Analyze</button>
       <Results show={showResults} onClose={e => setShowResults(false)} />
+
+      <button onClick={() => { handleSubmit() }}>Submit</button>
 
       <ul className="nav nav-tabs mb-3" id="myTab0" role="tablist">
         <li className="nav-item" role="presentation">
@@ -132,6 +166,3 @@ const Homepage = () => {
 }
 
 export default Homepage;
-
-
-
