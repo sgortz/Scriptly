@@ -1,22 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Harmattan:wght@400;700&display=swap');
 /* font-family: 'Harmattan', sans-serif; */
 @import url('https://fonts.googleapis.com/css2?family=Hanuman:wght@100;300;400;700;900&display=swap');
-/* font-family: 'Hanuman', serif;git merge */
+/* font-family: 'Hanuman', serif; */
+
+.landing-page {
+  margin: 0 auto;
+}
 
 /* Header component */
-.main-title {
+.main-title a{
   font-size: 41px;
   display: flex;
-  align-items: center;
+  align-items: baseline;
+  color: black;
+  text-decoration: none;
+}
+
+.main-title h1 {
+  font-family: 'Hanuman', serif;
+  font-weight: 700;
+  margin: 0;
 }
 
 .header {
   margin-left: 50px;
+  align-items: baseline;
 }
 
 .header-menu {
-  display: flex;
   align-items: center;
+  display: flex;
+  font-family: 'Harmattan', sans-serif;
+  font-size: 25px;
   justify-content: end;
   margin-right: 50px;
 }
@@ -27,29 +42,127 @@
 
 .about-us a {
   color: black;
-  transition: 200ms ease-in-out;
   text-decoration: none;
 }
 
 .about-us a:hover {
   text-decoration: underline;
-  color: rgba(0, 0, 0, 0.5);
+  color: #66BDD0;
   transition: 200ms ease-in-out;
+}
+
+.team-page {
+  color: black;
+  text-decoration: none;
+  margin: 0 15px;
+}
+
+.team-page:hover {
+  text-decoration: underline;
+  color: #66BDD0;
+  transition: 200ms ease-in;
+}
+
+.login-button {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 29px;
+  font-family: 'Hanuman', serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  padding: 7px 29px;
+}
+
+.login-button:hover{
+  transition: 300ms ease-in-out;
+  color: white;
+  background-color: #66BDD0;
 }
 
 /* Landing component */
 .landing-page {
   align-items: center;
-  background-color: #E4EFF0;
   border-radius: 20px;
   display: flex;
-  justify-content: space-around;
   margin: 0 30px;
   overflow: scroll;
   padding: 48px 93px;
+  padding-bottom: 0px;
 }
 
 .page-slogan h2 {
+  font-family: 'Hanuman', serif;
   font-size: 2em;
-  width: 28vw;
+  font-weight: 700;
+  line-height: 3rem;
+  width: 400px;
+}
+
+.page-slogan p {
+  font-family: 'Harmattan', sans-serif;
+  font-size: 23px;
+  line-height: 1.9rem;
+  width: 312px;
+}
+
+.page-drawing {
+  margin-bottom: 10px;
+  margin-left: 30px;
+}
+
+/* Join Banner Component */
+.join-us-banner {
+  align-items: center;
+  background-color: #DEF6F8;
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+}
+
+.join-now-button {
+  background-color: black;
+  border-radius: 50%;
+  color: white;
+  font-family: 'Hanuman', serif;
+  font-size: 15px;
+  padding: 34px 8px;
+  width: 98px;
+}
+
+.join-us-banner h3 {
+  font-family: 'Hanuman', serif;
+  font-weight: 700;
+  width: 634px;
+  text-align: center;
+}
+
+/* Meet Team */
+.intro-team {
+  text-align: center;
+  margin: 20px;
+}
+
+.member-card {
+  align-items: center;
+  width: 300px;
+  margin: 10px;
+}
+
+.member-photo {
+  width: 200px;
+  border-radius: 50%;
+  margin: 7px;
+}
+
+.member-name {
+  text-align: center;
+}
+
+.member-github a {
+  text-decoration: none;
+}
+
+.member-github:last-child {
+  text-align: center;
 }
