@@ -10,6 +10,7 @@ import Analyzer from '../Analyzer/Analyzer.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 
+
 export default function Results(props) {
   const [resultPage, setResultPage] = useState(1);
   const [emotionCount, setEmotionCount] = useState(0);

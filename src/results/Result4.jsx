@@ -3,7 +3,7 @@ import { Chart as ChartJS, ArcElement, Legend, Tooltip, Title } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { Modal, Container, Col, Row } from 'react-bootstrap';
 import { useRecoilState } from 'recoil';
-import { editedSpeechText, updateTitle, currentSpeechId } from './../atoms.jsx';
+import { editedSpeechText, updateTitle, currentSpeechId, editBoolean, pageView, allSpeeches, resultsModal } from './../atoms.jsx';
 import axios from 'axios';
 
 export default function Result4({ changePage, emotions, wordsCount }) {
@@ -12,6 +12,10 @@ export default function Result4({ changePage, emotions, wordsCount }) {
   const [editedValue, setEdited] = useRecoilState(editedSpeechText);
   const [titleValue, setTitle] = useRecoilState(updateTitle);
   const [currentId, setCurrentId] = useRecoilState(currentSpeechId);
+  const [editBooleanValue, setEditBoolean] = useRecoilState(editBoolean);
+  const [pageValue, setPage] = useRecoilState(pageView);
+  const [speechValue, setSpeechValue] = useRecoilState(allSpeeches);
+  const [showResults, setShowResults] = useRecoilState(resultsModal);
 
   ChartJS.register(ArcElement, Legend, Tooltip, Title);
 
@@ -59,7 +63,18 @@ export default function Result4({ changePage, emotions, wordsCount }) {
   }
 
   const handleSubmit = () => {
-    axios.post(`/speech/`, {
+    let url = '';
+    setShowResults(false);
+
+    if (!editBooleanValue) {
+      url = `/speech/`
+    } else if (editBooleanValue) {
+      url = `/speech/${currentId}`
+    } else {
+      return 'Invalid submit';
+    }
+
+    axios.post(url, {
       body: `${editedValue}`,
       title: `${titleValue}`,
       name: 'Trevor Edwards',
@@ -72,7 +87,17 @@ export default function Result4({ changePage, emotions, wordsCount }) {
       joy: emotions.joy,
     })
     .then((response) => {
-      console.log('this is a post success')
+      axios.get(`/history/${localStorage.email}`)
+      .then((res) => {
+        setSpeechValue(res.data);
+        setPage('speech');
+        setEditBoolean(false);
+        setEdited('      ');
+        setTitle('');
+      })
+      .catch((error) => {
+        console.log('error')
+      })
     })
     .catch((error) => {
       console.error(error, 'this is a post error')
