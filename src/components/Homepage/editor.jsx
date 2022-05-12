@@ -23,6 +23,8 @@ const MyEditor = () => {
     setTitle(event.target.value)
   }
 
+
+
   return (
     <Slate editor={editor} value={initialValue} onChange={(value) => {
       let currentString = '';

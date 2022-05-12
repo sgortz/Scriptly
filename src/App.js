@@ -5,7 +5,7 @@ import { signInWithGoogle } from './auth/Firebase';
 import Header from './components/Header.jsx';
 import Carousel from './components/Landing/Carousel.jsx';
 import Homepage from './components/Homepage/homepage.jsx';
-import SignIn from './components/SignIn';
+import SignIn from './components/SignIn.jsx';
 
 function App() {
   const [page, setPage] = useState('landing')
