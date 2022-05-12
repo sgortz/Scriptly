@@ -77,11 +77,8 @@ export const reverser = selector({
     return flipped;
   }
 })
-<<<<<<< HEAD
 
 export const formattedSpeech = atom({
   key: 'formattedSpeech',
   default: '',
 })
-=======
->>>>>>> main
