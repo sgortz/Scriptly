@@ -9,7 +9,7 @@ import {
   BsFillEmojiWinkFill
 } from 'react-icons/bs';
 
-export default function Result2({changePage, strongEmotions, weakEmotions}) {
+export default function Result2({ changePage, strongEmotions, weakEmotions }) {
   const allEmojis = {
     anger:
       <BsFillEmojiAngryFill className="emotion-icon"/> ,
