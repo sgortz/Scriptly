@@ -1,8 +1,6 @@
 .header {
-  font-size: 125px;
+  font-size: 200px;
   text-align: center;
-  display: flex;
-  flex-direction: row;
 }
 
 .carouselOne {
@@ -57,14 +55,14 @@ flex-direction: row;
 .headerTextLarger {
   text-align: right;
   font-size: xx-large;
-  padding-right: 28%;
+  padding-right: 250px;
   top: 50%;
 }
 
 .headerTextSmall {
   text-align: right;
   font-size: medium;
-  padding-right: 22%;
+  padding-right: 190px;
 }
 
 .landingButton {
@@ -75,12 +73,6 @@ flex-direction: row;
 
 .landingButton:hover {
   transform: scale(1.1);
-}
-
-.header-login {
-  font-size: small;
-padding-right: 25%;
-color: #66BDD0;
 }
 
 .header-login {

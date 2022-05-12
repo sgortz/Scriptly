@@ -3,8 +3,9 @@ import {
   currentSpeechText, pageView,
   allSpeeches, editedSpeechText,
   currentSpeechId, updateTitle,
-  editBoolean} from '../../atoms.jsx';
-import {useRecoilState} from 'recoil';
+  editBoolean
+} from '../../atoms.jsx';
+import { useRecoilState } from 'recoil';
 import moment from 'moment';
 
 const SpeechView = () => {
@@ -27,10 +28,8 @@ const SpeechView = () => {
     setTitle(speechValue[index].title)
   }
 
-  const displayHistory = (value) => {
-    setCurrentId(value._id)
-    setPage('history')
-    console.log(currentId, 'this is current id')
+  const displayHistory = () => {
+    console.log('go to history modal')
   }
 
   return (
@@ -39,10 +38,10 @@ const SpeechView = () => {
         {speechValue.map((value, index) => {
           let snippet = value.speeches[0].body.slice(0, 200);
           return (
-            <div style={{display: 'flex'}} >
-              <div style={{border: '3px solid black', width: '33vw'}}>{moment(value.speeches[0].date).format("dddd, MMMM Do YYYY, h:mm:ss a")}</div>
-              <div style={{border: '3px solid black', width: '33vw'}}>{value.speeches[0].title}</div>
-              <div key={index} style={{border: '3px solid black', width: '33vw'}} onClick={() => {displayHistory(value)}}>{snippet}...</div>
+            <div style={{ display: 'flex' }} >
+              <div style={{ border: '3px solid black', width: '33vw' }}>{moment(value.speeches[0].date).format("dddd, MMMM Do YYYY, h:mm:ss a")}</div>
+              <div style={{ border: '3px solid black', width: '33vw' }}>{value.speeches[0].title}</div>
+              <div key={index} style={{ border: '3px solid black', width: '33vw' }} onClick={() => { displayHistory(value) }}>{snippet}...</div>
               <button onClick={() => {
                 handleEdit(index)
               }}>Edit</button>
