@@ -10,7 +10,6 @@ import FileUploaderModal from "../file-uploader-modal/FileUploaderModal.jsx";
 import Results from '../../results/Results.jsx';
 import SignIn from '../SignIn.jsx';
 import Thinking from './thinking.jsx';
-import SignIn from '../SignIn.jsx';
 
 const Homepage = (props) => {
 
@@ -56,7 +55,6 @@ const Homepage = (props) => {
 
   return (
     <div id="homepage">
-      <SignIn setPage={props.setPage}/>
       {/* <Thinking/> */}
       <SignIn setPage={props.setPage}/>
       <button onClick={() => { setShowUploader(true) }}>Upload</button>
