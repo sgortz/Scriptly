@@ -6,6 +6,8 @@ import Modal from 'react-bootstrap/Modal';
 import {
   createAccount, signInWithGoogle, logOut, signInWithEmail,
 } from '../auth/Firebase';
+import icon from '../assets/google.png';
+import { GiQuillInk } from 'react-icons/gi';
 
 function SignIn({ setPage, cName ,text }) {
   const [username, setUsername] = useState('');
@@ -59,29 +61,34 @@ function SignIn({ setPage, cName ,text }) {
   return (
     <>
       <Button variant="outline-dark" className={cName} onClick={handleShow}>
-        {loginStatus ? 'log out' : 'JOIN NOW'}
+        {cName === 'join-now-button' ? 'JOIN NOW' : loginStatus ? 'Log-out' : 'Log-in'}
       </Button>
 
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Scriptly</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+        <Modal.Title>
+          <TitleContainer>
+            <GiQuillInk/>
+            <h1>Scriptly
 
+            </h1>
+            <H2>Show Me What You Can Achieve</H2>
+          </TitleContainer>
+        </Modal.Title>
+
+        <Modal.Body>
           {!loginStatus
             ? (
               <>
                 <TopLoginContainer>
-                  Scriptly
                   <input type="text" onChange={(e) => setUsername(e.target.value)} placeholder="email" />
                   <input type="password" onChange={(e) => setPassword(e.target.value)} placeholder="password" />
-                  <Button onClick={() => signInOrLogin(username, password)}>{!signUpStatus ? 'login' : 'sign up'}</Button>
+                  <Button variant="primary" onClick={() => signInOrLogin(username, password)}>{!signUpStatus ? 'Log-in' : 'Sign up'}</Button>
                   <center>or</center>
-                  <button type="button" className="btn btn-primary" onClick={() => googleLogin()}>Log-in with Google</button>
+                  <button type="button" className="btn btn-primary" onClick={() => googleLogin()}><img src={icon} alt=''/>Log-in with Google</button>
                 </TopLoginContainer>
                 <BottomLoginContainer>
                   Don&apos;t have an account?
-                  <Button variant="primary" onClick={() => { setSignUpStatus(true); }}>sign up</Button>
+                  <Button variant="primary" onClick={() => { setSignUpStatus(true); }}>Sign up</Button>
                 </BottomLoginContainer>
               </>
             ) : <div>You are logged out</div>}
@@ -98,9 +105,21 @@ const TopLoginContainer = styled.div`
   flex-direction: column;
   padding: 1em;
   justify-content: center;
+  font-family: 'Hanuman', serif;
+  font-weight: 700;
 `;
 const BottomLoginContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1em;
+  font-family: 'Hanuman', serif;
+  text-align: center;
 `;
+const TitleContainer = styled.div`
+font-family: 'Hanuman', serif;
+font-weight: 700;
+text-align: center;
+`
+const H2 = styled.h2`
+font-size: 10px;
+`
