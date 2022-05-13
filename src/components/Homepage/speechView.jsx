@@ -6,8 +6,7 @@ import {
   editBoolean, reverser} from '../../atoms.jsx';
 import {useRecoilState, useRecoilValue} from 'recoil';
 import moment from 'moment';
-import styled from 'styled-components';
-import {BsFillCalendarCheckFill} from 'react-icons/bs'
+import {SpeechDiv} from './styles.js';
 import { GiQuillInk } from "react-icons/gi"
 import { Toast } from 'react-bootstrap';
 
@@ -105,11 +104,5 @@ const SpeechView = () => {
 
 export default SpeechView;
 
-const SpeechDiv = styled.div`
-  font-weight: bold;
-  background: rgb(143,190,197);
-  background: linear-gradient(85deg, rgba(143,190,197,1) 0%, rgba(168,231,241,0.8883928571428571) 23%, rgba(255,255,255,1) 75%);
-  border-bottom: 2px solid black;
-  padding: 1vw;
-`
+
 
