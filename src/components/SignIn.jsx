@@ -21,9 +21,12 @@ function SignIn({ setPage, cName ,text }) {
       await logOut();
       setLoginStatus(false);
       setPage('landing');
+      setShow(false);
+      setSignUpStatus(false);
+    } else {
+      setShow(true);
+      setSignUpStatus(false);
     }
-    setShow(true);
-    setSignUpStatus(false);
   };
 
   const googleLogin = async () => {
