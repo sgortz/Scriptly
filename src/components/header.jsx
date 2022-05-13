@@ -28,7 +28,7 @@ function Header({ setPage,showTeam,setShowTeam }) {
         </span>
         <span className="login-page">
           {/* <button className="login-button" type="button">LOGIN</button> */}
-          <SignIn setPage={setPage} cName={'login-button'} />
+          <SignIn setPage={setPage} cName={'login-button'} text={'Log-in'}/>
         </span>
       </div>
       {/* {showTeam && <MeetTeam/>} */}
