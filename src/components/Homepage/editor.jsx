@@ -40,9 +40,23 @@ const MyEditor = () => {
       })
     }}>
       <form>
-        <input type='text' placeholder={titleValue} value={titleValue} onChange={titleListener}></input>
+        <input
+          type='text'
+          placeholder='Enter A Title For Your Speech'
+          value={titleValue}
+          onChange={titleListener}
+          style={{
+            alignItems: 'center',
+            width: '50vw',
+            border: '4 solid black'
+          }}>
+          </input>
       </form>
-      <Editable style={{margin: '25px', width: '80vw'}}/>
+      <Editable
+        placeholder='Begin Typing Here'
+        style={{
+          margin: '25px',
+          width: '80vw'}}/>
     </Slate>
   )
 }
