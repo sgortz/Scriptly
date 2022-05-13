@@ -16,20 +16,13 @@ function App() {
 
   const currentPage = page === 'landing' ? <Landing setPage={setPage}/> : <Homepage />
 
- 
+
   return (
     <div className="app-container">
-<<<<<<< HEAD
-      {/* <SignIn/> */}
-        {/* <Homepage /> */}
-      <Header />
-      {currentPage}
-=======
 
         <Header setPage={setPage} showTeam={showTeam} setShowTeam={setShowTeam}/>
         {showTeam && <MeetTeam/>}
         {currentPage}
->>>>>>> main
     </div>
   );
 }
