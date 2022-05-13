@@ -4,6 +4,7 @@ import { useRecoilState } from 'recoil';
 import { currentSpeechId } from '../../atoms.jsx';
 import HistoryItem from './HistoryItem.jsx';
 import DoughnutChart from '../charts/DoughnutChart.jsx';
+import PageImage from '../../assets/PageImage.jsx';
 
 const lib = require('../shared/scriptlyShared.js');
 
@@ -48,16 +49,16 @@ function HistoryList(props) {
     }
     const sumVals = lib.sumToneValues(data);
     return (
-      <>
-        <h5 className="mb-1">SpeechHistory</h5>
-        <small>Tone - All Versions</small>
+      <div className="speech-list-header">
+        <h5>SpeechHistory</h5>
         <div className="doughnut-medium ">
           <DoughnutChart
             analysis={sumVals}
             labelsOn={true}
           />
         </div>
-      </>
+        <h6>Tone - All Versions</h6>
+      </div>
     );
   };
 

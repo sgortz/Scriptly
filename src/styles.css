@@ -76,7 +76,7 @@ margin-right: 20%;
 
 .speech-version-list {
   display: flex;
-  gap: 30px;
+  gap: 20px;
   flex-direction: column;
 }
 
@@ -84,10 +84,25 @@ margin-right: 20%;
   background-color: #DEF6F8;
   transition: transform .2s;
   padding: 10px;
+  border-radius: 10px;
+}
+
+.speech-list-header{
+  margin: 0 auto;
+}
+
+.speech-list-header h5, h6{
+  text-align: center;
+}
+
+.speech-list-header small{
+  text-align: center;
 }
 
 .speech-list-item:hover {
   transform: scale(1.02);
+  background-color: #8fe4eb;
+  cursor: pointer;
 }
 
 .speech-list-body {
