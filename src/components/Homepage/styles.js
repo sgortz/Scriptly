@@ -11,7 +11,7 @@ export const SpeechDiv = styled.div`
   font-family: 'Zilla Slab', serif;
 `;
 
-export const SharedButton = style.button`
+export const SharedButton = styled.button`
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 29px;
