@@ -22,18 +22,20 @@ function HistoryItem(props) {
   }
 
   return (
-    <li className="speech-history-list-item" onClick={(e)=> { sendResults(e) }}>
-      <small className="speech-date">{date}</small>
-      <div className="speech-preview-chart">
-        <p className="speech-preview-body">{`${bodyPreview}...`}</p>
-        <div className="doughnut-small">
-          <DoughnutChart
-            analysis={analysis}
-            labelsOn={false}
-          />
+    <div className="speech-list-item" onClick={(e)=> { sendResults(e) }}>
+      <div className="speech-list-body">
+        <small className="speech-date">{date}</small>
+        <div className="speech-preview-chart">
+          <p className="speech-preview-body">{`${bodyPreview}...`}</p>
+          <div className="doughnut-small">
+            <DoughnutChart
+              analysis={analysis}
+              labelsOn={false}
+            />
+          </div>
         </div>
       </div>
-    </li>
+    </div>
   );
 }
 

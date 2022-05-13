@@ -28,7 +28,7 @@ function HistoryList(props) {
       return null;
     }
     return (
-      <ul className="speech-version-list">
+      <div className="speech-version-list">
         {arr.map((item) => (
           <HistoryItem
             key={item._id}
@@ -38,7 +38,7 @@ function HistoryList(props) {
             title={item.title}
           />
         ))}
-      </ul>
+      </div>
     );
   };
 
@@ -62,7 +62,7 @@ function HistoryList(props) {
   };
 
   return (
-    <div className="flex-down-container history-list-container">
+    <div className="history-list-container">
       {history ? renderHeader(history) : null}
       <hr />
       <div className="speech-version-scroll-list">

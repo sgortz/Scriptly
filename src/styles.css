@@ -73,10 +73,11 @@ margin-right: 20%;
 
 /* History List */
 .history-list-container {
+  display: flex;
+  flex-direction: column;
   width: 90vw;
   padding: 25px;
   height: 100vh;
-  overflow: auto;
 }
 
 .speech-history-title {
@@ -84,7 +85,24 @@ margin-right: 20%;
 }
 
 .speech-version-list {
-  list-style: none;
+  display: flex;
+  gap: 30px;
+  flex-direction: column;
+}
+
+.speech-list-item {
+  background-color: #DEF6F8;
+  transition: transform .2s;
+  padding: 10px;
+}
+
+.speech-list-item:hover {
+  transform: scale(1.02);
+}
+
+.speech-list-body {
+  display: flex;
+  flex-direction: row;
 }
 
 .speech-preview-chart {
@@ -96,3 +114,12 @@ margin-right: 20%;
   height: 80px;
   width: auto;
 }
+
+.doughnut-medium canvas {
+  height: 130px;
+  width: auto;
+}
+
+/* .file-uploader-back-button:hover {
+  cursor: pointer;
+} */
