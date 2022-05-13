@@ -10,14 +10,12 @@ function LandingPage1() {
      <div className="landingpage0">
       <div className="page-slogan">
           <h2>
-            Get the tone of any<br />
-             speech you create. <br />
+            Get the tone of any speech you create. 
             Instantly.
           </h2>
           <br />
           <p>
-            Save. Analyze. Re-edit. All in one<br />
-            organizational space.
+            Save. Analyze. Re-edit. All in one organizational space.
           </p>
 
         </div>
