@@ -6,15 +6,14 @@
 
 .landing-page {
   justify-content: center;
-  margin-left: 15%;
-  margin-right: 10%;
 }
 
 .carouselOne {
 display: flex;
 flex-direction: row;
 padding-bottom: 2%;
-width: 61%;
+width: 40%;
+margin-left: 30%;
 }
 
 .carousel {
@@ -85,4 +84,27 @@ margin-right: 20%;
 .doughnut-small canvas {
   height: 80px;
   width: auto;
+}
+
+
+.right-arrow {
+  position: absolute;
+  z-index: 5;
+  font-size: 2.3rem;
+  color: #5e6748ff;
+  cursor: pointer;
+  user-select: none;
+  top: 50%;
+  right: 10%;
+}
+
+.left-arrow {
+  position: absolute;
+  z-index: 5;
+  font-size: 2.3rem;
+  color: #5e6748ff;
+  cursor: pointer;
+  user-select: none;
+  top: 50%;
+  left: 10%;
 }
