@@ -13,7 +13,19 @@ import {
   BsFillCaretRightFill,
 } from 'react-icons/bs';
 
-export default function Result2({ changePage, strongEmotions, emotions }) {
+export default function Result2({ changePage, strongEmotions, emotions, emotionCount }) {
+  const [percentages, setPercentages] = useState({});
+  const { anger, joy, trust, negative, positive } = emotions;
+
+  useEffect(() => {
+    setPercentages({
+      anger: Math.abs(Math.floor((anger / emotionCount) * 100)),
+      negative: Math.abs(Math.floor((negative / emotionCount) * 100)),
+      positive: Math.abs(Math.floor((positive / emotionCount) * 100)),
+      joy: Math.abs(Math.floor((joy / emotionCount) * 100)),
+      trust: Math.abs(Math.floor((trust / emotionCount) * 100)),
+    })
+  }, [emotions])
 
 
   return (
@@ -30,15 +42,29 @@ export default function Result2({ changePage, strongEmotions, emotions }) {
               <div className="front-card">
                 <BsFillEmojiAngryFill className="emotion-icon"/>
                 <h3>Fearful</h3>
-                <p className="score"><BsFillHandThumbsDownFill className="bad-score"/>{emotions.anger}
+                <p className="score"><BsFillHandThumbsDownFill className="bad-score"/>{percentages.anger}%
                 </p>
                 <p className="result-text">
-                  Great job, your speech mainly conveys a positive tone!
+                {
+                  strongEmotions.indexOf('anger') !== - 1 ?
+                    'Careful, your speech mainly conveys a fearful tone!'
+                  : percentages.anger >= 13 ?
+                    'Careful, your speech still is considerably fearful.'
+                  :
+                    'Great! Your speech does not lean too much towards ferfulness.'
+                }
                 </p>
               </div>
               <div className="back-card">
                 <p className="result-text">
-                  <span>💡 Tips:</span> if you aim at convincing and reuniting your audience, consider slightly improving your Trustful tone score.
+                <span>💡 Tips:</span>
+                {
+                  strongEmotions.indexOf('anger') !== - 1 ?
+                    ' if you aim at reuniting people or if your speech involves brand or personal image, consider using a softer tone, leaning more towards joy and positivity.'
+                  : percentages.anger >= 13 ?
+                    ' if you aim at reuniting people or if your speech involves brand or personal image, consider using a softer tone, leaning more towards joy and positivity.'
+                  : ' just keep going, you\'re doing great!'
+                }
                 </p>
               </div>
             </div>
@@ -50,15 +76,29 @@ export default function Result2({ changePage, strongEmotions, emotions }) {
               <div className="front-card">
                 <BsFillEmojiFrownFill className="emotion-icon"/>
                 <h3>Negative</h3>
-                <p className="score"><BsFillHandThumbsDownFill className="bad-score"/>{emotions.negative}
+                <p className="score"><BsFillHandThumbsDownFill className="bad-score"/>{percentages.negative}%
                 </p>
                 <p className="result-text">
-                  Great job, your speech mainly conveys a positive tone!
+                {
+                  strongEmotions.indexOf('negative') !== - 1 ?
+                    'Careful, your speech mainly conveys a negative tone!'
+                  : percentages.negative >= 15 ?
+                    'Careful, your speech still is considerably negative.'
+                  :
+                    'Great! Your speech does not lean too much towards negativity.'
+                }
                 </p>
               </div>
               <div className="back-card">
                 <p className="result-text">
-                  <span>💡 Tips:</span> if you aim at convincing and reuniting your audience, consider slightly improving your Trustful tone score.
+                <span>💡 Tips:</span>
+                {
+                  strongEmotions.indexOf('negative') !== - 1 ?
+                    ' if your speech involves brand or personal image, consider shifting some negative words with more positive ones.'
+                  : percentages.negative >= 15 ?
+                    ' if your speech involves brand or personal image, consider shifting some negative words with more positive ones.'
+                  : ' just keep going, you\'re doing great!'
+                }
                 </p>
               </div>
             </div>
@@ -70,15 +110,30 @@ export default function Result2({ changePage, strongEmotions, emotions }) {
               <div className="front-card">
                 <BsFillEmojiSmileFill className="emotion-icon"/>
                 <h3>Positive</h3>
-                <p className="score"><BsFillHandThumbsUpFill className="good-score"/>{emotions.positive}
+                <p className="score"><BsFillHandThumbsUpFill className="good-score"/>{percentages.positive}%
                 </p>
                 <p className="result-text">
-                  Great job, your speech mainly conveys a positive tone!
+                {
+                  strongEmotions.indexOf('positive') !== - 1 ?
+                    'Great job, your speech mainly conveys a positive tone!'
+                  : percentages.positive > 18 ?
+                    'Good, your speech still is considerably positive!'
+                  :
+                    'Consider improving your score to reach about 20% and convey a more positive image.'
+                }
                 </p>
               </div>
               <div className="back-card">
                 <p className="result-text">
-                  <span>💡 Tips:</span> if you aim at convincing and reuniting your audience, consider slightly improving your Trustful tone score.
+                  <span>💡 Tips:</span>
+                  {
+                  strongEmotions.indexOf('positive') !== - 1 ?
+                    ' just keep going, you\'re doing great. To go a step further and be even more convincing, make sure trust also have a high score!'
+                  : percentages.positive > 18 ?
+                    ' consider shifting neutral words to positive ones to strengthen your speech tonality.'
+                  :
+                    ' consider making your speech more positive if you want to improuve your personal or brand image.'
+                  }
                 </p>
               </div>
             </div>
@@ -90,15 +145,30 @@ export default function Result2({ changePage, strongEmotions, emotions }) {
               <div className="front-card">
                 <BsFillEmojiLaughingFill className="emotion-icon"/>
                 <h3>Joyful</h3>
-                <p className="score"><BsFillHandThumbsUpFill className="good-score"/>{emotions.joy}
+                <p className="score"><BsFillHandThumbsUpFill className="good-score"/>{percentages.joy}%
                 </p>
                 <p className="result-text">
-                  Great job, your speech mainly conveys a joyful tone!
+                {
+                  strongEmotions.indexOf('joy') !== - 1 ?
+                    'Great job, your speech mainly conveys a joyful tone!'
+                  : percentages.joy > 13 ?
+                    'Good, your speech still is considerably joyful!'
+                  :
+                    'If your positive tonality is also low, that is bad news.'
+                }
                 </p>
               </div>
               <div className="back-card">
                 <p className="result-text">
-                  <span>💡 Tips:</span> if you aim at convincing and reuniting your audience, consider slightly improving your Trustful tone score.
+                  <span>💡 Tips:</span>
+                  {
+                  strongEmotions.indexOf('joy') !== - 1 ?
+                    ' just keep going, you\'re doing great!'
+                  : percentages.joy > 13 ?
+                    ' consider shifting neutral words to positive or joyful ones to strengthen your speech tonality.'
+                  :
+                    ' consider stressing more your happiness or positivity.'
+                  }
                 </p>
               </div>
             </div>
@@ -110,15 +180,30 @@ export default function Result2({ changePage, strongEmotions, emotions }) {
               <div className="front-card">
                 <BsFillEmojiWinkFill className="emotion-icon"/>
                 <h3>Trustful</h3>
-                <p className="score"><BsFillHandThumbsUpFill className="good-score"/>{emotions.trust}
+                <p className="score"><BsFillHandThumbsUpFill className="good-score"/>{percentages.trust}%
                 </p>
                 <p className="result-text">
-                  Great job, your speech mainly conveys a joyful tone!
+                {
+                  strongEmotions.indexOf('trust') !== - 1 ?
+                    'Great job, your speech mainly conveys a trustful tone!'
+                  : percentages.trust > 18 ?
+                    'Good, your speech still is considerably trustful!'
+                  :
+                    'Careful, you may not be convincing enough!'
+                }
                 </p>
               </div>
               <div className="back-card">
                 <p className="result-text">
-                  <span>💡 Tips:</span> if you aim at convincing and reuniting your audience, consider slightly improving your Trustful tone score.
+                  <span>💡 Tips:</span>
+                  {
+                  strongEmotions.indexOf('trust') !== - 1 ?
+                    ' just keep going, you\'re doing great!'
+                  : percentages.trust > 18 ?
+                    ' try to be slightly more impactful and convincing by adding words related to trust.'
+                  :
+                    ' consider shifting neutral words to trustful ones to be a lot more impactful!'
+                  }
                 </p>
               </div>
             </div>

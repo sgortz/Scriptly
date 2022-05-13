@@ -79,6 +79,7 @@ export default function Results(props) {
             changePage={changeResultPage}
             strongEmotions={strongestEmotions}
             emotions={displayedAnalysis}
+            emotionCount={emotionCount}
           /> :
           resultPage === 3 ?
           <Result3
