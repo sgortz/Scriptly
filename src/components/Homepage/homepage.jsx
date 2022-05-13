@@ -4,16 +4,17 @@ import {useRecoilState} from 'recoil';
 import {
   pageView, allSpeeches, editedSpeechText,
   updateTitle, resultsModal, currentSpeechText,
-  currentAnalysis, currentSpeechId} from '../../atoms.jsx';
+  currentAnalysis, currentSpeechId, formattedSpeech} from '../../atoms.jsx';
 import axios from 'axios';
 import FileUploaderModal from "../file-uploader-modal/FileUploaderModal.jsx";
 import Results from '../../results/Results.jsx';
 import SignIn from '../SignIn.jsx';
 import styled from 'styled-components';
-import {SharedButton} from './styles.js';
+import {SharedButton, Tabs} from './styles.js';
+import './bootstrap.css';
 
 
-const Homepage = (props) => {
+const Homepage = () => {
 
   useEffect(() => {
     getSpeeches();
@@ -34,6 +35,8 @@ const Homepage = (props) => {
   const [currentValue, setCurrent] = useRecoilState(currentSpeechText);
   const [analysisValue, setAnalysis] = useRecoilState(currentAnalysis);
   const [currentId, setCurrentId] = useRecoilState(currentSpeechId);
+  const [formattedValue, setFormatted] = useRecoilState(formattedSpeech);
+
 
   const email = localStorage.email;
 
@@ -48,6 +51,9 @@ const Homepage = (props) => {
   }
 
   const handleAnalyze = () => {
+    if (formattedValue.length === 0) {
+      setFormatted(editedValue)
+    }
     if (editedValue.length > 0 && titleValue.length > 0) {
       setShowResults(true);
     }
@@ -63,7 +69,7 @@ const Homepage = (props) => {
 
       <ul className="nav nav-tabs mb-3" id="myTab0" role="tablist">
         <li className="nav-item" role="presentation">
-          <button
+          <Tabs
             className={activeTab === 1 ? "nav-link active" : "nav-link"}
             id="home-tab0"
             data-mdb-toggle="tab"
@@ -75,10 +81,10 @@ const Homepage = (props) => {
             onClick={() => { setPage('speech'); setActiveTab(1); }}
           >
             Speeches
-          </button>
+          </Tabs>
         </li>
         <li className="nav-item" role="presentation">
-          <button
+          <Tabs
             className={activeTab === 2 ? "nav-link active" : "nav-link"}
             id="profile-tab0"
             data-mdb-toggle="tab"
@@ -90,10 +96,10 @@ const Homepage = (props) => {
             onClick={() => { setPage('text'); setActiveTab(2); }}
           >
             Text Editor
-          </button>
+          </Tabs>
         </li>
         <li className="nav-item" role="presentation">
-          <button
+          <Tabs
             className={activeTab === 3 ? "nav-link active" : "nav-link"}
             id="home-tab0"
             data-mdb-toggle="tab"
@@ -105,7 +111,7 @@ const Homepage = (props) => {
             onClick={() => { setPage('history'); setActiveTab(3); }}
           >
             History
-          </button>
+          </Tabs>
         </li>
       </ul>
       <div style={{ height: '80vw', width: '90vw', border: '3px solid black', overflow: 'auto' }}>

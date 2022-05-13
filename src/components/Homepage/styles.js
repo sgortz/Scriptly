@@ -26,5 +26,8 @@ export const SharedButton = styled.button`
     background-color: #66BDD0;
   }
 `
-
+export const Tabs = styled.button`
+  width: 25vw;
+  border: 4 solid black;
+`
 
