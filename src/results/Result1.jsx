@@ -36,29 +36,30 @@ export default function Result1({ wordsCount, emotionCount, changePage, neutralC
       Tone analysis 1/4
     </Modal.Header>
     <Modal.Body>
-      <Container>
-        <Row>
-          <Col>
-            <div className="">
-              <span>{wordsCount}</span>
-              <br/>
-              <p>Words analyzed</p>
-            </div>
-          </Col>
-          <Col>
-            <div style={{position: 'relative', width: '80%'}}>
-              <Doughnut
-                data={data}
-                options={options}
-              />
-            </div>
-          </Col>
-        </Row>
-      </Container>
+      <div className="result1-container">
+        <div className="words-analyzed">
+          <p className="word-count">{wordsCount}</p>
+          <pre>
+            -----------------
+              Words analyzed
+            -----------------
+          </pre>
+          {/* <p>Words analyzed</p> */}
+        </div>
+        <div style={{position: 'relative', width: '35%'}}>
+          <Doughnut
+            data={data}
+            options={options}
+          />
+        </div>
+      </div>
     </Modal.Body>
     <Modal.Footer className="results-footer">
+      <button type="button" className="btn btn-primary results-btn" data-toggle="modal" data-target="#exampleModal" onClick={() => changePage(1)}>{'<'}</button>
+
       <p>{`Out of the ${wordsCount} words of your speech, ${emotionCount} have a strong tonality`}</p>
-      <button type="button" className="btn btn-primary results-btn" data-toggle="modal" data-target="#exampleModal" onClick={() => changePage(1)}>Next</button>
+
+      <button type="button" className="btn btn-primary results-btn" data-toggle="modal" data-target="#exampleModal" onClick={() => changePage(1)}>{'>'}</button>
     </Modal.Footer>
   </>
   )
