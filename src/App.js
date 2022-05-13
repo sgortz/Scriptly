@@ -13,8 +13,7 @@ import MeetTeam from './components/Landing/MeetTeam.jsx';
 function App() {
   const [page, setPage] = useState('landing')
   const [showTeam, setShowTeam] = useState(false)
-  console.log(localStorage.email)
-  
+
   useEffect(() => {
     if(localStorage.email) {
     setPage('homepage')
