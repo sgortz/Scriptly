@@ -14,6 +14,11 @@ function App() {
   const [page, setPage] = useState('landing')
   const [showTeam, setShowTeam] = useState(false)
 
+  useEffect(() => {
+    if(localStorage.email) {
+    setPage('homepage')
+  }},[])
+
   const currentPage = page === 'landing' ? <Landing setPage={setPage}/> : <Homepage />
 
 
