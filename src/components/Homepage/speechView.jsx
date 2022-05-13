@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   currentSpeechText, pageView,
   allSpeeches, editedSpeechText,
@@ -9,6 +9,8 @@ import moment from 'moment';
 import styled from 'styled-components';
 import {BsFillCalendarCheckFill} from 'react-icons/bs'
 import { GiQuillInk } from "react-icons/gi"
+import { Toast } from 'react-bootstrap';
+
 
 
 const SpeechView = () => {
@@ -22,6 +24,7 @@ const SpeechView = () => {
   const [editBooleanValue, setEditBoolean] = useRecoilState(editBoolean);
   const reversed = useRecoilValue(reverser)
 
+  const [toggleValue, setToggle] = useState(false);
 
   const handleEdit = (index) => {
     console.log(index)
@@ -37,6 +40,16 @@ const SpeechView = () => {
     setCurrentId(value._id)
     setPage('history')
   }
+
+  const onHover = (event) => {
+    console.log(event)
+    setToggle(true)
+  }
+
+  const onLeave = () => {
+    setToggle(false)
+  }
+
   return (
     <div>
       <div>
@@ -44,13 +57,39 @@ const SpeechView = () => {
           let snippet = value.speeches[0].body.slice(0, 200);
           return (
             <div style={{display: 'flex'}} >
-              <SpeechDiv key={Math.random()} style={{width: '10vw'}}>{moment(value.speeches[0].date).format("dddd, MMMM Do YYYY")}</SpeechDiv>
-              <SpeechDiv key={Math.random()} style={{width: '20vw', textAlign: 'center', justifyContent: 'center'}}>{value.speeches[0].title}</SpeechDiv>
-              <SpeechDiv className="bg-image hover-overlay" key={Math.random()} style={{width: '70vw'}} onClick={() => {displayHistory(value)}}>{snippet}...
-                <ViewHistory>View Version History{'     '}
-                  <BsFillCalendarCheckFill style={{height: '2vw', width: '2vw', }}/>
-                </ViewHistory>
+
+              <SpeechDiv
+
+                key={Math.random()}
+                style={{width: '10vw'}}
+                >{moment(value.speeches[0].date).format("dddd, MMMM Do YYYY")}
+                </SpeechDiv>
+
+              <SpeechDiv
+                key={Math.random()}
+                style={{width: '20vw', textAlign: 'center', justifyContent: 'center'}}>{value.speeches[0].title}
+                </SpeechDiv>
+
+              <Toast style={{width: '15vw'}} onClose={() => setToggle(false)} show={toggleValue} >
+                <Toast.Header>
+                  <strong className="me-auto">Scriptly Notification</strong>
+                </Toast.Header>
+                <Toast.Body>Click for complete version history</Toast.Body>
+              </Toast>
+
+              <SpeechDiv
+                key={Math.random()}
+                style={{width: '70vw'}}
+                onClick={() => {displayHistory(value)}}
+                onMouseOver={() => {
+                  onHover(event);
+                }}
+                onMouseLeave={() => {
+                  onLeave();
+                }}
+                >{snippet}...
               </SpeechDiv>
+
               <GiQuillInk style={{
                 height: '3vw', width: '3vw', display: 'flex', alignItems: 'center',
                 justifyContent: 'center', flexDirection: 'column'}} onClick={() => {
@@ -73,21 +112,4 @@ const SpeechDiv = styled.div`
   border-bottom: 2px solid black;
   padding: 1vw;
 `
-const ViewHistory = styled.div`
-  background: rgb(122,125,121);
-  background: linear-gradient(85deg, rgba(122,125,121,0.6783088235294117) 0%, rgba(204,209,203,0.6418942577030813) 16%, rgba(255,255,255,0.9920343137254902) 50%);
-`
 
-{/* <div >
-  <img class="w-100" />
-  <div
-    class="mask"
-    style="
-      background: linear-gradient(
-        45deg,
-        rgba(29, 236, 197, 0.5),
-        rgba(91, 14, 214, 0.5) 100%
-      );
-    "
-  ></div>
-</div> */}
