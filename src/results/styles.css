@@ -57,6 +57,10 @@
   position: relative;
 }
 
+.card-wrapper h3 {
+  background-color: #c8d6e5;
+}
+
 .full-card {
   display: flex;
   flex-direction: column;

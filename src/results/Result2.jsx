@@ -14,11 +14,7 @@ import {
 } from 'react-icons/bs';
 
 export default function Result2({ changePage, strongEmotions, emotions }) {
-  // const [showReco, setShowReco] = useState(false);
 
-  const handleHover = () => {
-    setShowReco(true);
-  }
 
   return (
     <>
@@ -34,7 +30,7 @@ export default function Result2({ changePage, strongEmotions, emotions }) {
               <div className="front-card">
                 <BsFillEmojiAngryFill className="emotion-icon"/>
                 <h3>Fearful</h3>
-                <p className="score"><BsFillHandThumbsDownFill className="bad-score"/>{emotions.angry}
+                <p className="score"><BsFillHandThumbsDownFill className="bad-score"/>{emotions.anger}
                 </p>
                 <p className="result-text">
                   Great job, your speech mainly conveys a positive tone!
@@ -67,9 +63,6 @@ export default function Result2({ changePage, strongEmotions, emotions }) {
               </div>
             </div>
           </div>
-
-{/* { strongEmotions.indexOf('positive') !== - 1 && strongEmotions.indexOf('trust') === - 1 ? */}
-
 
           {/* Positive */}
           <div className={ strongEmotions.indexOf('positive') !== - 1 ? 'card-wrapper main-tone' : 'card-wrapper'} id="positive" key={Math.random() * 1000}>
@@ -117,7 +110,7 @@ export default function Result2({ changePage, strongEmotions, emotions }) {
               <div className="front-card">
                 <BsFillEmojiWinkFill className="emotion-icon"/>
                 <h3>Trustful</h3>
-                <p className="score"><BsFillHandThumbsUpFill className="good-score"/>{emotions.joy}
+                <p className="score"><BsFillHandThumbsUpFill className="good-score"/>{emotions.trust}
                 </p>
                 <p className="result-text">
                   Great job, your speech mainly conveys a joyful tone!
@@ -130,8 +123,6 @@ export default function Result2({ changePage, strongEmotions, emotions }) {
               </div>
             </div>
           </div>
-          {/* {mainEmotions}
-          {otherEmotions} */}
         </div>
       </Modal.Body>
       <Modal.Footer className="results-footer">
