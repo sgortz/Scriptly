@@ -3,10 +3,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Hanuman:wght@100;300;400;700;900&display=swap');
 /* font-family: 'Hanuman', serif; */
 
-.landing-page {
-  margin: 0 auto;
-}
-
 /* Header component */
 .main-title a{
   font-size: 41px;
@@ -80,8 +76,8 @@
   background-color: #66BDD0;
 }
 
-/* Landing component */
-.landing-page {
+/* Landing Page 1 component */
+.landingpage0 {
   align-items: center;
   border-radius: 20px;
   display: flex;
