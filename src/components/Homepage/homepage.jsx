@@ -8,7 +8,6 @@ import {
 import axios from 'axios';
 import FileUploaderModal from "../file-uploader-modal/FileUploaderModal.jsx";
 import Results from '../../results/Results.jsx';
-import Thinking from './thinking.jsx';
 import SignIn from '../SignIn.jsx';
 import styled from 'styled-components';
 import {SharedButton} from './styles.js';
@@ -56,8 +55,6 @@ const Homepage = (props) => {
 
   return (
     <div id="homepage">
-      {/* <Thinking/> */}
-      {/* <SignIn setPage={props.setPage}/> */}
       <SharedButton onClick={() => { setShowUploader(true) }}>Upload</SharedButton>
       <FileUploaderModal onClose={e => setShowUploader(false)} show={showUploader} />
 
