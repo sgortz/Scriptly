@@ -13,10 +13,16 @@ import MeetTeam from './components/Landing/MeetTeam.jsx';
 function App() {
   const [page, setPage] = useState('landing')
   const [showTeam, setShowTeam] = useState(false)
+  console.log(localStorage.email)
+  
+  useEffect(() => {
+    if(localStorage.email) {
+    setPage('homepage')
+  }},[])
 
   const currentPage = page === 'landing' ? <Landing setPage={setPage}/> : <Homepage />
 
- 
+
   return (
     <div className="app-container">
 
