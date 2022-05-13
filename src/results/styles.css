@@ -197,7 +197,7 @@ p.score {
 }
 
 #anger.main-tone .emotion-icon {
-  background-color: #ff6b6b;
+  color: #ff6b6b;
 }
 
 #negative.main-tone h3 {
@@ -205,7 +205,7 @@ p.score {
 }
 
 #negative.main-tone .emotion-icon {
-  background-color: #ff9f43;
+  color: #ff9f43;
 }
 
 /************ Results 1 ************/
@@ -303,4 +303,9 @@ p.score {
   text-align: center;
   cursor: pointer;
   color: black;
+}
+
+.submit-speech:hover {
+  background-color: #66BDD0;
+  color: #fff;
 }
