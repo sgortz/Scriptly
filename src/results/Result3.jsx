@@ -5,7 +5,7 @@ import { Modal, Container, Col, Row } from 'react-bootstrap';
 import { BsFillCaretLeftFill, BsFillCaretRightFill } from 'react-icons/bs';
 
 export default function Result3({ changePage, emotions, neutral }) {
-  ChartJS.register(BarElement, BarController, CategoryScale, LinearScale, Legend, Tooltip, Title);
+  ChartJS.register(BarElement, BarController, CategoryScale, LinearScale, Legend, Tooltip);
   const { positive, negative, joy, anger, trust } = emotions;
   const data = {
     labels: ['Positive', 'Negative', 'Joy', 'Fear', 'Trust'],
@@ -39,10 +39,6 @@ export default function Result3({ changePage, emotions, neutral }) {
     plugins: {
       legend: {
         display: false,
-      },
-      title: {
-        display: true,
-        text: 'Tones weight'
       },
       tooltip: {
         displayColors: false,

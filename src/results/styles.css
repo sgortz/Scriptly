@@ -55,15 +55,7 @@
   margin: 5% 0.5rem;
   padding-top: 2rem;
 
-  border-radius: 10px;
-  box-shadow: 1.5px 2px 2px 1.2px rgba(0, 0, 0, 0.07);
-  color: rgba(255, 255, 255, 0.2);
-  background-color: rgba(241, 242, 246,0.5);
-
   position: relative;
-
-  transform-style: preserve-3d;
-  transition: all 0.5s ease;
 }
 
 .full-card {
@@ -75,30 +67,49 @@
   width: 100%;
   height: 100%;
 
+  top: 50%;
+  left: 50%;
+
   position: absolute;
-  backface-visibility: hidden;
-  transform: rotateY(180deg);
+  transform: translate(-50%, -50%);
 }
 
-.card-wrapper:hover {
-  transform: rotateY(180deg);
+
+.front-card, .back-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: 10px;
+  box-shadow: 1px 1px 1px 1px rgb(0 0 0 / 4%);
+  color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(241, 242, 246,0.5);
+
+  overflow: hidden;
+  backface-visibility: hidden;
+  position: absolute;
+
+  transition: transform .6s linear;
 }
 
 .front-card {
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  transform: rotateY(180deg);
-  position: absolute;
+  transform: perspective(600px) rotateY(0deg);
 }
 
 .back-card {
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  /* transform: rotateY(180deg); */
-  background-color: #fff;
-  position: absolute;
+  transform: perspective(600px) rotateY(180deg);
+}
+
+.full-card:hover > .front-card {
+  transform: perspective(600px) rotateY(-180deg);
+}
+
+.full-card:hover > .back-card {
+  transform: perspective(600px) rotateY(0deg);
 }
 
 .full-card h3 {
