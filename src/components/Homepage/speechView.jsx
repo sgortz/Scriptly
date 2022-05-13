@@ -28,7 +28,6 @@ const SpeechView = () => {
   const [yValue, setY] = useState(0);
 
   const handleEdit = (index) => {
-    console.log(index)
     setEdited(reversed[index].speeches[0].body);
     setCurrent(reversed[index].speeches[0].body);
     setEditBoolean(true)

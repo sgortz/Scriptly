@@ -26,5 +26,7 @@ export const SharedButton = styled.button`
     background-color: #66BDD0;
   }
 `
-
+export const Tabs = styled.button`
+  background-color: red;
+`
 
