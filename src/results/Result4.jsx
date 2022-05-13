@@ -137,7 +137,7 @@ export default function Result4({ changePage, emotions, emotionCount }) {
 
         <div className="opposite-chart trust-representation">
           <h3>Trust</h3>
-          <span>{ Math.abs(Math.ceil((trust/emotionCount) * 100)) }%</span>
+          <span>{ Math.abs(Math.floor((trust/emotionCount) * 100)) }%</span>
           <span>of all tones</span>
         </div>
 
@@ -145,7 +145,7 @@ export default function Result4({ changePage, emotions, emotionCount }) {
     </Modal.Body>
     <Modal.Footer className="results-footer">
       <div className="btn btn-primary results-btn" data-toggle="modal" data-target="#exampleModal" onClick={() => changePage(-1)}><BsFillCaretLeftFill/></div>
-      <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={handleSubmit}>Submit</button>
+      <button type="button" className="btn btn-primary submit-speech" data-toggle="modal" data-target="#exampleModal" onClick={handleSubmit}>Submit</button>
     </Modal.Footer>
   </>
   )
