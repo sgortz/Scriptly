@@ -10,3 +10,21 @@ export const SpeechDiv = styled.div`
   padding: 1vw;
   font-family: 'Zilla Slab', serif;
 `;
+
+export const SharedButton = style.button`
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 29px;
+  font-family: 'Hanuman', serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  padding: 7px 29px;
+  &:hover {
+    transition: 300ms ease-in-out;
+    color: white;
+    background-color: #66BDD0;
+  }
+`
+
+

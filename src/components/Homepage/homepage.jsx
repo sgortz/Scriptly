@@ -12,6 +12,7 @@ import Thinking from './thinking.jsx';
 import SignIn from '../SignIn.jsx';
 import styled from 'styled-components';
 
+
 const Homepage = (props) => {
 
   useEffect(() => {
