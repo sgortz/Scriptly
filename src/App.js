@@ -16,7 +16,7 @@ function App() {
 
   const currentPage = page === 'landing' ? <Landing setPage={setPage}/> : <Homepage />
 
- 
+
   return (
     <div className="app-container">
 
