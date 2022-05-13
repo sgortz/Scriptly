@@ -70,13 +70,15 @@ export default function Result4({ changePage, emotions, emotionCount }) {
   const handleSubmit = () => {
     let url = '';
     setShowResults(false);
+    if (formattedValue) {
+      if (!editBooleanValue) {
+        url = `/speech/`
+      } else if (editBooleanValue) {
+        url = `/speech/${currentId}`
+      } else {
+        return 'Invalid submit';
+      }
 
-    if (!editBooleanValue) {
-      url = `/speech/`
-    } else if (editBooleanValue) {
-      url = `/speech/${currentId}`
-    } else {
-      return 'Invalid submit';
     }
 
     axios.post(url, {
