@@ -73,12 +73,14 @@ export default function Results(props) {
             emotionCount={emotionCount}
             changePage={changeResultPage}
             neutralCount={displayedAnalysis.totalCount - emotionCount}
+            emotions={displayedAnalysis}
           /> :
           resultPage === 2 ?
           <Result2
             changePage={changeResultPage}
             strongEmotions={strongestEmotions}
-            weakEmotions={weakestEmotions}
+            emotions={displayedAnalysis}
+            emotionCount={emotionCount}
           /> :
           resultPage === 3 ?
           <Result3
@@ -89,7 +91,7 @@ export default function Results(props) {
           : <Result4
             changePage={changeResultPage}
             emotions={displayedAnalysis}
-            wordsCount={displayedAnalysis.totalCount}
+            emotionCount={emotionCount}
           />
         }
       </Modal>

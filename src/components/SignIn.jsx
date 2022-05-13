@@ -81,7 +81,9 @@ function SignIn({ setPage, cName ,text }) {
               <>
                 <TopLoginContainer>
                   <input type="text" onChange={(e) => setUsername(e.target.value)} placeholder="email" />
-                  <input type="password" onChange={(e) => setPassword(e.target.value)} placeholder="password" />
+                  <input type="password" onChange={(e) => setPassword(e.target.value)} placeholder="password" onKeyPress={(e) => {
+                    e.key === 'Enter' && emailLogin()
+                  }}/>
                   <Button variant="primary" onClick={() => signInOrLogin(username, password)}>{!signUpStatus ? 'Log-in' : 'Sign up'}</Button>
                   <center>or</center>
                   <button type="button" className="btn btn-primary" onClick={() => googleLogin()}><img src={icon} alt=''/>Log-in with Google</button>

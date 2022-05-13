@@ -1,6 +1,4 @@
 const controller = require ('../database/controllers/scriptly.js')
-
-// eslint-disable-next-line no-undef
 module.exports = {
   getAllUsersFunction: (req, res) => {
     const { page, count } = req.query
