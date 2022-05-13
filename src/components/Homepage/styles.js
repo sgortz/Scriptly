@@ -27,7 +27,7 @@ export const SharedButton = styled.button`
   }
 `
 export const Tabs = styled.button`
-  background-color: red;
-  width: 33vw;
+  width: 25vw;
+  border: 4 solid black;
 `
 

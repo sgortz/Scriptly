@@ -11,6 +11,7 @@ import Results from '../../results/Results.jsx';
 import SignIn from '../SignIn.jsx';
 import styled from 'styled-components';
 import {SharedButton, Tabs} from './styles.js';
+import './bootstrap.css';
 
 
 const Homepage = () => {
