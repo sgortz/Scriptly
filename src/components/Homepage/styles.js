@@ -28,5 +28,6 @@ export const SharedButton = styled.button`
 `
 export const Tabs = styled.button`
   background-color: red;
+  width: 33vw;
 `
 
