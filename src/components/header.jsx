@@ -5,7 +5,6 @@ import { GiQuillInk } from 'react-icons/gi';
 import { Link } from 'react-router-dom';
 import './Landing/Landing.css';
 import SignIn from './SignIn.jsx';
-import MeetTeam from './Landing/MeetTeam.jsx';
 
 function Header({ setPage,showTeam,setShowTeam }) {
   //const [showTeam, setShowTeam] = useState(false)
