@@ -42,7 +42,8 @@ export default function Result2({ changePage, strongEmotions, emotions, emotionC
               <div className="front-card">
                 <BsFillEmojiAngryFill className="emotion-icon"/>
                 <h3>Fearful</h3>
-                <p className="score"><BsFillHandThumbsDownFill className="bad-score"/>{percentages.anger}%
+                <p className="score">{
+                  strongEmotions.indexOf('anger') !== - 1 || percentages.anger >= 13 ? <BsFillHandThumbsDownFill className="bad-score"/> :  <BsFillHandThumbsUpFill className="good-score"/>}{percentages.anger}%
                 </p>
                 <p className="result-text">
                 {
@@ -76,7 +77,8 @@ export default function Result2({ changePage, strongEmotions, emotions, emotionC
               <div className="front-card">
                 <BsFillEmojiFrownFill className="emotion-icon"/>
                 <h3>Negative</h3>
-                <p className="score"><BsFillHandThumbsDownFill className="bad-score"/>{percentages.negative}%
+                <p className="score">{
+                  strongEmotions.indexOf('negative') !== - 1 || percentages.negative >= 15 ? <BsFillHandThumbsDownFill className="bad-score"/> :  <BsFillHandThumbsUpFill className="good-score"/>}{percentages.negative}%
                 </p>
                 <p className="result-text">
                 {
@@ -110,7 +112,8 @@ export default function Result2({ changePage, strongEmotions, emotions, emotionC
               <div className="front-card">
                 <BsFillEmojiSmileFill className="emotion-icon"/>
                 <h3>Positive</h3>
-                <p className="score"><BsFillHandThumbsUpFill className="good-score"/>{percentages.positive}%
+                <p className="score">{
+                  strongEmotions.indexOf('positive') !== - 1 || percentages.positive > 18 ? <BsFillHandThumbsUpFill className="good-score"/> :  <BsFillHandThumbsDownFill className="bad-score"/>}{percentages.positive}%
                 </p>
                 <p className="result-text">
                 {
@@ -145,7 +148,8 @@ export default function Result2({ changePage, strongEmotions, emotions, emotionC
               <div className="front-card">
                 <BsFillEmojiLaughingFill className="emotion-icon"/>
                 <h3>Joyful</h3>
-                <p className="score"><BsFillHandThumbsUpFill className="good-score"/>{percentages.joy}%
+                <p className="score">{
+                  strongEmotions.indexOf('joy') !== - 1 || percentages.joy > 13 ? <BsFillHandThumbsUpFill className="good-score"/> :  <BsFillHandThumbsDownFill className="bad-score"/>}{percentages.joy}%
                 </p>
                 <p className="result-text">
                 {
@@ -180,7 +184,8 @@ export default function Result2({ changePage, strongEmotions, emotions, emotionC
               <div className="front-card">
                 <BsFillEmojiWinkFill className="emotion-icon"/>
                 <h3>Trustful</h3>
-                <p className="score"><BsFillHandThumbsUpFill className="good-score"/>{percentages.trust}%
+                <p className="score">{
+                  strongEmotions.indexOf('trust') !== - 1 || percentages.trust > 18 ? <BsFillHandThumbsUpFill className="good-score"/> :  <BsFillHandThumbsDownFill className="bad-score"/>}{percentages.trust}%
                 </p>
                 <p className="result-text">
                 {
