@@ -70,13 +70,15 @@ export default function Result4({ changePage, emotions, emotionCount }) {
   const handleSubmit = () => {
     let url = '';
     setShowResults(false);
+    if (formattedValue) {
+      if (!editBooleanValue) {
+        url = `/speech/`
+      } else if (editBooleanValue) {
+        url = `/speech/${currentId}`
+      } else {
+        return 'Invalid submit';
+      }
 
-    if (!editBooleanValue) {
-      url = `/speech/`
-    } else if (editBooleanValue) {
-      url = `/speech/${currentId}`
-    } else {
-      return 'Invalid submit';
     }
 
     axios.post(url, {
@@ -137,7 +139,7 @@ export default function Result4({ changePage, emotions, emotionCount }) {
 
         <div className="opposite-chart trust-representation">
           <h3>Trust</h3>
-          <span>{ Math.abs(Math.floor((trust/emotionCount) * 100)) }%</span>
+          <span>{ trust ? Math.floor((trust/emotionCount) * 100) : 0 }%</span>
           <span>of all tones</span>
         </div>
 

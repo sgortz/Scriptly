@@ -28,7 +28,6 @@ const SpeechView = () => {
   const [yValue, setY] = useState(0);
 
   const handleEdit = (index) => {
-    console.log(index)
     setEdited(reversed[index].speeches[0].body);
     setCurrent(reversed[index].speeches[0].body);
     setEditBoolean(true)
@@ -43,9 +42,11 @@ const SpeechView = () => {
   }
 
   const onHover = (event) => {
-    setX(event.screenX)
-    setY(event.screenY)
-    setToggle(true)
+    let xOffset = event.screenX + 100;
+    let yOffset = event.screenY + 100;
+    setX(xOffset);
+    setY(yOffset);
+    setToggle(true);
   }
 
   const onLeave = () => {
