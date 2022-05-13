@@ -19,7 +19,6 @@ module.exports = {
   },
   addSpeech: (inputs) => {
     const { name, email, body, url, title, totalCount, positive, negative, trust, anger, joy } = inputs;
-    console.log('inputs', inputs)
     if (typeof (body) === 'string') {
       const newSpeech = new Speech({
         name,
@@ -56,7 +55,6 @@ module.exports = {
     return Speech.findByIdAndDelete(id)
   },
   updateOneSpeech: (params, inputs) => {
-    console.log('params', params, 'inputs', inputs)
     const id = params.id;
     const { title, body, email, url, totalCount, positive, negative, trust, anger, joy } = inputs;
 
@@ -162,7 +160,6 @@ module.exports = {
         let result = data.map(obj => {
           let temp = obj.speeches.filter(body => {
             body.body = body.body === null ? '' : body.body;
-            console.log('body.body', body.body)
             return body.body.toLowerCase().includes(search.toLowerCase())
           });
           temp.forEach((speech) => {
