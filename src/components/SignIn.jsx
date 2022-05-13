@@ -7,7 +7,7 @@ import {
   createAccount, signInWithGoogle, logOut, signInWithEmail,
 } from '../auth/Firebase';
 
-function SignIn({ setPage }) {
+function SignIn({ setPage, cName ,text }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [signUpStatus, setSignUpStatus] = useState(false);
@@ -21,9 +21,12 @@ function SignIn({ setPage }) {
       await logOut();
       setLoginStatus(false);
       setPage('landing');
+      setShow(false);
+      setSignUpStatus(false);
+    } else {
+      setShow(true);
+      setSignUpStatus(false);
     }
-    setShow(true);
-    setSignUpStatus(false);
   };
 
   const googleLogin = async () => {
@@ -55,8 +58,8 @@ function SignIn({ setPage }) {
 
   return (
     <>
-      <Button variant="primary" className="landingButton" onClick={handleShow}>
-        {loginStatus ? 'log out' : 'Show me what I could achieve'}
+      <Button variant="outline-dark" className={cName} onClick={handleShow}>
+        {loginStatus ? 'log out' : 'JOIN NOW'}
       </Button>
 
       <Modal show={show} onHide={handleClose}>
