@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { useRecoilState } from 'recoil';
-import { editedSpeechText, resultsModal, updateTitle } from '../../atoms.jsx';
+import { editedSpeechText, resultsModal, updateTitle, formattedSpeech } from '../../atoms.jsx';
 import { useDropzone } from 'react-dropzone'
 import { BiLeftArrowAlt } from 'react-icons/bi'
 import './FileUploaderModal.css';
@@ -14,6 +14,8 @@ function FileUploaderModal(props) {
   const [showResults, setShowResults] = useRecoilState(resultsModal);
   const [page, setPage] = useState(1);
   const [titleValue, setTitle] = useRecoilState(updateTitle);
+  const [formattedValue, setFormatted] = useRecoilState(formattedSpeech);
+
 
   const onDrop = useCallback(acceptedFiles => {
     acceptedFiles.map(file => {
@@ -37,9 +39,12 @@ function FileUploaderModal(props) {
   ));
 
   const uploadFile = (e) => {
+    console.log(files[0])
     e.preventDefault();
     // sending to speech analysis
     setEdited(files[0])
+    setFormatted(files[0])
+    console.log(editedValue, 'edited', formattedValue, 'formatted')
     // send the info to results' modal
     setShowResults(true);
   }
