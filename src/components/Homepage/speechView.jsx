@@ -24,6 +24,8 @@ const SpeechView = () => {
   const reversed = useRecoilValue(reverser)
 
   const [toggleValue, setToggle] = useState(false);
+  const [xValue, setX] = useState(0);
+  const [yValue, setY] = useState(0);
 
   const handleEdit = (index) => {
     console.log(index)
@@ -41,7 +43,8 @@ const SpeechView = () => {
   }
 
   const onHover = (event) => {
-    console.log(event)
+    setX(event.screenX)
+    setY(event.screenY)
     setToggle(true)
   }
 
@@ -69,13 +72,6 @@ const SpeechView = () => {
                 style={{width: '20vw', textAlign: 'center', justifyContent: 'center'}}>{value.speeches[0].title}
                 </SpeechDiv>
 
-              <Toast style={{width: '15vw'}} onClose={() => setToggle(false)} show={toggleValue} >
-                <Toast.Header>
-                  <strong className="me-auto">Scriptly Notification</strong>
-                </Toast.Header>
-                <Toast.Body>Click for complete version history</Toast.Body>
-              </Toast>
-
               <SpeechDiv
                 key={Math.random()}
                 style={{width: '70vw'}}
@@ -98,6 +94,19 @@ const SpeechView = () => {
           )
         })}
       </div>
+      <Toast style={{
+        width: '15vw',
+        position: 'absolute',
+        left: `${xValue}px`,
+        top: `${yValue}px`}}
+        onClose={() => setToggle(false)}
+        show={toggleValue}
+        delay={2000} autohide>
+        <Toast.Header>
+          <strong className="me-auto">Scriptly Notification</strong>
+        </Toast.Header>
+        <Toast.Body>Click for complete version history</Toast.Body>
+      </Toast>
     </div>
   )
 }
