@@ -1,16 +1,26 @@
 import React, {useState, useEffect} from 'react';
 import ConditionalWindow from './conditionalWindow.jsx';
 import {useRecoilState} from 'recoil';
-import {pageView, allSpeeches, editedSpeechText, updateTitle, resultsModal, currentSpeechText, currentAnalysis} from '../../atoms.jsx';
+import {
+  pageView, allSpeeches, editedSpeechText,
+  updateTitle, resultsModal, currentSpeechText,
+  currentAnalysis, currentSpeechId} from '../../atoms.jsx';
 import axios from 'axios';
 import FileUploaderModal from "../file-uploader-modal/FileUploaderModal.jsx";
 import Results from '../../results/Results.jsx';
+import SignIn from '../SignIn.jsx';
+import styled from 'styled-components';
+import {SharedButton} from './styles.js';
 
-const Homepage = () => {
+
+const Homepage = (props) => {
 
   useEffect(() => {
     getSpeeches();
-    }, []);
+    if (pageValue === 'speech') {
+      return setActiveTab(1);
+    }
+  }, [pageValue]);
 
   const [activeTab, setActiveTab] = useState(1);
   const [showUploader, setShowUploader] = useState(false);
@@ -23,8 +33,9 @@ const Homepage = () => {
   const [titleValue, setTitle] = useRecoilState(updateTitle);
   const [currentValue, setCurrent] = useRecoilState(currentSpeechText);
   const [analysisValue, setAnalysis] = useRecoilState(currentAnalysis);
+  const [currentId, setCurrentId] = useRecoilState(currentSpeechId);
 
-  const email = localStorage.email; // replace with live email
+  const email = localStorage.email;
 
   const getSpeeches = () => {
     axios.get(`/history/${email}`)
@@ -36,33 +47,18 @@ const Homepage = () => {
     })
   }
 
-
-  const testingSubmission = () => {
+  const handleAnalyze = () => {
     if (editedValue.length > 0 && titleValue.length > 0) {
-      axios.post('/speech', {body: `${editedValue}`, title: `${titleValue}`, name: 'Jonathan Will Atwood Sr.', email: `${email}`})
-      .then((response) => {
-        console.log('this is a post success')
-      })
-      .catch((error) => {
-        console.log(error, 'this is a post error')
-      })
-    } else {
-      alert('Invalid Entry - Title and Body Must Exist')
+      setShowResults(true);
     }
   }
 
-  const handleSubmit = () => {
-    setShowResults(true)
-  }
-
-
-
   return (
     <div id="homepage">
-      <button onClick={() => { setShowUploader(true) }}>Upload</button>
+      <SharedButton onClick={() => { setShowUploader(true) }}>Upload</SharedButton>
       <FileUploaderModal onClose={e => setShowUploader(false)} show={showUploader} />
 
-      <button onClick={() => { handleSubmit() }}>Submit</button>
+      <SharedButton onClick={() => { handleAnalyze() }}>Analyze</SharedButton>
       <Results show={showResults}  onClose={e => setShowResults(false)}/>
 
       <ul className="nav nav-tabs mb-3" id="myTab0" role="tablist">
@@ -115,11 +111,6 @@ const Homepage = () => {
       <div style={{ height: '80vw', width: '90vw', border: '3px solid black', overflow: 'auto' }}>
         <ConditionalWindow />
       </div>
-      <button onClick={() => {
-        testingSubmission()
-      }}>
-        Test Button
-      </button>
     </div>
   )
 }

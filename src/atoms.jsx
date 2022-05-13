@@ -19,7 +19,7 @@ export const currentSpeechText = atom({
 
 export const editedSpeechText = atom({
   key: 'editedSpeechText',
-  default: 'a',
+  default: '',
 })
 
 export const updateTitle = atom({
@@ -35,29 +35,50 @@ export const resultsModal = atom({
 export const currentAnalysis = atom({
   key: 'currentAnalysis',
   default: {
-    fear: 0,
+    anger: 0,
     joy: 0,
     trust: 0,
     positive: 0,
     negative: 0,
-    wordCount: 0,
+    totalCount: 0,
   },
 })
 
 export const currentAnalysis2 = atom({
   key: 'currentAnalysis2',
   default: {
-    fear: 0,
+    anger: 0,
     joy: 0,
     trust: 0,
     positive: 0,
     negative: 0,
-    wordCount: 0,
+    totalCount: 0,
   },
 })
 
 export const currentSpeechId = atom({
   key: 'currentSpeechId',
   default: '627a9e00de163a667afa07a1',
+})
 
+export const editBoolean = atom({
+  key: 'editBoolean',
+  default: false,
+})
+
+export const reverser = selector({
+  key: 'reverser',
+  get: ({get}) => {
+    let array = get(allSpeeches)
+    let flipped = []
+    for (let x = array.length - 1; x >= 0; x--) {
+      flipped.push(array[x])
+    }
+    return flipped;
+  }
+})
+
+export const formattedSpeech = atom({
+  key: 'formattedSpeech',
+  default: '',
 })

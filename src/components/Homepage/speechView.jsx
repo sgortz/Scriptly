@@ -1,50 +1,117 @@
-import React from 'react';
-import {currentSpeechText, pageView, allSpeeches, editedSpeechText, currentSpeechId} from '../../atoms.jsx';
-import {useRecoilState} from 'recoil';
+import React, {useState} from 'react';
+import {
+  currentSpeechText, pageView,
+  allSpeeches, editedSpeechText,
+  currentSpeechId, updateTitle,
+  editBoolean, reverser} from '../../atoms.jsx';
+import {useRecoilState, useRecoilValue} from 'recoil';
+import moment from 'moment';
+import {SpeechDiv} from './styles.js';
+import { GiQuillInk } from "react-icons/gi"
+import { Toast } from 'react-bootstrap';
+
+
 
 const SpeechView = () => {
 
   const [currentValue, setCurrent] = useRecoilState(currentSpeechText);
   const [pageValue, setPage] = useRecoilState(pageView);
-  const [speechValue, setSpeechValue] = useRecoilState(allSpeeches);
   const [editedValue, setEdited] = useRecoilState(editedSpeechText);
+  const [speechValue, setSpeechValue] = useRecoilState(allSpeeches);
   const [currentId, setCurrentId] = useRecoilState(currentSpeechId);
-  console.log(speechValue, 'this is speechvalue')
+  const [titleValue, setTitle] = useRecoilState(updateTitle);
+  const [editBooleanValue, setEditBoolean] = useRecoilState(editBoolean);
+  const reversed = useRecoilValue(reverser)
+
+  const [toggleValue, setToggle] = useState(false);
+  const [xValue, setX] = useState(0);
+  const [yValue, setY] = useState(0);
 
   const handleEdit = (index) => {
-    setEdited(speechValue[index].speeches[0].body);
+    console.log(index)
+    setEdited(reversed[index].speeches[0].body);
+    setCurrent(reversed[index].speeches[0].body);
+    setEditBoolean(true)
     setPage('text');
+    setCurrentId(reversed[index]._id)
+    setTitle(reversed[index].title)
   }
 
-  const displayHistory = (value) => {
+  const displayHistory = (value) =>{
     setCurrentId(value._id)
     setPage('history')
-    console.log(currentId, 'this is current id')
   }
 
+  const onHover = (event) => {
+    setX(event.screenX)
+    setY(event.screenY)
+    setToggle(true)
+  }
 
+  const onLeave = () => {
+    setToggle(false)
+  }
 
   return (
     <div>
       <div>
-        {speechValue.map((value, index) => {
+        {reversed.map((value, index) => {
           let snippet = value.speeches[0].body.slice(0, 200);
           return (
-            <div style={{display: 'flex'}} onClick={() => {displayHistory(value)}}>
-              <div style={{border: '3px solid black', width: '40vw'}}>{value.speeches[0].date}</div>
-              <div style={{border: '3px solid black', width: '40vw'}}>{value.speeches[0].title}</div>
-              <div key={index} style={{border: '3px solid black'}}>{snippet}...</div>
-              <button onClick={() => {
+            <div style={{display: 'flex'}} >
+
+              <SpeechDiv
+
+                key={Math.random()}
+                style={{width: '10vw'}}
+                >{moment(value.speeches[0].date).format("dddd, MMMM Do YYYY")}
+                </SpeechDiv>
+
+              <SpeechDiv
+                key={Math.random()}
+                style={{width: '20vw', textAlign: 'center', justifyContent: 'center'}}>{value.speeches[0].title}
+                </SpeechDiv>
+
+              <SpeechDiv
+                key={Math.random()}
+                style={{width: '70vw'}}
+                onClick={() => {displayHistory(value)}}
+                onMouseOver={() => {
+                  onHover(event);
+                }}
+                onMouseLeave={() => {
+                  onLeave();
+                }}
+                >{snippet}...
+              </SpeechDiv>
+
+              <GiQuillInk style={{
+                height: '3vw', width: '3vw', display: 'flex', alignItems: 'center',
+                justifyContent: 'center', flexDirection: 'column'}} onClick={() => {
                 handleEdit(index)
-              }}>Edit</button>
+              }}>Edit</GiQuillInk>
             </div>
           )
         })}
       </div>
+      <Toast style={{
+        width: '15vw',
+        position: 'absolute',
+        left: `${xValue}px`,
+        top: `${yValue}px`}}
+        onClose={() => setToggle(false)}
+        show={toggleValue}
+        delay={2000} autohide>
+        <Toast.Header>
+          <strong className="me-auto">Scriptly Notification</strong>
+        </Toast.Header>
+        <Toast.Body>Click for complete version history</Toast.Body>
+      </Toast>
     </div>
   )
 }
 
 export default SpeechView;
+
 
 

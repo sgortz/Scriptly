@@ -4,6 +4,7 @@
   left: 0;
   top: 0;
   right: 0;
+  z-index: 10;
   bottom: 0;
   display: flex;
   align-items: center;
@@ -44,16 +45,12 @@
   transition: all 0.3s ease-in-out;
 }
 
+
 .file-uploader-area {
-  padding-bottom: 62px;
-}
-
-
-.file-uploader-area,
-.results-area {
   background-color: white;
   margin: 42px 34px 31px;
   padding: 45px;
+  padding-bottom: 62px;
 }
 
 .file-uploader {
@@ -65,18 +62,24 @@
   text-align: center;
 }
 
-.submit-speech-button,
-.word-analyzed {
+.submit-speech-button {
   background-color: #66BDD0;
+}
+
+.uploaded-file-info {
+  list-style: none;
+}
+
+.speech-title-input {
+  display: inline;
+  width: 70%;
+  padding: 7px;
 }
 
 .submit-speech-button {
   border: none;
+  border-radius: 0.25rem;
   padding: 8px 25px;
   float: right;
   clear: right;
-}
-
-.word-analyzed {
-  color: white
 }
