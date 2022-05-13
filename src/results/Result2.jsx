@@ -19,12 +19,28 @@ export default function Result2({ changePage, strongEmotions, emotions, emotionC
 
   useEffect(() => {
     setPercentages({
-      anger: Math.abs(Math.floor((anger / emotionCount) * 100)),
-      negative: Math.abs(Math.floor((negative / emotionCount) * 100)),
-      positive: Math.abs(Math.floor((positive / emotionCount) * 100)),
-      joy: Math.abs(Math.floor((joy / emotionCount) * 100)),
-      trust: Math.abs(Math.floor((trust / emotionCount) * 100)),
+      anger: Math.floor((anger / emotionCount) * 100),
+      negative: Math.floor((negative / emotionCount) * 100),
+      positive: Math.floor((positive / emotionCount) * 100),
+      joy: Math.floor((joy / emotionCount) * 100),
+      trust: Math.floor((trust / emotionCount) * 100),
     })
+
+    if (!anger) {
+      setPercentages({anger: 0})
+    }
+    if (!negative) {
+      setPercentages({negative: 0})
+    }
+    if (!positive) {
+      setPercentages({positive: 0})
+    }
+    if (!joy) {
+      setPercentages({joy: 0})
+    }
+    if (!trust) {
+      setPercentages({trust: 0})
+    }
   }, [emotions])
 
 
@@ -52,7 +68,7 @@ export default function Result2({ changePage, strongEmotions, emotions, emotionC
                   : percentages.anger >= 13 ?
                     'Careful, your speech still is considerably fearful.'
                   :
-                    'Great! Your speech does not lean too much towards ferfulness.'
+                    'Great! Your speech does not lean too much towards fearfulness.'
                 }
                 </p>
               </div>

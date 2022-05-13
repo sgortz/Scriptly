@@ -73,6 +73,7 @@ export default function Results(props) {
             emotionCount={emotionCount}
             changePage={changeResultPage}
             neutralCount={displayedAnalysis.totalCount - emotionCount}
+            emotions={displayedAnalysis}
           /> :
           resultPage === 2 ?
           <Result2
