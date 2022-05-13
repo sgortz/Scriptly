@@ -12,7 +12,10 @@ import SignIn from '../SignIn.jsx';
 import styled from 'styled-components';
 import {SharedButton, Tabs} from './styles.js';
 import './bootstrap.css';
+<<<<<<< HEAD
 import background from './wrinkled-crumpled-paper-1196278.jpg';
+=======
+>>>>>>> main
 
 
 const Homepage = () => {
