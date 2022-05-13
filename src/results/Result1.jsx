@@ -1,7 +1,8 @@
 import React from 'react';
 import { Chart as ChartJS, Legend, Tooltip, Title, ArcElement } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
-import { Modal, Container, Col, Row } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
+import { BsFillCaretLeftFill, BsFillCaretRightFill } from 'react-icons/bs';
 import './styles.css';
 
 export default function Result1({ wordsCount, emotionCount, changePage, neutralCount }) {
@@ -55,11 +56,11 @@ export default function Result1({ wordsCount, emotionCount, changePage, neutralC
       </div>
     </Modal.Body>
     <Modal.Footer className="results-footer">
-      <button type="button" className="btn btn-primary results-btn" data-toggle="modal" data-target="#exampleModal" onClick={() => changePage(1)}>{'<'}</button>
+      <div></div>
 
       <p>{`Out of the ${wordsCount} words of your speech, ${emotionCount} have a strong tonality`}</p>
 
-      <button type="button" className="btn btn-primary results-btn" data-toggle="modal" data-target="#exampleModal" onClick={() => changePage(1)}>{'>'}</button>
+      <div className="btn btn-primary results-btn" data-toggle="modal" data-target="#exampleModal" onClick={() => changePage(1)}><BsFillCaretRightFill/></div>
     </Modal.Footer>
   </>
   )

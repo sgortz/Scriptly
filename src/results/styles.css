@@ -16,12 +16,18 @@
 }
 
 .results-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   border-radius: 50%;
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   background-color: #fff;
   border-color: #fff;
   color: #222f3e;
+
+  padding: 0;
 }
 
 .results-btn:hover {
@@ -212,5 +218,58 @@ p.score {
   font-family: 'Harmattan', sans-serif;
   font-size: 1rem;
   white-space: pre-line;
+}
+
+/************ Results 4 ************/
+
+.results4-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 20px 0;
+}
+
+.results4-container h3 {
+  font-family: 'Hanuman', serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-align: center;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+.opposite-chart {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 5px;
+
+
+  box-shadow: 1px 1px 1px 1px rgb(0 0 0 / 4%);
+  background-color: rgba(112, 161, 255, 0.02);
+  border-radius: 10px;
+}
+
+.opposite-chart h3 {
+  margin-top: 30px;
+}
+
+.trust-representation {
+  background-color: #fff;
+  box-shadow: none;
+  border-top: 0.15rem dashed black;
+  border-bottom: 0.15rem dashed black;
+  border-radius: 0;
+
+  margin-left: 50px;
+  padding: 15px 70px 35px 70px;
+}
+
+.trust-representation span:first-of-type {
+  font-family: 'Hanuman', serif;
+  font-size: 2rem;
 }
 

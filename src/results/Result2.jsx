@@ -8,6 +8,8 @@ import {
   BsFillEmojiFrownFill,
   BsFillEmojiWinkFill,
   BsFillHandThumbsUpFill,
+  BsFillCaretLeftFill,
+  BsFillCaretRightFill,
 } from 'react-icons/bs';
 
 export default function Result2({ changePage, strongEmotions, emotions }) {
@@ -86,9 +88,11 @@ export default function Result2({ changePage, strongEmotions, emotions }) {
         </div>
       </Modal.Body>
       <Modal.Footer className="results-footer">
-        <p>{`Your speech mainly convey a ${strongEmotions[0]} tone.`}</p>
-        <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={() => changePage(-1)}>Previous</button>
-        <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={() => changePage(1)}>Next</button>
+      <div className="btn btn-primary results-btn" data-toggle="modal" data-target="#exampleModal" onClick={() => changePage(-1)}><BsFillCaretLeftFill/></div>
+
+      {/* <p>{`Out of the ${wordsCount} words of your speech, ${emotionCount} have a strong tonality`}</p> */}
+
+      <div className="btn btn-primary results-btn" data-toggle="modal" data-target="#exampleModal" onClick={() => changePage(1)}><BsFillCaretRightFill/></div>
       </Modal.Footer>
     </>
   )

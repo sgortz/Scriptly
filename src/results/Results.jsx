@@ -89,7 +89,7 @@ export default function Results(props) {
           : <Result4
             changePage={changeResultPage}
             emotions={displayedAnalysis}
-            wordsCount={displayedAnalysis.totalCount}
+            emotionCount={emotionCount}
           />
         }
       </Modal>
