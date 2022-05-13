@@ -65,9 +65,10 @@ margin-right: 20%;
 .history-list-container {
   display: flex;
   flex-direction: column;
+  background: linear-gradient(to top, #DEF6F8, #8fe4eb);
   width: 90vw;
   padding: 25px;
-  height: 100vh;
+  height: 80vh;
 }
 
 .speech-history-title {
@@ -88,7 +89,7 @@ margin-right: 20%;
 }
 
 .speech-list-header{
-  margin: 0 auto;
+
 }
 
 .speech-list-header h5, h6{
@@ -124,7 +125,3 @@ margin-right: 20%;
   height: 130px;
   width: auto;
 }
-
-/* .file-uploader-back-button:hover {
-  cursor: pointer;
-} */

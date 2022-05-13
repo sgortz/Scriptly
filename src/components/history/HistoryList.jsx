@@ -50,7 +50,7 @@ function HistoryList(props) {
     const sumVals = lib.sumToneValues(data);
     return (
       <div className="speech-list-header">
-        <h5>SpeechHistory</h5>
+        <h5>Version History</h5>
         <div className="doughnut-medium ">
           <DoughnutChart
             analysis={sumVals}
