@@ -5,8 +5,9 @@ import { Modal, Container, Col, Row } from 'react-bootstrap';
 import { useRecoilState } from 'recoil';
 import { editedSpeechText, updateTitle, currentSpeechId, editBoolean, pageView, allSpeeches, resultsModal, formattedSpeech } from './../atoms.jsx';
 import axios from 'axios';
+import { BsFillCaretLeftFill, BsFillCaretRightFill } from 'react-icons/bs';
 
-export default function Result4({ changePage, emotions, wordsCount }) {
+export default function Result4({ changePage, emotions, emotionCount }) {
   const { positive, negative, joy, anger, trust, neutral } = emotions;
 
   const [editedValue, setEdited] = useRecoilState(editedSpeechText);
@@ -27,9 +28,10 @@ export default function Result4({ changePage, emotions, wordsCount }) {
       {
         data: [positive, negative],
         backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
           'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
         ],
+        borderWidth: 0,
       },
     ],
   };
@@ -40,9 +42,10 @@ export default function Result4({ changePage, emotions, wordsCount }) {
       {
         data: [joy, anger],
         backgroundColor: [
-          'rgba(255, 206, 86, 0.2)',
           'rgba(75, 192, 192, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
         ],
+        borderWidth: 0,
       },
     ],
   };
@@ -112,40 +115,37 @@ export default function Result4({ changePage, emotions, wordsCount }) {
     Tone analysis 4/4
     </Modal.Header>
     <Modal.Body>
-      <Container>
-        <Row>
-          <Col>
-            <div style={{position: 'relative'}}>
-              <h3>Positive vs Negative</h3>
-              <Doughnut
-                data={dataChart1}
-                options={options}
-                aria-label="Positive vs Negative Emotions weight"
-              />
-            </div>
-          </Col>
-          <Col>
-            <div style={{position: 'relative'}}>
-              <h3>Joy vs Fear</h3>
-              <Doughnut
-                data={dataChart2}
-                options={options}
-                aria-label="Positive vs Negative Emotions weight"
-              />
-            </div>
-          </Col>
-          <Col>
-            <div style={{position: 'relative'}}>
-              <h3>Trust</h3>
-              <span>{ trust / wordsCount }%</span>
-            </div>
-          </Col>
-        </Row>
-      </Container>
+      <div className="results4-container">
+
+        <div className="opposite-chart">
+          <h3>Positive vs Negative</h3>
+          <Doughnut
+            data={dataChart1}
+            options={options}
+            aria-label="Positive vs Negative Emotions weight"
+          />
+        </div>
+
+        <div className="opposite-chart">
+          <h3>Joy vs Fear</h3>
+          <Doughnut
+            data={dataChart2}
+            options={options}
+            aria-label="Positive vs Negative Emotions weight"
+          />
+        </div>
+
+        <div className="opposite-chart trust-representation">
+          <h3>Trust</h3>
+          <span>{ Math.abs(Math.floor((trust/emotionCount) * 100)) }%</span>
+          <span>of all tones</span>
+        </div>
+
+      </div>
     </Modal.Body>
     <Modal.Footer className="results-footer">
-      <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={() => changePage(-1)}>Previous</button>
-      <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={handleSubmit}>Submit</button>
+      <div className="btn btn-primary results-btn" data-toggle="modal" data-target="#exampleModal" onClick={() => changePage(-1)}><BsFillCaretLeftFill/></div>
+      <button type="button" className="btn btn-primary submit-speech" data-toggle="modal" data-target="#exampleModal" onClick={handleSubmit}>Submit</button>
     </Modal.Footer>
   </>
   )
