@@ -47,9 +47,8 @@
 }
 
 .card-wrapper {
-  display: inline-block;
-  height: 400px;
-  min-height: 300px;
+  height: 80%;
+  min-height: 350px;
   width: 20%;
 
   margin: 5% 0.5rem;
@@ -133,6 +132,11 @@
 
 .good-score {
   color: #10ac84;
+  margin-right: 5px;
+}
+
+.bad-score {
+  color: #ac3710;
   margin-right: 5px;
 }
 

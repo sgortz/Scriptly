@@ -8,6 +8,7 @@ import {
   BsFillEmojiFrownFill,
   BsFillEmojiWinkFill,
   BsFillHandThumbsUpFill,
+  BsFillHandThumbsDownFill,
   BsFillCaretLeftFill,
   BsFillCaretRightFill,
 } from 'react-icons/bs';
@@ -29,17 +30,41 @@ export default function Result2({ changePage, strongEmotions, emotions }) {
 
           {/* Fear  */}
           <div className={ strongEmotions.indexOf('anger') !== - 1 ? 'card-wrapper main-tone' : 'card-wrapper'} id="anger" key={Math.random() * 1000}>
-            <div className="card-content-container">
-              <BsFillEmojiAngryFill className="emotion-icon"/>
-              <h3>Fearful</h3>
+            <div className="full-card">
+              <div className="front-card">
+                <BsFillEmojiAngryFill className="emotion-icon"/>
+                <h3>Fearful</h3>
+                <p className="score"><BsFillHandThumbsDownFill className="bad-score"/>{emotions.angry}
+                </p>
+                <p className="result-text">
+                  Great job, your speech mainly conveys a positive tone!
+                </p>
+              </div>
+              <div className="back-card">
+                <p className="result-text">
+                  <span>💡 Tips:</span> if you aim at convincing and reuniting your audience, consider slightly improving your Trustful tone score.
+                </p>
+              </div>
             </div>
           </div>
 
           {/* Negative */}
           <div className={ strongEmotions.indexOf('negative') !== - 1 ? 'card-wrapper main-tone' : 'card-wrapper'} id="negative" key={Math.random() * 1000}>
-            <div className="card-content-container">
-              <BsFillEmojiFrownFill className="emotion-icon"/>
-              <h3>Negative</h3>
+            <div className="full-card">
+              <div className="front-card">
+                <BsFillEmojiFrownFill className="emotion-icon"/>
+                <h3>Negative</h3>
+                <p className="score"><BsFillHandThumbsDownFill className="bad-score"/>{emotions.negative}
+                </p>
+                <p className="result-text">
+                  Great job, your speech mainly conveys a positive tone!
+                </p>
+              </div>
+              <div className="back-card">
+                <p className="result-text">
+                  <span>💡 Tips:</span> if you aim at convincing and reuniting your audience, consider slightly improving your Trustful tone score.
+                </p>
+              </div>
             </div>
           </div>
 
@@ -52,15 +77,13 @@ export default function Result2({ changePage, strongEmotions, emotions }) {
               <div className="front-card">
                 <BsFillEmojiSmileFill className="emotion-icon"/>
                 <h3>Positive</h3>
-                  <p className="score"><BsFillHandThumbsUpFill className="good-score"/>{emotions.positive}
-                  </p>
-                  <p className="result-text">
-                    Great job, your speech mainly conveys a positive tone!
-                  </p>
+                <p className="score"><BsFillHandThumbsUpFill className="good-score"/>{emotions.positive}
+                </p>
+                <p className="result-text">
+                  Great job, your speech mainly conveys a positive tone!
+                </p>
               </div>
               <div className="back-card">
-                <BsFillEmojiSmileFill className="emotion-icon"/>
-                <h3>Positive</h3>
                 <p className="result-text">
                   <span>💡 Tips:</span> if you aim at convincing and reuniting your audience, consider slightly improving your Trustful tone score.
                 </p>
@@ -70,17 +93,41 @@ export default function Result2({ changePage, strongEmotions, emotions }) {
 
           {/* Joy */}
           <div className={ strongEmotions.indexOf('joy') !== - 1 ? 'card-wrapper main-tone' : 'card-wrapper'} id="joy" key={Math.random() * 1000}>
-            <div className="card-content-container">
-              <BsFillEmojiLaughingFill className="emotion-icon"/>
-              <h3>Joyful</h3>
+            <div className="full-card">
+              <div className="front-card">
+                <BsFillEmojiLaughingFill className="emotion-icon"/>
+                <h3>Joyful</h3>
+                <p className="score"><BsFillHandThumbsUpFill className="good-score"/>{emotions.joy}
+                </p>
+                <p className="result-text">
+                  Great job, your speech mainly conveys a joyful tone!
+                </p>
+              </div>
+              <div className="back-card">
+                <p className="result-text">
+                  <span>💡 Tips:</span> if you aim at convincing and reuniting your audience, consider slightly improving your Trustful tone score.
+                </p>
+              </div>
             </div>
           </div>
 
           {/* Trust */}
           <div className={ strongEmotions.indexOf('trust') !== - 1 ? 'card-wrapper main-tone' : 'card-wrapper'} id="trust" key={Math.random() * 1000}>
-            <div className="card-content-container">
-              <BsFillEmojiWinkFill className="emotion-icon"/>
-              <h3>Trustful</h3>
+            <div className="full-card">
+              <div className="front-card">
+                <BsFillEmojiWinkFill className="emotion-icon"/>
+                <h3>Trustful</h3>
+                <p className="score"><BsFillHandThumbsUpFill className="good-score"/>{emotions.joy}
+                </p>
+                <p className="result-text">
+                  Great job, your speech mainly conveys a joyful tone!
+                </p>
+              </div>
+              <div className="back-card">
+                <p className="result-text">
+                  <span>💡 Tips:</span> if you aim at convincing and reuniting your audience, consider slightly improving your Trustful tone score.
+                </p>
+              </div>
             </div>
           </div>
           {/* {mainEmotions}
