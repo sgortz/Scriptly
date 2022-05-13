@@ -3,6 +3,8 @@
   background: linear-gradient(85deg, rgba(143,190,197,1) 0%, rgba(168,231,241,0.8883928571428571) 23%, rgba(255,255,255,1) 75%);
 }
 
-.nav-link.active {
-  background: red;
+.nav-tabs .nav-link.active {
+  border: 3px solid blue;
+  background: rgb(143,190,197);
+  background: linear-gradient(85deg, rgba(143,190,197,1) 0%, rgba(168,231,241,0.8883928571428571) 23%, rgba(255,255,255,1) 75%);
 }
