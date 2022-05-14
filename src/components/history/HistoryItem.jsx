@@ -10,14 +10,13 @@ function HistoryItem(props) {
   const [showResults, setShowResults] = useRecoilState(resultsModal);
   const [currentAnalysis, setAnalysis] = useRecoilState(currentAnalysis2);
 
+
   let bodyPreview = body.slice(0, 400);
 
   const sendResults = (e) => {
     e.preventDefault();
-    setShowResults(true);
     setAnalysis(analysis);
-    console.log(analysis, 'this is the analysis on click')
-    console.log('This should be currentAnalysis',currentAnalysis);
+    setTimeout(() => {setShowResults(true)}, 1000);
   }
 
   return (
