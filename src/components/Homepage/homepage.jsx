@@ -12,6 +12,7 @@ import SignIn from '../SignIn.jsx';
 import styled from 'styled-components';
 import {SharedButton, Tabs} from './styles.js';
 import './bootstrap.css';
+import paper from './paper.png';
 // import background from './wrinkled-crumpled-paper-1196278.jpg';
 
 
@@ -61,8 +62,8 @@ const Homepage = () => {
   }
 
   return (
-    <div id="homepage" >
-      <SharedButton onClick={() => { setShowUploader(true) }}>Upload</SharedButton>
+    <div id="homepage">
+      <SharedButton onClick={() => { setShowUploader(true); setTitle('') }}>Upload</SharedButton>
       <FileUploaderModal onClose={e => setShowUploader(false)} show={showUploader} />
 
       <SharedButton onClick={() => { handleAnalyze() }}>Analyze</SharedButton>
