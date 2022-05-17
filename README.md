@@ -59,7 +59,7 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 ### Live Demo
 
-Check out our website [here](https://scriptly.us)
+Check out our website [here](http://scriptly.us)
 
 
 <!-- GETTING STARTED -->
