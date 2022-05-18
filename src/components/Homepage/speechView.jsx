@@ -7,7 +7,7 @@ import {
 import {useRecoilState, useRecoilValue} from 'recoil';
 import moment from 'moment';
 import {SpeechDiv} from './styles.js';
-import { GiQuillInk } from "react-icons/gi"
+import { GiQuillInk } from "react-icons/gi";
 import { Toast } from 'react-bootstrap';
 
 
@@ -21,7 +21,7 @@ const SpeechView = () => {
   const [currentId, setCurrentId] = useRecoilState(currentSpeechId);
   const [titleValue, setTitle] = useRecoilState(updateTitle);
   const [editBooleanValue, setEditBoolean] = useRecoilState(editBoolean);
-  const reversed = useRecoilValue(reverser)
+  const reversed = useRecoilValue(reverser);
 
   const [toggleValue, setToggle] = useState(false);
   const [xValue, setX] = useState(0);

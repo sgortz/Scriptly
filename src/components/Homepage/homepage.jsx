@@ -13,7 +13,6 @@ import styled from 'styled-components';
 import {SharedButton, Tabs} from './styles.js';
 import './bootstrap.css';
 import paper from './paper.png';
-// import background from './wrinkled-crumpled-paper-1196278.jpg';
 
 
 const Homepage = () => {
