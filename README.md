@@ -2,7 +2,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="./scriptlyLogo.png">
+  <a href="http://scriptly.us">
     <img src="./scriptlyLogo.png" alt="Logo" width="80" height="80">
   </a>
 
