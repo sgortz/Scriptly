@@ -1,27 +1,107 @@
-# createapp-project
+<div id="top"></div>
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/othneildrew/Best-README-Template">
+    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  </a>
 
-Empty project.
+  <h3 align="center">Scriptly</h3>
 
-## Building and running on localhost
+  <p align="center">
+    Scriptly is web application to help you get a tone for your speeches.
+    <br />
+  </p>
+</div>
 
-First install dependencies:
 
-```sh
-npm install
-```
 
-To Run react development enviornment and server:
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+        <li>
+      <a href="#live-demo">Live Demo</a>
+    </li>
+    <li><a href="#installation">Installation</a></li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#dream-team">Dream Team</a></li>
+  </ol>
+</details>
 
-# npm run dev:react
-# npm run server
 
-Install MongoDB Atlas username/password variables in .env file
 
-```sh
-PASSWORD =
-USERNAME =
-```
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-## Credits
 
-Made with [createapp.dev](https://createapp.dev/)
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+### Built With
+
+This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+
+* [React.js](https://reactjs.org/)
+* [Recoil](https://recoiljs.org/)
+* [Bootstrap](https://getbootstrap.com)
+* [React Dropzone](https://react-dropzone.js.org/)
+* [Firebase](https://firebase.google.com/)
+* [Mongo Atlas](https://www.mongodb.com/)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+### Live Demo
+
+Check out our website [here](http://scriptly.us)
+
+
+<!-- GETTING STARTED -->
+## Installation
+
+1. Fork the repo
+2. Clone it locally with command:
+   ```sh
+   git clone https://github.com/your_username_/Scriptly.git
+   ```
+3. Install NPM packages
+   ```sh
+   npm install
+   ```
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+<!-- USAGE EXAMPLES -->
+## Usage
+1. To get the server running:
+   ```sh
+   npm run server
+   ```
+2. To build webpack:
+   ```sh
+   npm run dev:react
+   ```
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+<!-- CONTACT -->
+## Dream Team
+
+* Alisha Barraw - [LinkedIn Profile](https://twitter.com/your_username) - Add your website here
+* Amina Thiam - [LinkedIn Profile](https://twitter.com/your_username) - Add your website here
+* Jonathan Ghee - [LinkedIn Profile](https://twitter.com/your_username) - Add your website here
+* Peter Schaefferkoetter - [LinkedIn Profile](https://twitter.com/your_username) - Add your website here
+* Sabrina Gortz - [LinkedIn](https://www.linkedin.com/in/sabrinagortz/) - [GitHub](https://github.com/sgortz)
+* Trevor Edwards - [LinkedIn Profile](https://twitter.com/your_username) - email@example.com
+* Will Atwood - [LinkedIn Profile](https://twitter.com/your_username) - email@example.com
+* Yilin Liu - [LinkedIn Profile](https://twitter.com/your_username) - email@example.com
+
+<p align="right">(<a href="#top">back to top</a>)</p>

@@ -30,15 +30,15 @@ const SpeechView = () => {
   const handleEdit = (index) => {
     setEdited(reversed[index].speeches[0].body);
     setCurrent(reversed[index].speeches[0].body);
-    setEditBoolean(true)
+    setEditBoolean(true);
     setPage('text');
-    setCurrentId(reversed[index]._id)
-    setTitle(reversed[index].title)
+    setCurrentId(reversed[index]._id);
+    setTitle(reversed[index].title);
   }
 
   const displayHistory = (value) =>{
-    setCurrentId(value._id)
-    setPage('history')
+    setCurrentId(value._id);
+    setPage('history');
   }
 
   const onHover = (event) => {
@@ -86,7 +86,7 @@ const SpeechView = () => {
                 >{snippet}...
               </SpeechDiv>
 
-              <GiQuillInk style={{
+              <GiQuillInk key={Math.random()} style={{
                 height: '3vw', width: '3vw', display: 'flex', alignItems: 'center',
                 justifyContent: 'center', flexDirection: 'column'}} onClick={() => {
                 handleEdit(index)

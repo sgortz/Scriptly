@@ -21,6 +21,7 @@ export default function Results(props) {
   const [weakestEmotions, setWeakestEmotions] = useState([]);
 
   useEffect(() => {
+    setResultPage(1)
     if (textEditorAnalysis.totalCount) {
       setDisplayedAnalysis(textEditorAnalysis);
     } else {
