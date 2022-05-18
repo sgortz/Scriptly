@@ -2,7 +2,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
+  <a href=''>
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -98,7 +98,7 @@ Check out our website [here](http://scriptly.us)
 * Alisha Barraw - [LinkedIn Profile](https://twitter.com/your_username) - Add your website here
 * Amina Thiam - [LinkedIn Profile](https://twitter.com/your_username) - Add your website here
 * Jonathan Ghee - [LinkedIn Profile](https://twitter.com/your_username) - Add your website here
-* Peter Schaefferkoetter - [LinkedIn Profile](https://twitter.com/your_username) - Add your website here
+* Peter Schaefferkoetter - [LinkedIn Profile](https://www.linkedin.com/in/pschaefferkoetter/) - [GitHub](https://github.com/pschaefferkoetter)
 * Sabrina Gortz - [LinkedIn](https://www.linkedin.com/in/sabrinagortz/) - [GitHub](https://github.com/sgortz)
 * Trevor Edwards - [LinkedIn Profile](https://twitter.com/your_username) - email@example.com
 * Will Atwood - [LinkedIn Profile](https://twitter.com/your_username) - email@example.com
