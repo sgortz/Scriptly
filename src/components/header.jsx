@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { GiQuillInk } from 'react-icons/gi';
+// import { GiQuillInk } from 'react-icons/gi';
 import { Link } from 'react-router-dom';
 import './Landing/Landing.css';
-import SignIn from './SignIn.jsx';
+// import SignIn from './SignIn.jsx';
 
 function Header({ setPage,showTeam,setShowTeam }) {
   //const [showTeam, setShowTeam] = useState(false)
@@ -12,7 +12,7 @@ function Header({ setPage,showTeam,setShowTeam }) {
     <div className="header row">
       <div className="main-title col-3">
         {/* <Link to="/"> */}
-          <GiQuillInk />
+          {/* <GiQuillInk /> */}
           <h1>Scriptly</h1>
         {/* </Link> */}
       </div>
@@ -28,7 +28,7 @@ function Header({ setPage,showTeam,setShowTeam }) {
         </span>
         <span className="login-page">
           {/* <button className="login-button" type="button">LOGIN</button> */}
-          <SignIn setPage={setPage} cName={'login-button'} text={'Log-in'}/>
+          {/* <SignIn setPage={setPage} cName={'login-button'} text={'Log-in'}/> */}
         </span>
       </div>
       {/* {showTeam && <MeetTeam/>} */}

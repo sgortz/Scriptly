@@ -5,7 +5,7 @@ const teamMembers = [
   { name: 'Amina Thiam', photo: '75902083', github: 'amina197' },
   { name: 'Jonathan Ghee', photo: '96302073', github: 'JonathanGhee' },
   { name: 'Peter Schaefferkoetter', photo: '48839550', github: 'pschaefferkoetter' },
-  { name: 'Sabrina Gortz', photo: '77306240', github: 'pschaefferkoetter' },
+  { name: 'Sabrina Gortz', photo: '77306240', github: 'sgortz' },
   { name: 'Trevor Edwards', photo: '96637782', github: 'Skoomatron' },
   { name: 'Will Atwood', photo: '33676024', github: 'Acid-Override' },
   { name: 'Yilin Liu', photo: '96321841', github: 'yiiiiilin' },

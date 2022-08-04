@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import SignIn from '../../SignIn.jsx';
+// import SignIn from '../../SignIn.jsx';
 import PageImage from '../../../assets/PageImage.jsx'
 
 function LandingPage1() {
@@ -10,7 +10,7 @@ function LandingPage1() {
      <div className="landingpage0">
       <div className="page-slogan">
           <h2>
-            Get the tone of any speech you create. 
+            Get the tone of any speech you create.
             Instantly.
           </h2>
           <br />
